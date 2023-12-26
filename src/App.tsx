@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react';
 import { Header } from './components';
 
 export default function App() {
@@ -5,6 +6,7 @@ export default function App() {
     <>
       <Header />
       QuizIt
+      <Button variant="proceed">button</Button>
     </>
   );
 }

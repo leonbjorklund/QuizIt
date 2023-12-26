@@ -1,5 +1,9 @@
 import { extendTheme } from '@chakra-ui/react';
 
+const config = {
+  initalColorMode: 'dark',
+};
+
 const colors = {
   primary: '#0A192F',
   secondary: '#132F59',
@@ -55,9 +59,9 @@ const layerStyle = {
 const components = {
   Button: {
     baseStyle: {
-      fontWeight: 'regular',
+      fontFamily: 'Dosis, sans-serif',
     },
-    variant: {
+    variants: {
       proceed: {
         bg: colors.button,
         borderRadius: '5px',
@@ -78,13 +82,12 @@ const components = {
     paddingX: {
       base: '20px',
       sm: '40px',
-      md: '80px'
-    }
+      md: '80px',
+    },
   },
   PlayCard: {
     display: 'flex',
-    
-  }
+  },
 };
 
-export const theme = extendTheme({ colors, layerStyle, components });
+export const theme = extendTheme({ config, colors, layerStyle, components });
