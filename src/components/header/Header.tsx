@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
+import { HeaderContainerStyle } from '../../GlobalStyles';
 
 export const Header = () => {
-  return <Flex position="absolute">Header</Flex>;
+  return <Flex sx={HeaderContainerStyle}>Header</Flex>;
 };

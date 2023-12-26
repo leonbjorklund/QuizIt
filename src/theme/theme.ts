@@ -6,11 +6,11 @@ const config: ThemeConfig = {
 };
 
 const colors = {
-  secondary: '#132F59',
-  correct: '#147849',
-  wrong: '#A92B2B',
-  proceedButton: '#FAF089',
-  selected: '#325386',
+  secondary: 'blue.900',
+  correct: 'green.600',
+  wrong: 'red.600',
+  proceedButton: 'yellow.200',
+  selected: 'blue.700',
   backButtonBorder: 'rgb(255, 255, 255, 0.4)', // white with 40% opacity
 };
 
@@ -67,7 +67,6 @@ const MainContainer = defineStyleConfig({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
     width: '100%',
     maxWidth: '800px',
   },
@@ -96,32 +95,26 @@ const components = {
       proceed: {
         bg: colors.proceedButton,
         color: 'black',
+        _hover: {
+          bg: 'yellow.100',
+          color: 'black',
+        },
       },
       return: {
         bg: 'transparent',
         border: '1px solid',
         borderColor: colors.backButtonBorder,
       },
+      wrong: {
+        bg: colors.wrong,
+        border: '1px solid',
+        borderColor: colors.backButtonBorder,
+        _hover: {
+          bg: 'red.500',
+        },
+      },
     },
   },
-  // Box: {
-  //   baseStyle: {
-  //     fontFamily: 'Dosis, sans-serif',
-  //     color: 'red',
-  //   },
-  //   display: 'flex',
-  //   width: '100%',
-  //   maxWidth: '800px',
-  //   paddingX: {
-  //     base: '20px',
-  //     sm: '40px',
-  //     md: '80px',
-  //   },
-  // },
-
-  // PlayCard: {
-  //   display: 'flex',
-  // },
   MainContainer,
 };
 
