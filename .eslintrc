@@ -7,10 +7,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended",
-    "plugin:css-modules/recommended",
-    "prettier"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,12 +19,7 @@
     "sourceType": "module",
     "extraFileExtensions": [".css"]
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "prettier",
-    "css-modules"
-  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
@@ -37,7 +29,6 @@
     "no-unused-vars": "off",
     "react/jsx-uses-react": "off",
     "react/jsx-uses-vars": "warn",
-    "prettier/prettier": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-member-access": "off"
