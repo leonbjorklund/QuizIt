@@ -63,7 +63,6 @@ const layerStyle = {
 
 const MainContainer = defineStyleConfig({
   baseStyle: {
-    color: 'white',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -78,18 +77,17 @@ const MainContainer = defineStyleConfig({
 });
 
 const components = {
-  Header: {
-    color: 'red',
-  },
   Text: {
     baseStyle: {
       fontFamily: 'Dosis, sans-serif',
+      fontSize: { base: 'sm', md: 'md', lg: 'lg' },
     },
   },
   Button: {
     baseStyle: {
-      fontFamily: 'Dosis, sans-serif',
+      fontWeight: '500',
       borderRadius: '5px',
+      border: 'none',
     },
     variants: {
       proceed: {
@@ -101,13 +99,14 @@ const components = {
         },
       },
       return: {
+        border: '.5px solid',
         bg: 'transparent',
-        border: '1px solid',
-        borderColor: colors.backButtonBorder,
+        _hover: {
+          bg: colors.backButtonBorder,
+        },
       },
       wrong: {
         bg: colors.wrong,
-        border: '1px solid',
         borderColor: colors.backButtonBorder,
         _hover: {
           bg: 'red.500',
