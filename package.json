@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prettierC": "prettier --check \"src/**/*.{ts,tsx}\"",
+    "prettierW": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -19,8 +22,11 @@
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-css-modules": "^2.12.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-react": "^7.33.2",
     "typescript": "^4.9.3",
     "vite": "^5.0.10"
   }
