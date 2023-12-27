@@ -19,12 +19,21 @@ export const HomeScene = ({ setScene }: IHome) => {
     <>
       <Image src={colorMode === 'dark' ? OGLogo : LogoBlack} alt="QuizItLogo" sx={HomeSceneLogoStyle} />
       <Text textAlign="center">Enter a URL below to generate a quiz about anything.</Text>
-      <Input maxWidth="600px" mt=".25rem" placeholder="Enter URL here..." />
+      <Input
+        maxWidth="600px"
+        mt=".25rem"
+        placeholder="Enter URL here..."
+        name="searchbar"
+        size={{ base: 'sm', sm: 'md' }}
+        variant="filled"
+        border=".5px solid rgba(255, 255, 255, 0.2)"
+        py="1.4rem"
+      />
       <Button
         p="15px 30px"
         variant="proceed"
         mt="1rem"
-        fontSize={{ base: 'xs', sm: 'sm' }}
+        fontSize={{ base: 'xs', sm: 'sm', md: 'md' }}
         onClick={() => handleNextScene(Scene.PLAY)}
       >
         Continue
