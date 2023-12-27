@@ -1,7 +1,4 @@
-import OGLogo from './OGLogo.png'
-import LogoBlack from './LogoBlack.png'
+import LogoBlack from './LogoBlack.png';
+import OGLogo from './OGLogo.png';
 
-export {
-    OGLogo,
-    LogoBlack
-}
+export { LogoBlack, OGLogo };

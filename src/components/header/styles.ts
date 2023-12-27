@@ -7,6 +7,6 @@ export const HeaderContainerStyle = {
   padding: {
     base: '10px 10px',
     sm: '10px 30px',
-    md: '10px 40px'
+    md: '10px 40px',
   },
 };
