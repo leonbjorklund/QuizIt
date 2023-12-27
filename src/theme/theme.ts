@@ -1,4 +1,5 @@
 import { defineStyleConfig, extendTheme, type ThemeConfig } from '@chakra-ui/react';
+import { radioTheme } from '../components/PlayScene/Radio';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -70,17 +71,27 @@ const MainContainer = defineStyleConfig({
     maxWidth: '800px',
   },
   variants: {
-    primary: {
-      color: 'red',
+    playScene: {
+      borderRadius: '5px',
+      bg: colors.secondary,
+      padding: '40px 30px',
+      gap: '30px',
     },
+    playSceneTrueFalse: {},
   },
 });
 
 const components = {
+  Radio: radioTheme,
   Text: {
     baseStyle: {
       fontFamily: 'Dosis, sans-serif',
       fontSize: { base: 'sm', md: 'md', lg: 'lg' },
+    },
+  },
+  Control: {
+    baseStyle: {
+      bg: 'red.500',
     },
   },
   Button: {
@@ -91,12 +102,7 @@ const components = {
     },
     variants: {
       proceed: {
-        bg: colors.proceedButton,
         color: 'black',
-        _hover: {
-          bg: 'yellow.100',
-          color: 'black',
-        },
       },
       return: {
         border: '.5px solid',
