@@ -25,9 +25,10 @@ export const HomeScene = ({ setScene }: IHome) => {
         placeholder="Enter URL here..."
         name="searchbar"
         size={{ base: 'sm', sm: 'md' }}
-        variant="filled"
-        border=".5px solid rgba(255, 255, 255, 0.2)"
+        border="none"
         py="1.4rem"
+        bg={colorMode === 'dark' ? '#2D3748' : '#E2E8EF'}
+        _placeholder={{ color: colorMode === 'dark' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)' }}
       />
       <Button
         p="15px 30px"
