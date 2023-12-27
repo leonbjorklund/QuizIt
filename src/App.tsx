@@ -5,7 +5,7 @@ import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
 import { EndScene, Header, HomeScene, LoadingScene, OptionsScene, PlayScene } from './components';
 import { MainContainer } from './theme/MainContainer';
 
-enum Scene {
+ export enum Scene {
   HOME = 'home',
   OPTIONS = 'options',
   LOADING = 'loading',
@@ -19,7 +19,7 @@ export default function App() {
   const renderScene = (clickedScene: Scene) => {
     switch (clickedScene) {
       case Scene.HOME:
-        return <HomeScene />;
+        return <HomeScene setScene={setScene}/>;
       case Scene.OPTIONS:
         return <OptionsScene />;
       case Scene.LOADING:
