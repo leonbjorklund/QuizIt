@@ -1,16 +1,21 @@
-import { extendTheme } from '@chakra-ui/react';
+import { defineStyleConfig, extendTheme, type ThemeConfig } from '@chakra-ui/react';
 
-const config = {
-  initalColorMode: 'dark',
+const config: ThemeConfig = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
 };
 
 const colors = {
-  primary: '#0A192F',
-  secondary: '#132F59',
-  correct: '#147849',
-  wrong: '#A92B2B',
-  button: '#FAF089',
-  selected: '#325386',
+  secondary: 'blue.900',
+  correct: 'green.600',
+  wrong: 'red.600',
+  proceedButton: 'yellow.200',
+  selected: 'blue.700',
+  backButtonBorder: 'rgb(255, 255, 255, 0.4)', // white with 40% opacity
+};
+
+const fonts = {
+  body: 'Poppins, sans-serif',
 };
 
 const layerStyle = {
@@ -56,38 +61,60 @@ const layerStyle = {
   },
 };
 
+const MainContainer = defineStyleConfig({
+  baseStyle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: '800px',
+  },
+  variants: {
+    primary: {
+      color: 'red',
+    },
+  },
+});
+
 const components = {
-  Button: {
+  Text: {
     baseStyle: {
       fontFamily: 'Dosis, sans-serif',
+      fontSize: { base: 'sm', md: 'md', lg: 'lg' },
+    },
+  },
+  Button: {
+    baseStyle: {
+      fontWeight: '500',
+      borderRadius: '5px',
+      border: 'none',
     },
     variants: {
       proceed: {
-        bg: colors.button,
-        borderRadius: '5px',
-        color: '#000',
+        bg: colors.proceedButton,
+        color: 'black',
+        _hover: {
+          bg: 'yellow.100',
+          color: 'black',
+        },
       },
       return: {
+        border: '.5px solid',
         bg: 'transparent',
-        color: '#FFF',
-        borderColor: '#FFF',
-        borderRadius: '5px',
+        _hover: {
+          bg: colors.backButtonBorder,
+        },
+      },
+      wrong: {
+        bg: colors.wrong,
+        borderColor: colors.backButtonBorder,
+        _hover: {
+          bg: 'red.500',
+        },
       },
     },
   },
-  SceneContainer: {
-    display: 'flex',
-    width: '100%',
-    maxWidth: '800px',
-    paddingX: {
-      base: '20px',
-      sm: '40px',
-      md: '80px',
-    },
-  },
-  PlayCard: {
-    display: 'flex',
-  },
+  MainContainer,
 };
 
-export const theme = extendTheme({ config, colors, layerStyle, components });
+export const theme = extendTheme({ config, fonts, colors, layerStyle, components });

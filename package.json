@@ -12,6 +12,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -24,7 +25,6 @@
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "eslint-plugin-css-modules": "^2.12.0",
     "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-react": "^7.33.2",
     "typescript": "^4.9.3",
