@@ -1,5 +1,15 @@
 import { CloseIcon, EditIcon, LinkIcon } from '@chakra-ui/icons';
-import { Button, Image, Input, InputGroup, InputRightElement, Text, Textarea, useColorMode } from '@chakra-ui/react';
+import {
+  Button,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+  Textarea,
+  Tooltip,
+  useColorMode,
+} from '@chakra-ui/react';
 
 import { useState } from 'react';
 import { Scene } from '../../App';
@@ -58,17 +68,23 @@ export const HomeScene = ({ setScene }: IHome) => {
 
         <InputRightElement>
           {inputValue !== '' ? (
-            <Button variant="searchbarBtn" onClick={() => setInputValue('')}>
-              <CloseIcon />
-            </Button>
+            <Tooltip hasArrow label="Clear text" offset={[0, 10]}>
+              <Button variant="ghost" onClick={() => setInputValue('')}>
+                <CloseIcon />
+              </Button>
+            </Tooltip>
           ) : inputType === InputType.URL ? (
-            <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
-              <EditIcon />
-            </Button>
+            <Tooltip hasArrow label="Text mode" offset={[0, 10]}>
+              <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
+                <EditIcon />
+              </Button>
+            </Tooltip>
           ) : (
-            <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
-              <LinkIcon />
-            </Button>
+            <Tooltip hasArrow label="URL mode" offset={[0, 10]}>
+              <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
+                <LinkIcon />
+              </Button>
+            </Tooltip>
           )}
         </InputRightElement>
       </InputGroup>
