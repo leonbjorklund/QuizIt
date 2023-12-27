@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 .prettierrc
 .eslintrc
-.filenest.txt
+filenest.txt
