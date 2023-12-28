@@ -43,7 +43,12 @@ export const LoadingScene = ({ setScene }: ILoading) => {
             <Button variant="return" onClick={() => setScene(Scene.HOME)}>
               {homeBtn}
             </Button>
-            <Button variant="proceed">{tryAgainBtn}</Button>
+            <Button
+              variant="proceed"
+              onClick={() => setIsOops(false) /*this is just to avoid lint issue until the logic is set*/}
+            >
+              {tryAgainBtn}
+            </Button>
           </Flex>
         </>
       ) : (
