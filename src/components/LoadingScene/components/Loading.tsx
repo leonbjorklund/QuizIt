@@ -1,7 +1,7 @@
 import { Flex, Text, useColorMode } from '@chakra-ui/react';
 
 import { loadingStrings } from '../../../assets/strings';
-import { loadingDot } from '../styles';
+import { LoadingDotStyle } from '../styles';
 
 export const Loading = () => {
   const { colorMode } = useColorMode();
@@ -14,13 +14,13 @@ export const Loading = () => {
       <Text variant="loading" textAlign="center">
         {loading}
       </Text>
-      <Text sx={{ ...loadingDot, animationDelay: '0s' }} variant="loading">
+      <Text sx={{ ...LoadingDotStyle, animationDelay: '0s' }} variant="loading">
         {dot}
       </Text>
-      <Text sx={{ ...loadingDot, animationDelay: '0.5s', color: dotColorMode1 }} variant="loading">
+      <Text sx={{ ...LoadingDotStyle, animationDelay: '0.5s', color: dotColorMode1 }} variant="loading">
         {dot}
       </Text>
-      <Text sx={{ ...loadingDot, animationDelay: '1s', color: dotColorMode2 }} variant="loading">
+      <Text sx={{ ...LoadingDotStyle, animationDelay: '1s', color: dotColorMode2 }} variant="loading">
         {dot}
       </Text>
     </Flex>

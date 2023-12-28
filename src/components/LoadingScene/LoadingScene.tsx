@@ -1,16 +1,19 @@
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { Scene } from '../../App';
 import { fun_facts, loadingStrings } from '../../assets/strings';
 import { MainContainer } from '../../theme/MainContainer';
 import { Loading } from './components';
+import { LoadingContainerStyle } from './styles';
 
 interface ILoading {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
 export const LoadingScene = ({ setScene }: ILoading) => {
+  const isDesktop = useBreakpointValue({ base: false, sm: true });
+
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
@@ -33,13 +36,13 @@ export const LoadingScene = ({ setScene }: ILoading) => {
     <>
       {isOops ? (
         <>
-          <Flex flexDirection="column" alignItems="center" lineHeight="1.25" mb="2rem">
+          <Flex sx={LoadingContainerStyle}>
             <Text variant="loading">{oopsTitle}</Text>
             <Text variant="loadSubtitle" opacity="1">
               {oopsSubtitle}
             </Text>
           </Flex>
-          <Flex gap="1.5em">
+          <Flex gap="1.5em" flexDirection={!isDesktop ? 'column-reverse' : 'row'} width={!isDesktop ? '100%' : 'auto'}>
             <Button variant="return" onClick={() => setScene(Scene.HOME)}>
               {homeBtn}
             </Button>
@@ -53,7 +56,7 @@ export const LoadingScene = ({ setScene }: ILoading) => {
         </>
       ) : (
         <>
-          <Flex alignItems="center" flexDirection="column" lineHeight="1.35">
+          <Flex sx={LoadingContainerStyle}>
             <Loading />
             <Text variant="loadSubtitle">{loadSubtitle}</Text>
           </Flex>
