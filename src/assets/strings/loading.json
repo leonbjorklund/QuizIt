@@ -3,5 +3,9 @@
   "logoLoading": "uizIt",
   "dot": ".",
   "loadSubtitle": "Please wait while your quiz is being generated",
-  "funFactTitle": "Fun fact:"
+  "funFactTitle": "Fun fact:",
+  "oopsTitle": "Oops...",
+  "oopsSubtitle": "    Something went wrong while generating your quiz",
+  "homeBtn": "Back to home",
+  "tryAgainBtn": "Try again?"
 }

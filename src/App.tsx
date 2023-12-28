@@ -23,7 +23,7 @@ export default function App() {
       case Scene.OPTIONS:
         return <OptionsScene />;
       case Scene.LOADING:
-        return <LoadingScene />;
+        return <LoadingScene setScene={setScene} />;
       case Scene.PLAY:
         return <PlayScene />;
       case Scene.END:
