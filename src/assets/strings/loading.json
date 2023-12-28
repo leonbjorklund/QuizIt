@@ -1,3 +1,7 @@
 {
-  "placeholder": "placeholder"
+  "loading": "Loading",
+  "logoLoading": "uizIt",
+  "dot": ".",
+  "loadSubtitle": "Please wait while your quiz is being generated",
+  "funFactTitle": "Fun fact:"
 }
