@@ -12,7 +12,7 @@ const colors = {
   wrong: 'red.600',
   proceedButton: 'yellow.200',
   selected: 'blue.700',
-  backButtonBorder: 'rgb(255, 255, 255, 0.4)', // white with 40% opacity
+  backButtonBorder: '#FFFFFF66', // white with 40% opacity
 };
 
 const fonts = {
@@ -25,7 +25,7 @@ const layerStyle = {
     border: '2px solid',
     borderColor: colors.selected,
     color: '#FFF',
-    boxShadow: '4px 4px rgba(0, 0, 0, .25)',
+    boxShadow: '4px 4px #00000040',
     borderRadius: '5px',
   },
   selected: {
@@ -33,7 +33,7 @@ const layerStyle = {
     border: '2px solid',
     borderColor: '#FFF',
     color: '#FFF',
-    boxShadow: '4px 4px rgba(0, 0, 0, .25)',
+    boxShadow: '4px 4px #00000040',
     borderRadius: '5px',
   },
   correctAnswer: {
@@ -41,7 +41,7 @@ const layerStyle = {
     border: '2px solid',
     borderColor: colors.correct,
     color: '#FFF',
-    boxShadow: '4px 4px rgba(0, 0, 0, .25)',
+    boxShadow: '4px 4px #00000040',
     borderRadius: '5px',
   },
   correctAnswerSelected: {
@@ -49,7 +49,7 @@ const layerStyle = {
     border: '2px solid',
     borderColor: '#FFF',
     color: '#FFF',
-    boxShadow: '4px 4px rgba(0, 0, 0, .25)',
+    boxShadow: '4px 4px #00000040',
     borderRadius: '5px',
   },
   wrongAnswerSelected: {
@@ -57,7 +57,7 @@ const layerStyle = {
     border: '2px solid',
     borderColor: '#FFF',
     color: '#FFF',
-    boxShadow: '4px 4px rgba(0, 0, 0, .25)',
+    boxShadow: '4px 4px #00000040',
     borderRadius: '5px',
   },
 };
@@ -82,7 +82,63 @@ const MainContainer = defineStyleConfig({
 });
 
 const components = {
+
   Radio: radioTheme,
+  Input: {
+    baseStyle: {
+      field: {
+        mt: '.25rem',
+        border: 'none',
+        py: '1.4rem',
+        pr: '4rem',
+        fontSize: {
+          base: 'sm',
+          sm: 'md',
+        },
+        _dark: {
+          bg: '#2D3748',
+          _placeholder: {
+            color: '#FFFFFF99',
+          },
+        },
+        _light: {
+          bg: '#E2E8EF',
+          _placeholder: {
+            color: '#4A556899',
+          },
+        },
+      },
+      element: {
+        mt: '.45rem',
+        mr: '.2rem',
+      },
+    },
+  },
+  Textarea: {
+    baseStyle: {
+      resize: 'none',
+      height: '15rem',
+      mt: '.25rem',
+      pr: '4rem',
+      fontSize: {
+        base: 'sm',
+        sm: 'md',
+      },
+      _dark: {
+        bg: '#2D3748',
+        _placeholder: {
+          color: '#FFFFFF99',
+        },
+      },
+      _light: {
+        bg: '#E2E8EF',
+        _placeholder: {
+          color: '#4A556899',
+        },
+      },
+    },
+  },
+>>>>>>> main
   Text: {
     baseStyle: {
       fontFamily: 'Dosis, sans-serif',
@@ -103,6 +159,11 @@ const components = {
     variants: {
       proceed: {
         color: 'black',
+        fontSize: { base: 'xs', sm: 'sm', md: 'md' },
+        _hover: {
+          bg: 'yellow.100',
+          color: 'black',
+        },
       },
       return: {
         border: '.5px solid',
@@ -116,6 +177,16 @@ const components = {
         borderColor: colors.backButtonBorder,
         _hover: {
           bg: 'red.500',
+        },
+      },
+      searchbarBtn: {
+        _dark: {
+          bg: '#4A556899',
+          color: '#FFFFFF99',
+        },
+        _light: {
+          bg: '#FFFFFF99',
+          color: '#4A556899',
         },
       },
     },

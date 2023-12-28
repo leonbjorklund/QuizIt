@@ -1,3 +1,6 @@
 {
-  "placeholder": "placeholder"
+  "subtitle": "Enter a URL below to generate a quiz about anything.",
+  "urlPlaceholder": "Enter URL here...",
+  "textPlaceholder": "Enter your text here...",
+  "continueBtn": "Continue"
 }
