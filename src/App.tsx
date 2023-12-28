@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
 import { EndScene, Header, HomeScene, LoadingScene, OptionsScene, PlayScene } from './components';
-import { MainContainer } from './theme/MainContainer';
+import { SceneContainer } from './theme/MainContainer';
 
 export enum Scene {
   HOME = 'home',
@@ -35,7 +35,11 @@ export default function App() {
     <Flex sx={PageWrapperStyle}>
       <Header />
       <Flex as="main" sx={MainWrapperStyle}>
-        <MainContainer>{renderScene(scene)}</MainContainer>
+        {/* <MainContainer>{renderScene(scene)}</MainContainer> */}
+        <SceneContainer>
+          <PlayScene />
+          {/* <Example /> */}
+        </SceneContainer>
       </Flex>
     </Flex>
   );

@@ -62,7 +62,7 @@ const layerStyle = {
   },
 };
 
-const MainContainer = defineStyleConfig({
+const SceneContainer = defineStyleConfig({
   baseStyle: {
     display: 'flex',
     flexDirection: 'column',
@@ -72,18 +72,25 @@ const MainContainer = defineStyleConfig({
   },
   variants: {
     playScene: {
+      maxWidth: { sm: '600px', md: '600px', lg: '100%' },
       borderRadius: '5px',
       bg: colors.secondary,
-      padding: '40px 30px',
-      gap: '30px',
+      padding: '30px 30px',
+      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
     },
     playSceneTrueFalse: {},
   },
 });
 
 const components = {
-
   Radio: radioTheme,
+  Heading: {
+    baseStyle: {
+      fontFamily: 'Poppins, sans-serif',
+      fontWeight: 'medium',
+      fontSize: { base: '20px', sm: '22px', md: '24px', lg: '26px' },
+    },
+  },
   Input: {
     baseStyle: {
       field: {
@@ -138,7 +145,6 @@ const components = {
       },
     },
   },
->>>>>>> main
   Text: {
     baseStyle: {
       fontFamily: 'Dosis, sans-serif',
@@ -191,7 +197,7 @@ const components = {
       },
     },
   },
-  MainContainer,
+  SceneContainer: SceneContainer,
 };
 
 export const theme = extendTheme({ config, fonts, colors, layerStyle, components });

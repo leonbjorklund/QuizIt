@@ -1,49 +1,80 @@
-import { Button, Flex, Heading, RadioGroup, Text } from '@chakra-ui/react';
-import { useState } from 'react';
-import { MainContainer } from '../../theme/MainContainer';
-import quizData from './quizData.json';
+import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Spacer, Text } from '@chakra-ui/react';
+import { Radio } from './Radio';
 
-import { Radio } from './Radio'; // import your custom Radio component
+import { ChevronLeftIcon } from '@chakra-ui/icons';
+import { SceneContainer } from '../../theme/MainContainer';
+import quizData from './quizData.json';
+import useQuiz from './useQuiz';
 
 export const PlayScene = () => {
-  console.log('quizData', quizData);
-
-  const [index, setIndex] = useState(0);
-  const [question, setQuestion] = useState(quizData.questions[index]);
-  const [value, setValue] = useState('');
-
-  const checkAnswer = () => {
-    if (value === question.correctAnswer) {
-      console.log('Correct');
-    } else {
-      console.log('Wrong');
-    }
-  };
+  const {
+    index,
+    currentQuestion,
+    value,
+    showAnswer,
+    // score, Används senare
+    userAnswers,
+    setQuizState,
+    navigateQuestion,
+    checkAnswer,
+    renderIcon,
+  } = useQuiz();
 
   return (
     <>
-      <Text>1 / 5 questions</Text>
-      <MainContainer variant="playScene">
-        <Heading size="md">{question.question}</Heading>
-        <RadioGroup w="100%" onChange={setValue} value={value}>
-          <Flex gap={5} wrap="wrap" justifyContent="space-between">
-            {question.options.map((option, i) => (
+      <HStack maxWidth={{ sm: '600px', md: '600px', lg: '100%' }} w="100%" pl="5px">
+        <Text fontSize={{ base: '14px', sm: '16px', md: '18px', lg: '20px' }}>
+          {index + 1} / {quizData.questions.length}
+        </Text>
+      </HStack>
+      <SceneContainer variant="playScene">
+        <Heading textAlign="center" fontSize={{ base: '20px', sm: '22px', md: '24px', lg: '26px' }}>
+          {currentQuestion.question}
+        </Heading>
+        <RadioGroup isDisabled={showAnswer} w="100%" onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}>
+          <Flex gap={5} wrap="wrap" justifyContent="center">
+            {currentQuestion.options?.map((option, i) => (
               <Radio
-                isCorrectOption={option === question.correctAnswer}
+                showAnswer={showAnswer}
+                isCorrectOption={showAnswer && option === currentQuestion.correctAnswer}
+                isChecked={value === option}
+                isUserPreviousChoice={userAnswers[index] === option}
                 key={i}
                 spacing="1rem"
-                size="xl"
+                size={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }}
                 value={option}
               >
+                <Icon boxSize="1.5rem" as={renderIcon(option)} />
                 {option}
               </Radio>
             ))}
           </Flex>
         </RadioGroup>
-        <Button colorScheme="yellow" onClick={checkAnswer}>
-          Reveal Answer
+      </SceneContainer>
+      <HStack mt="1.5rem" justifyContent="center" position="relative" width="full">
+        {index > 0 && (
+          <IconButton
+            position="absolute"
+            left="calc(50% - 10rem)"
+            aria-label="previous-question"
+            bg="none"
+            icon={<ChevronLeftIcon boxSize="2rem" />}
+            onClick={() => navigateQuestion('previous')}
+          />
+        )}
+        <Spacer />
+        <Button
+          h="auto"
+          padding="10px 20px"
+          fontSize={{ base: '14px', sm: '16px', md: '18px', lg: '20px' }}
+          colorScheme="yellow"
+          onClick={checkAnswer}
+          isDisabled={!value && !showAnswer}
+        >
+          {showAnswer ? 'Next Question' : 'Reveal Answer'}
         </Button>
-      </MainContainer>
+        <Spacer />
+      </HStack>
     </>
   );
 };
