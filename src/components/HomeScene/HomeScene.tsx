@@ -1,43 +1,95 @@
-import { Button, Image, Input, Text, useColorMode } from '@chakra-ui/react';
+import { CloseIcon, EditIcon, LinkIcon } from '@chakra-ui/icons';
+import {
+  Button,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+  Textarea,
+  Tooltip,
+  useColorMode,
+} from '@chakra-ui/react';
 
+import { useState } from 'react';
 import { Scene } from '../../App';
 import { LogoBlack, OGLogo } from '../../assets/images';
+import { homeStrings } from '../../assets/strings';
 import { HomeSceneLogoStyle } from './styles';
 
 interface IHome {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
+enum InputType {
+  URL = 'url',
+  TEXT = 'text',
+}
+
 export const HomeScene = ({ setScene }: IHome) => {
   const { colorMode } = useColorMode();
+  const { subtitle, urlPlaceholder, textPlaceholder, continueBtn } = homeStrings;
+
+  const [inputType, setInputType] = useState<InputType>(InputType.URL);
+  const [inputValue, setInputValue] = useState('');
 
   const handleNextScene = (scene: Scene) => {
     setScene(scene);
   };
 
+  const handleSwitchInputType = () => {
+    if (inputType === InputType.TEXT) {
+      setInputType(InputType.URL);
+    } else {
+      setInputType(InputType.TEXT);
+    }
+  };
+
   return (
     <>
       <Image src={colorMode === 'dark' ? OGLogo : LogoBlack} alt="QuizItLogo" sx={HomeSceneLogoStyle} />
-      <Text textAlign="center">Enter a URL below to generate a quiz about anything.</Text>
-      <Input
-        maxWidth="600px"
-        mt=".25rem"
-        placeholder="Enter URL here..."
-        name="searchbar"
-        size={{ base: 'sm', sm: 'md' }}
-        border="none"
-        py="1.4rem"
-        bg={colorMode === 'dark' ? '#2D3748' : '#E2E8EF'}
-        _placeholder={{ color: colorMode === 'dark' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)' }}
-      />
-      <Button
-        p="15px 30px"
-        variant="proceed"
-        mt="1rem"
-        fontSize={{ base: 'xs', sm: 'sm', md: 'md' }}
-        onClick={() => handleNextScene(Scene.PLAY)}
-      >
-        Continue
+      <Text textAlign="center">{subtitle}</Text>
+      <InputGroup maxWidth="600px">
+        {inputType === InputType.URL ? (
+          <Input
+            placeholder={urlPlaceholder}
+            name="searchbar"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+          />
+        ) : (
+          <Textarea
+            placeholder={textPlaceholder}
+            name="searchbar"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+          />
+        )}
+
+        <InputRightElement>
+          {inputValue !== '' ? (
+            <Tooltip hasArrow label="Clear text" offset={[0, 10]}>
+              <Button variant="ghost" onClick={() => setInputValue('')}>
+                <CloseIcon />
+              </Button>
+            </Tooltip>
+          ) : inputType === InputType.URL ? (
+            <Tooltip hasArrow label="Text mode" offset={[0, 10]}>
+              <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
+                <EditIcon />
+              </Button>
+            </Tooltip>
+          ) : (
+            <Tooltip hasArrow label="URL mode" offset={[0, 10]}>
+              <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
+                <LinkIcon />
+              </Button>
+            </Tooltip>
+          )}
+        </InputRightElement>
+      </InputGroup>
+      <Button p="15px 30px" variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.PLAY)}>
+        {continueBtn}
       </Button>
     </>
   );
