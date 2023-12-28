@@ -2,7 +2,7 @@ import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Spacer, Te
 import { Radio } from './Radio';
 
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { SceneContainer } from '../../theme/MainContainer';
+import { SceneContainer } from '../../theme/SceneContainer';
 import quizData from './quizData.json';
 import useQuiz from './useQuiz';
 

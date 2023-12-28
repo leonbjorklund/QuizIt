@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
 import { EndScene, Header, HomeScene, LoadingScene, OptionsScene, PlayScene } from './components';
-import { SceneContainer } from './theme/MainContainer';
+import { SceneContainer } from './theme/SceneContainer';
 
 export enum Scene {
   HOME = 'home',
