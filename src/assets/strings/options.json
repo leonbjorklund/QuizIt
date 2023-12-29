@@ -1,3 +1,26 @@
 {
-  "placeholder": "placeholder"
+  "typeOfQuiz": {
+    "title": "Type of quiz",
+    "alternatives": {
+      "trueFalse": "True/False",
+      "multichoice": "Multichoice"
+    }
+  },
+  "amountOfQuestions": {
+    "title": "Amount of questions",
+    "alternatives": {
+      "five": "5",
+      "ten": "10",
+      "fifteen": "15",
+      "twenty": "20"
+    }
+  },
+  "difficulty": {
+    "title": "Difficulty",
+    "alternatives": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  }
 }
