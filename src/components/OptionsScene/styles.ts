@@ -4,6 +4,6 @@ export const OptionStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   width: '100%',
-  padding: '10px 20px',
+  padding: { base: '5px', sm: '10px 20px' },
   borderRadius: '5px',
 };

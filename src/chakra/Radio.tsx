@@ -75,7 +75,9 @@ const variants = {
   optionAlt: definePartsStyle({
     container: {
       bg: 'transparent',
-      color: '#FFF'
+      color: '#FFF',
+      width: '100%',
+      justifyContent: 'center',
     },
     control: {},
     label: {

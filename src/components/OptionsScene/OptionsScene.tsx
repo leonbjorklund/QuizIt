@@ -15,6 +15,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
 
   const { typeOfQuiz, amountOfQuestions, difficulty, btns } = optionsStrings;
 
+
   return (
     <>
       <SceneContainer variant="optionsScene">
@@ -24,7 +25,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
           <SceneCard variant="option">
             <Flex sx={OptionStyle}>
               <Text variant="optionTitle">{typeOfQuiz.title}</Text>
-              <RadioGroup defaultValue="1">
+              <RadioGroup defaultValue="1" w="100%">
                 <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
                   <Radio value="1" variant="optionAlt">
                     {typeOfQuiz.alternatives.trueFalse}
@@ -39,7 +40,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
           <SceneCard variant="option">
             <Flex sx={OptionStyle}>
               <Text variant="optionTitle">{amountOfQuestions.title}</Text>
-              <RadioGroup defaultValue="1">
+              <RadioGroup defaultValue="3" w="100%">
                 <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
                   <Radio value="1" variant="optionAlt">
                     {amountOfQuestions.alternatives.five}
@@ -60,7 +61,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
           <SceneCard variant="option">
             <Flex sx={OptionStyle}>
               <Text variant="optionTitle">{difficulty.title}</Text>
-              <RadioGroup defaultValue="1">
+              <RadioGroup defaultValue="2" w="100%">
                 <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
                   <Radio value="1" variant="optionAlt">
                     {difficulty.alternatives.easy}
