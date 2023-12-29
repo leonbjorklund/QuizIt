@@ -15,7 +15,6 @@ export const OptionsScene = ({ setScene }: IOptions) => {
 
   const { typeOfQuiz, amountOfQuestions, difficulty, btns } = optionsStrings;
 
-
   return (
     <>
       <SceneContainer variant="optionsScene">
@@ -25,51 +24,53 @@ export const OptionsScene = ({ setScene }: IOptions) => {
           <SceneCard variant="option">
             <Flex sx={OptionStyle}>
               <Text variant="optionTitle">{typeOfQuiz.title}</Text>
-              <RadioGroup defaultValue="1" w="100%">
+              <RadioGroup defaultValue={typeOfQuiz.alternatives.trueFalse} w="100%">
                 <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
-                  <Radio value="1" variant="optionAlt">
+                  <Radio value={typeOfQuiz.alternatives.trueFalse} variant="optionAlt">
                     {typeOfQuiz.alternatives.trueFalse}
                   </Radio>
-                  <Radio value="2" variant="optionAlt">
+                  <Radio value={typeOfQuiz.alternatives.multichoice} variant="optionAlt">
                     {typeOfQuiz.alternatives.multichoice}
                   </Radio>
                 </Stack>
               </RadioGroup>
             </Flex>
           </SceneCard>
+
           <SceneCard variant="option">
             <Flex sx={OptionStyle}>
               <Text variant="optionTitle">{amountOfQuestions.title}</Text>
-              <RadioGroup defaultValue="3" w="100%">
+              <RadioGroup defaultValue={amountOfQuestions.alternatives.fifteen} w="100%">
                 <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
-                  <Radio value="1" variant="optionAlt">
+                  <Radio value={amountOfQuestions.alternatives.five} variant="optionAlt">
                     {amountOfQuestions.alternatives.five}
                   </Radio>
-                  <Radio value="2" variant="optionAlt">
+                  <Radio value={amountOfQuestions.alternatives.ten} variant="optionAlt">
                     {amountOfQuestions.alternatives.ten}
                   </Radio>
-                  <Radio value="3" variant="optionAlt">
+                  <Radio value={amountOfQuestions.alternatives.fifteen} variant="optionAlt">
                     {amountOfQuestions.alternatives.fifteen}
                   </Radio>
-                  <Radio value="4" variant="optionAlt">
+                  <Radio value={amountOfQuestions.alternatives.twenty} variant="optionAlt">
                     {amountOfQuestions.alternatives.twenty}
                   </Radio>
                 </Stack>
               </RadioGroup>
             </Flex>
           </SceneCard>
+
           <SceneCard variant="option">
             <Flex sx={OptionStyle}>
               <Text variant="optionTitle">{difficulty.title}</Text>
-              <RadioGroup defaultValue="2" w="100%">
+              <RadioGroup defaultValue={difficulty.alternatives.medium} w="100%">
                 <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
-                  <Radio value="1" variant="optionAlt">
+                  <Radio value={difficulty.alternatives.easy} variant="optionAlt">
                     {difficulty.alternatives.easy}
                   </Radio>
-                  <Radio value="2" variant="optionAlt">
+                  <Radio value={difficulty.alternatives.medium} variant="optionAlt">
                     {difficulty.alternatives.medium}
                   </Radio>
-                  <Radio value="3" variant="optionAlt">
+                  <Radio value={difficulty.alternatives.hard} variant="optionAlt">
                     {difficulty.alternatives.hard}
                   </Radio>
                 </Stack>
