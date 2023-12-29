@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { Scene } from '../../App';
 import { fun_facts, loadingStrings } from '../../assets/strings';
-import { MainContainer } from '../../theme/MainContainer';
+import { SceneContainer } from '../../chakra/SceneContainer';
 import { Loading } from './components';
 import { LoadingContainerStyle } from './styles';
 
@@ -61,10 +61,10 @@ export const LoadingScene = ({ setScene }: ILoading) => {
             <Text variant="loadSubtitle">{loadSubtitle}</Text>
           </Flex>
 
-          <MainContainer variant="funFact">
+          <SceneContainer variant="funFact">
             <Text variant="funFactTitle">{funFactTitle}</Text>
             <Text variant="funFact">{renderFunFact()}</Text>
-          </MainContainer>
+          </SceneContainer>
         </>
       )}
     </>

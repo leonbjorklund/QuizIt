@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
+import { SceneContainer } from './chakra/SceneContainer';
 import { EndScene, Header, HomeScene, LoadingScene, OptionsScene, PlayScene } from './components';
-import { MainContainer } from './theme/MainContainer';
 
 export enum Scene {
   HOME = 'home',
@@ -35,7 +35,7 @@ export default function App() {
     <Flex sx={PageWrapperStyle}>
       <Header />
       <Flex as="main" sx={MainWrapperStyle}>
-        <MainContainer>{renderScene(scene)}</MainContainer>
+        <SceneContainer>{renderScene(scene)}</SceneContainer>
       </Flex>
     </Flex>
   );
