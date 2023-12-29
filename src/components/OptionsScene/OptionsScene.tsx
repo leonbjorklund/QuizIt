@@ -2,7 +2,9 @@ import { Button, Flex, Radio, RadioGroup, Stack, Text, useBreakpointValue } from
 
 import { Scene } from '../../App';
 import { optionsStrings } from '../../assets/strings';
-import { MainContainer } from '../../theme/MainContainer';
+import { SceneCard } from '../../chakra/SceneCard';
+import { SceneContainer } from '../../chakra/SceneContainer';
+import { OptionStyle } from './styles';
 
 interface IOptions {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
@@ -15,67 +17,65 @@ export const OptionsScene = ({ setScene }: IOptions) => {
 
   return (
     <>
-      <MainContainer gap="20px">
+      <SceneContainer variant="optionsScene">
         <Text variant="optionsSceneTitle">Customize your quiz</Text>
 
-        <MainContainer p="10px" bg="blue.900" borderRadius="5px" gap="10px">
-          <MainContainer variant="option">
-            <Flex flexDirection="column" alignItems="center" gap="10px">
-              <Text fontSize="26px">{typeOfQuiz.title}</Text>
+        <SceneCard variant="optionsCard">
+          <SceneCard variant="option">
+            <Flex sx={OptionStyle}>
+              <Text variant="optionTitle">{typeOfQuiz.title}</Text>
               <RadioGroup defaultValue="1">
-                <Stack spacing={16} direction="row">
-                  <Radio value="1" fontSize="24px">
+                <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
+                  <Radio value="1" variant="optionAlt">
                     {typeOfQuiz.alternatives.trueFalse}
                   </Radio>
-                  <Radio value="2" fontSize="24px" isChecked>
+                  <Radio value="2" variant="optionAlt">
                     {typeOfQuiz.alternatives.multichoice}
                   </Radio>
                 </Stack>
               </RadioGroup>
             </Flex>
-          </MainContainer>
-
-          <MainContainer variant="option">
-            <Flex flexDirection="column" alignItems="center">
-              <Text fontSize="26px">{amountOfQuestions.title}</Text>
-              <RadioGroup defaultValue="2">
-                <Stack spacing={16} direction="row">
-                  <Radio value="1" fontSize="24px">
+          </SceneCard>
+          <SceneCard variant="option">
+            <Flex sx={OptionStyle}>
+              <Text variant="optionTitle">{amountOfQuestions.title}</Text>
+              <RadioGroup defaultValue="1">
+                <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
+                  <Radio value="1" variant="optionAlt">
                     {amountOfQuestions.alternatives.five}
                   </Radio>
-                  <Radio value="2" fontSize="24px" isChecked>
+                  <Radio value="2" variant="optionAlt">
                     {amountOfQuestions.alternatives.ten}
                   </Radio>
-                  <Radio value="3" fontSize="24px" isChecked>
+                  <Radio value="3" variant="optionAlt">
                     {amountOfQuestions.alternatives.fifteen}
                   </Radio>
-                  <Radio value="4" fontSize="24px" isChecked>
+                  <Radio value="4" variant="optionAlt">
                     {amountOfQuestions.alternatives.twenty}
                   </Radio>
                 </Stack>
               </RadioGroup>
             </Flex>
-          </MainContainer>
-
-          <MainContainer variant="option">
-            <Flex flexDirection="column" alignItems="center">
-              <Text fontSize="26px">{difficulty.title}</Text>
-              <RadioGroup defaultValue="2">
-                <Stack spacing={16} direction="row">
-                  <Radio value="1" fontSize="24px">
+          </SceneCard>
+          <SceneCard variant="option">
+            <Flex sx={OptionStyle}>
+              <Text variant="optionTitle">{difficulty.title}</Text>
+              <RadioGroup defaultValue="1">
+                <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
+                  <Radio value="1" variant="optionAlt">
                     {difficulty.alternatives.easy}
                   </Radio>
-                  <Radio value="2" fontSize="24px" isChecked>
+                  <Radio value="2" variant="optionAlt">
                     {difficulty.alternatives.medium}
                   </Radio>
-                  <Radio value="3" fontSize="24px" isChecked>
+                  <Radio value="3" variant="optionAlt">
                     {difficulty.alternatives.hard}
                   </Radio>
                 </Stack>
               </RadioGroup>
             </Flex>
-          </MainContainer>
-        </MainContainer>
+          </SceneCard>
+        </SceneCard>
 
         <Flex gap="1.5em" flexDirection={!isDesktop ? 'column-reverse' : 'row'} width={!isDesktop ? '100%' : 'auto'}>
           <Button variant="return" onClick={() => setScene(Scene.HOME)}>
@@ -85,7 +85,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
             {btns.generate}
           </Button>
         </Flex>
-      </MainContainer>
+      </SceneContainer>
     </>
   );
 };

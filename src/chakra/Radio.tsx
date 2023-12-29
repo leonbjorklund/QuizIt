@@ -72,6 +72,21 @@ const variants = {
       },
     },
   }),
+  optionAlt: definePartsStyle({
+    container: {
+      bg: 'transparent',
+      color: '#FFF'
+    },
+    control: {},
+    label: {
+      fontSize: {
+        base: '18px',
+        sm: '20px',
+        md: '22px',
+        lg: '24px',
+      },
+    },
+  }),
   placeHolderVariant: definePartsStyle({
     container: {},
     control: {},

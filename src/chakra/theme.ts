@@ -34,18 +34,16 @@ const SceneContainer = defineStyleConfig({
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
     },
     playSceneTrueFalse: {},
-    optionsScene: {},
+    optionsScene: {
+      gap: '20px',
+      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+    },
     funFact: {
       position: 'absolute',
       bottom: 120,
       textAlign: 'center',
       px: '1rem',
     },
-    option: {
-      bg: colors.selected,
-      p: '20px',
-      borderRadius: '5px'
-    }
   },
 });
 
@@ -68,10 +66,11 @@ const SceneCard = defineStyleConfig({
       },
     },
     optionsCard: {
-      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      bg: colors.secondary,
+      maxWidth: '500px',
       borderRadius: '5px',
-      padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
-      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
+      padding: '10px',
+      gap: '10px',
     },
     playSceneTrueFalse: {},
   },
@@ -86,12 +85,30 @@ const components = {
     variants: {
       optionsSceneTitle: {
         fontFamily: 'Poppins, sans-serif',
-        fontWeight: "800",
+        fontWeight: '800',
         fontSize: {
           base: 'lg',
           sm: '2xl',
           md: '3xl',
           lg: '3xl',
+        },
+      },
+      optionTitle: {
+        color: '#FFF',
+        fontSize: {
+          base: '20px',
+          sm: '22px',
+          md: '24px',
+          lg: '26px',
+        },
+      },
+      optionText: {
+        color: '#FFF',
+        fontSize: {
+          base: '18px',
+          sm: '20px',
+          md: '22px',
+          lg: '24px',
         },
       },
       loading: {
