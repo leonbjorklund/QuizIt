@@ -7,11 +7,11 @@ import { SceneContainer } from '../../chakra/SceneContainer';
 import { Loading } from './components';
 import { LoadingContainerStyle } from './styles';
 
-interface ILoading {
+interface ILoadingScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
-export const LoadingScene = ({ setScene }: ILoading) => {
+export const LoadingScene = ({ setScene }: ILoadingScene) => {
   const isDesktop = useBreakpointValue({ base: false, sm: true });
 
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
@@ -29,7 +29,7 @@ export const LoadingScene = ({ setScene }: ILoading) => {
   }, []);
 
   const renderFunFact = () => {
-    return fun_facts.fun_facts[currentFactIndex] as string;
+    return fun_facts.fun_facts[currentFactIndex];
   };
 
   return (
