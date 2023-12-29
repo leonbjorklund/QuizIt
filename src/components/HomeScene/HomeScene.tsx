@@ -88,7 +88,7 @@ export const HomeScene = ({ setScene }: IHome) => {
           )}
         </InputRightElement>
       </InputGroup>
-      <Button p="12px 30px" variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.PLAY)}>
+      <Button variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.PLAY)}>
         {continueBtn}
       </Button>
     </>

@@ -1,7 +1,7 @@
 import { radioAnatomy } from '@chakra-ui/anatomy';
 import { Radio as ChakraRadio, RadioProps as ChakraRadioProps, createMultiStyleConfigHelpers } from '@chakra-ui/react';
 import { useMemo } from 'react';
-import { PlayQuizRadioContainer, getBackgroundColor } from './PlayQuizRadioContainer';
+import { PlayQuizRadioContainer, getBackgroundColor } from '../components/PlayScene/PlayQuizRadioContainer';
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(radioAnatomy.keys);
 
@@ -47,6 +47,10 @@ const variants = {
       },
       _checked: {
         outline: '1px solid white',
+        _light: {
+          outline: '1px solid',
+          outlineColor: 'gray.500',
+        },
       },
     },
     control: {
@@ -54,10 +58,10 @@ const variants = {
     },
     label: {
       fontSize: {
-        base: '18px',
-        sm: '20px',
-        md: '22px',
-        lg: '24px',
+        base: '16px',
+        sm: '18px',
+        md: '20px',
+        lg: '22px',
       },
       display: 'flex',
       alignItems: 'center',
@@ -75,24 +79,8 @@ const variants = {
   }),
 };
 
-const sizes = {
-  // define custom styles for xl size
-  xl: definePartsStyle({
-    label: {
-      fontSize: {
-        base: '16px',
-        sm: '18px',
-        md: '20px',
-        lg: '22px',
-      },
-    },
-  }),
-};
-
-// export the component theme
 export const radioTheme = defineMultiStyleConfig({
   baseStyle,
-  sizes,
   variants,
 });
 

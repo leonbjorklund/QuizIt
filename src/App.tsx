@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
+import { SceneContainer } from './chakra/SceneContainer';
 import { EndScene, Header, HomeScene, LoadingScene, OptionsScene, PlayScene } from './components';
-import { SceneContainer } from './theme/SceneContainer';
 
 export enum Scene {
   HOME = 'home',

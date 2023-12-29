@@ -1,22 +1,23 @@
 import { defineStyleConfig, extendTheme, type ThemeConfig } from '@chakra-ui/react';
-import { radioTheme } from '../components/PlayScene/Radio';
+import { radioTheme } from './Radio';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
   useSystemColorMode: false,
 };
 
-const colors = {
-  secondary: 'blue.900',
-  correct: 'green.600',
-  wrong: 'red.600',
-  proceedButton: 'yellow.200',
-  selected: 'blue.700',
-  backButtonBorder: '#FFFFFF66', // white with 40% opacity
-};
-
 const fonts = {
   body: 'Poppins, sans-serif',
+};
+
+const colors = {
+  secondary: 'blue.900',
+  altColor: 'blue.700',
+  correctAnswer: 'green.600',
+  wrongAnswer: 'red.600',
+  proceedButton: 'yellow.300',
+  proceedButtonHover: 'yellow.200',
+  backButtonBorder: '#FFFFFF66', // white with 40% opacity
 };
 
 const SceneContainer = defineStyleConfig({
@@ -29,9 +30,35 @@ const SceneContainer = defineStyleConfig({
   },
   variants: {
     playScene: {
+      borderRadius: '5px',
+      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+    },
+    playSceneTrueFalse: {},
+    optionsScene: {},
+  },
+});
+
+const SceneCard = defineStyleConfig({
+  baseStyle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  variants: {
+    playCard: {
+      bg: colors.secondary,
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
       borderRadius: '5px',
-      bg: colors.secondary,
+      padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
+      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
+      _light: {
+        bg: 'gray.200',
+      },
+    },
+    optionsCard: {
+      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      borderRadius: '5px',
       padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
       gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
     },
@@ -39,56 +66,18 @@ const SceneContainer = defineStyleConfig({
   },
 });
 
-const layerStyle = {
-  base: {
-    bg: colors.selected,
-    border: '2px solid',
-    borderColor: colors.selected,
-    color: '#FFF',
-    boxShadow: '4px 4px #00000040',
-    borderRadius: '5px',
-  },
-  selected: {
-    bg: colors.selected,
-    border: '2px solid',
-    borderColor: '#FFF',
-    color: '#FFF',
-    boxShadow: '4px 4px #00000040',
-    borderRadius: '5px',
-  },
-  correctAnswer: {
-    bg: colors.correct,
-    border: '2px solid',
-    borderColor: colors.correct,
-    color: '#FFF',
-    boxShadow: '4px 4px #00000040',
-    borderRadius: '5px',
-  },
-  correctAnswerSelected: {
-    bg: colors.correct,
-    border: '2px solid',
-    borderColor: '#FFF',
-    color: '#FFF',
-    boxShadow: '4px 4px #00000040',
-    borderRadius: '5px',
-  },
-  wrongAnswerSelected: {
-    bg: colors.wrong,
-    border: '2px solid',
-    borderColor: '#FFF',
-    color: '#FFF',
-    boxShadow: '4px 4px #00000040',
-    borderRadius: '5px',
-  },
-};
-
 const components = {
-  Radio: radioTheme,
+  Text: {
+    baseStyle: {
+      fontFamily: 'Dosis, sans-serif',
+      fontSize: { base: '14px', sm: '16px', md: '18px', lg: '20px' },
+    },
+  },
   Heading: {
     baseStyle: {
+      textAlign: 'center',
       fontFamily: 'Poppins, sans-serif',
       fontWeight: 'medium',
-      fontSize: { base: '20px', sm: '22px', md: '24px', lg: '26px' },
     },
   },
   Input: {
@@ -109,7 +98,7 @@ const components = {
           },
         },
         _light: {
-          bg: '#E2E8EF',
+          bg: 'gray.200',
           _placeholder: {
             color: '#4A556899',
           },
@@ -145,12 +134,6 @@ const components = {
       },
     },
   },
-  Text: {
-    baseStyle: {
-      fontFamily: 'Dosis, sans-serif',
-      fontSize: { base: 'sm', md: 'md', lg: 'lg' },
-    },
-  },
   Control: {
     baseStyle: {
       bg: 'red.500',
@@ -161,16 +144,16 @@ const components = {
       fontWeight: '500',
       borderRadius: '5px',
       border: 'none',
+      fontSize: { base: '14px', sm: '14px', md: '16px', lg: '16px' },
     },
     variants: {
       proceed: {
-        color: 'black',
-        fontSize: { base: 'xs', sm: 'sm', md: 'md' },
+        padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
+        color: '#000',
         bg: colors.proceedButton,
         height: 'auto',
         _hover: {
-          bg: 'yellow.100',
-          color: 'black',
+          bg: 'yellow.200',
         },
         _disabled: {
           _hover: {
@@ -185,13 +168,7 @@ const components = {
           bg: colors.backButtonBorder,
         },
       },
-      wrong: {
-        bg: colors.wrong,
-        borderColor: colors.backButtonBorder,
-        _hover: {
-          bg: 'red.500',
-        },
-      },
+
       searchbarBtn: {
         _dark: {
           bg: '#4A556899',
@@ -204,7 +181,34 @@ const components = {
       },
     },
   },
+  IconButton: {
+    baseStyle: {},
+    variants: {
+      previousQuestion: {
+        position: 'absolute',
+        left: {
+          base: 'calc(50% - 8rem)',
+          sm: 'calc(50% - 9rem)',
+          md: 'calc(50% - 10rem)',
+          lg: 'calc(50% - 11rem)',
+        },
+      },
+
+      searchbarBtn: {
+        _dark: {
+          bg: '#4A556899',
+          color: '#FFFFFF99',
+        },
+        _light: {
+          bg: '#FFFFFF99',
+          color: '#4A556899',
+        },
+      },
+    },
+  },
+  Radio: radioTheme,
   SceneContainer: SceneContainer,
+  SceneCard: SceneCard,
 };
 
 export const theme = extendTheme({ config, fonts, colors, components });

@@ -15,9 +15,10 @@ interface BackgroundColorOptions {
 
 export function getBackgroundColor(options: BackgroundColorOptions): string {
   const { isCorrectOption, showAnswer, isChecked, isUserPreviousChoice } = options;
+
   if (isCorrectOption) return 'green.600';
   if (showAnswer && !isCorrectOption && (isChecked || isUserPreviousChoice)) return 'red.600';
-  return '#325386';
+  return 'blue.700';
 }
 
 export const PlayQuizRadioContainer: React.FC<CustomBoxProps> = ({ bgColor, children }) => {
@@ -26,7 +27,7 @@ export const PlayQuizRadioContainer: React.FC<CustomBoxProps> = ({ bgColor, chil
       w="100%"
       maxWidth={{ base: '360px', sm: '380px', md: '260px', lg: '360px' }}
       borderRadius="5px"
-      bg={bgColor || 'defaultColor'}
+      bgColor={bgColor || 'blue.700'}
     >
       {children}
     </Box>
