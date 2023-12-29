@@ -1,10 +1,11 @@
-import { Button, Flex, Radio, RadioGroup, Stack, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
 
+import { OptionsData } from '.';
 import { Scene } from '../../App';
 import { optionsStrings } from '../../assets/strings';
 import { SceneCard } from '../../chakra/SceneCard';
 import { SceneContainer } from '../../chakra/SceneContainer';
-import { OptionStyle } from './styles';
+import { Option } from './components';
 
 interface IOptions {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
@@ -13,7 +14,9 @@ interface IOptions {
 export const OptionsScene = ({ setScene }: IOptions) => {
   const isDesktop = useBreakpointValue({ base: false, sm: true });
 
-  const { typeOfQuiz, amountOfQuestions, difficulty, btns } = optionsStrings;
+  const { btns } = optionsStrings;
+
+  console.log(OptionsData.options);
 
   return (
     <>
@@ -21,62 +24,9 @@ export const OptionsScene = ({ setScene }: IOptions) => {
         <Text variant="optionsSceneTitle">Customize your quiz</Text>
 
         <SceneCard variant="optionsCard">
-          <SceneCard variant="option">
-            <Flex sx={OptionStyle}>
-              <Text variant="optionTitle">{typeOfQuiz.title}</Text>
-              <RadioGroup defaultValue={typeOfQuiz.alternatives.trueFalse} w="100%">
-                <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
-                  <Radio value={typeOfQuiz.alternatives.trueFalse} variant="optionAlt">
-                    {typeOfQuiz.alternatives.trueFalse}
-                  </Radio>
-                  <Radio value={typeOfQuiz.alternatives.multichoice} variant="optionAlt">
-                    {typeOfQuiz.alternatives.multichoice}
-                  </Radio>
-                </Stack>
-              </RadioGroup>
-            </Flex>
-          </SceneCard>
-
-          <SceneCard variant="option">
-            <Flex sx={OptionStyle}>
-              <Text variant="optionTitle">{amountOfQuestions.title}</Text>
-              <RadioGroup defaultValue={amountOfQuestions.alternatives.fifteen} w="100%">
-                <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
-                  <Radio value={amountOfQuestions.alternatives.five} variant="optionAlt">
-                    {amountOfQuestions.alternatives.five}
-                  </Radio>
-                  <Radio value={amountOfQuestions.alternatives.ten} variant="optionAlt">
-                    {amountOfQuestions.alternatives.ten}
-                  </Radio>
-                  <Radio value={amountOfQuestions.alternatives.fifteen} variant="optionAlt">
-                    {amountOfQuestions.alternatives.fifteen}
-                  </Radio>
-                  <Radio value={amountOfQuestions.alternatives.twenty} variant="optionAlt">
-                    {amountOfQuestions.alternatives.twenty}
-                  </Radio>
-                </Stack>
-              </RadioGroup>
-            </Flex>
-          </SceneCard>
-
-          <SceneCard variant="option">
-            <Flex sx={OptionStyle}>
-              <Text variant="optionTitle">{difficulty.title}</Text>
-              <RadioGroup defaultValue={difficulty.alternatives.medium} w="100%">
-                <Stack spacing={{ base: '.5rem', sm: '1.5rem', md: '2.5rem' }} direction="row">
-                  <Radio value={difficulty.alternatives.easy} variant="optionAlt">
-                    {difficulty.alternatives.easy}
-                  </Radio>
-                  <Radio value={difficulty.alternatives.medium} variant="optionAlt">
-                    {difficulty.alternatives.medium}
-                  </Radio>
-                  <Radio value={difficulty.alternatives.hard} variant="optionAlt">
-                    {difficulty.alternatives.hard}
-                  </Radio>
-                </Stack>
-              </RadioGroup>
-            </Flex>
-          </SceneCard>
+          {OptionsData.options.map((option, index: number) => (
+            <Option key={index} title={option.title} alternatives={option.alternatives} />
+          ))}
         </SceneCard>
 
         <Flex gap="1.5em" flexDirection={!isDesktop ? 'column-reverse' : 'row'} width={!isDesktop ? '100%' : 'auto'}>
