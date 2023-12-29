@@ -16,8 +16,6 @@ export const OptionsScene = ({ setScene }: IOptions) => {
 
   const { btns } = optionsStrings;
 
-  console.log(OptionsData.options);
-
   return (
     <>
       <SceneContainer variant="optionsScene">
