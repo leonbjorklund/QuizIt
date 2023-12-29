@@ -17,7 +17,7 @@ export const LoadingScene = ({ setScene }: ILoading) => {
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const [isOops, setIsOops] = useState(true);
+  const [isOops, setIsOops] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,7 +29,7 @@ export const LoadingScene = ({ setScene }: ILoading) => {
   }, []);
 
   const renderFunFact = () => {
-    return fun_facts.fun_facts[currentFactIndex];
+    return fun_facts.fun_facts[currentFactIndex] as string;
   };
 
   return (
