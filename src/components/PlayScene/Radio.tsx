@@ -1,46 +1,79 @@
 import { radioAnatomy } from '@chakra-ui/anatomy';
-import { Box, createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import { Radio as ChakraRadio, RadioProps as ChakraRadioProps, createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import { useMemo } from 'react';
+import { PlayQuizRadioContainer, getBackgroundColor } from './PlayQuizRadioContainer';
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(radioAnatomy.keys);
 
 const baseStyle = definePartsStyle({
+  // containern runt hela radion
   container: {
-    boxShadow: 'md',
     borderRadius: '5px',
-    width: '100%',
-    bg: 'transparent',
-    display: 'flex',
-    padding: {
-      base: '8px',
-      sm: '10px',
-      md: '12px',
-    },
-    _checked: {
-      outline: '1px solid white',
-    },
+    // satte till röd nu så du ser den
+    bg: 'red',
+    padding: '10px',
   },
+  // själva radioknappen, den lilla cirkeln
   control: {
-    display: 'none',
+    color: 'white!important',
+    borderColor: 'white!important',
+    background: 'transparent!important',
   },
+  // texten bredvid radioknappen
   label: {
     fontFamily: 'Dosis, sans-serif',
-    fontWeight: 'medium',
     fontSize: {
       base: '18px',
       sm: '20px',
       md: '22px',
       lg: '24px',
     },
-    h: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '.75rem',
-    margin: '0',
-    _disabled: {
-      opacity: 1,
+    _checked: {
+      fontWeight: 'medium',
     },
   },
 });
+
+const variants = {
+  playQuiz: definePartsStyle({
+    container: {
+      boxShadow: 'md',
+      width: '100%',
+      bg: 'transparent',
+      padding: {
+        base: '8px',
+        sm: '10px',
+        md: '12px',
+      },
+      _checked: {
+        outline: '1px solid white',
+      },
+    },
+    control: {
+      display: 'none',
+    },
+    label: {
+      fontSize: {
+        base: '18px',
+        sm: '20px',
+        md: '22px',
+        lg: '24px',
+      },
+      display: 'flex',
+      alignItems: 'center',
+      gap: '.75rem',
+      margin: '0',
+      _disabled: {
+        opacity: 1,
+      },
+    },
+  }),
+  placeHolderVariant: definePartsStyle({
+    container: {},
+    control: {},
+    label: {},
+  }),
+};
 
 const sizes = {
   // define custom styles for xl size
@@ -53,9 +86,6 @@ const sizes = {
         lg: '22px',
       },
     },
-    container: {
-      maxWidth: '400px',
-    },
   }),
 };
 
@@ -63,36 +93,36 @@ const sizes = {
 export const radioTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  // variants,
+  variants,
 });
 
-import { Radio as ChakraRadio, RadioProps as ChakraRadioProps } from '@chakra-ui/react';
-
 interface RadioProps extends ChakraRadioProps {
-  isCorrectOption: boolean;
-  showAnswer: boolean;
-  isChecked: boolean; // Add this
-  isUserPreviousChoice: boolean; // Add this
+  isPlayQuizScene?: boolean;
+  isChecked?: boolean;
+  showAnswer?: boolean;
+  isCorrectOption?: boolean;
+  isUserPreviousChoice?: boolean;
 }
 
 export const Radio: React.FC<RadioProps> = ({
-  showAnswer,
-  isCorrectOption,
-  isChecked,
-  isUserPreviousChoice,
+  isPlayQuizScene,
+  isChecked = false,
+  showAnswer = false,
+  isCorrectOption = false,
+  isUserPreviousChoice = false,
   ...props
 }) => {
-  let bgColor = '#325386';
-  if (isCorrectOption) {
-    bgColor = 'green.600';
-  } else if (showAnswer && !isCorrectOption && (isChecked || isUserPreviousChoice)) {
-    bgColor = 'red.600';
-  }
+  const bgColor = useMemo(() => {
+    return getBackgroundColor({ isCorrectOption, showAnswer, isChecked, isUserPreviousChoice });
+  }, [isCorrectOption, showAnswer, isChecked, isUserPreviousChoice]);
 
-  return (
-    // <Box w={{ base: '100%', lg: '48%' }} maxWidth={{ sm: '500px', md: '500px' }} borderRadius="5px" bg={bgColor}>
-    <Box w="100%" maxWidth={{ sm: '200px', md: '200px', lg: '200px' }} borderRadius="5px" bg={bgColor}>
-      <ChakraRadio {...props} />
-    </Box>
-  );
+  if (isPlayQuizScene) {
+    return (
+      <PlayQuizRadioContainer bgColor={bgColor}>
+        <ChakraRadio {...props} />
+      </PlayQuizRadioContainer>
+    );
+  } else {
+    return <ChakraRadio {...props} />;
+  }
 };

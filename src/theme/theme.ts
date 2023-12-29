@@ -19,6 +19,26 @@ const fonts = {
   body: 'Poppins, sans-serif',
 };
 
+const SceneContainer = defineStyleConfig({
+  baseStyle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: '800px',
+  },
+  variants: {
+    playScene: {
+      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      borderRadius: '5px',
+      bg: colors.secondary,
+      padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
+      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
+    },
+    playSceneTrueFalse: {},
+  },
+});
+
 const layerStyle = {
   base: {
     bg: colors.selected,
@@ -61,26 +81,6 @@ const layerStyle = {
     borderRadius: '5px',
   },
 };
-
-const SceneContainer = defineStyleConfig({
-  baseStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    maxWidth: '800px',
-  },
-  variants: {
-    playScene: {
-      maxWidth: { sm: '600px', md: '600px', lg: '100%' },
-      borderRadius: '5px',
-      bg: colors.secondary,
-      padding: '30px 30px',
-      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
-    },
-    playSceneTrueFalse: {},
-  },
-});
 
 const components = {
   Radio: radioTheme,
@@ -166,9 +166,16 @@ const components = {
       proceed: {
         color: 'black',
         fontSize: { base: 'xs', sm: 'sm', md: 'md' },
+        bg: colors.proceedButton,
+        height: 'auto',
         _hover: {
           bg: 'yellow.100',
           color: 'black',
+        },
+        _disabled: {
+          _hover: {
+            bg: 'yellow.200!important',
+          },
         },
       },
       return: {
@@ -200,4 +207,4 @@ const components = {
   SceneContainer: SceneContainer,
 };
 
-export const theme = extendTheme({ config, fonts, colors, layerStyle, components });
+export const theme = extendTheme({ config, fonts, colors, components });

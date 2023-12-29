@@ -22,7 +22,7 @@ export const PlayScene = () => {
 
   return (
     <>
-      <HStack maxWidth={{ sm: '600px', md: '600px', lg: '100%' }} w="100%" pl="5px">
+      <HStack maxWidth={{ sm: '500px', md: '600px', lg: '100%' }} w="100%" pl="5px">
         <Text fontSize={{ base: '14px', sm: '16px', md: '18px', lg: '20px' }}>
           {index + 1} / {quizData.questions.length}
         </Text>
@@ -32,17 +32,19 @@ export const PlayScene = () => {
           {currentQuestion.question}
         </Heading>
         <RadioGroup isDisabled={showAnswer} w="100%" onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}>
-          <Flex gap={5} wrap="wrap" justifyContent="center">
+          <Flex gap={{ base: '18px', lg: '20px' }} wrap="wrap" justifyContent="center">
             {currentQuestion.options?.map((option, i) => (
               <Radio
+                isPlayQuizScene
+                variant="playQuiz"
+                key={i}
+                value={option}
                 showAnswer={showAnswer}
                 isCorrectOption={showAnswer && option === currentQuestion.correctAnswer}
                 isChecked={value === option}
                 isUserPreviousChoice={userAnswers[index] === option}
-                key={i}
                 spacing="1rem"
                 size={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }}
-                value={option}
               >
                 <Icon boxSize="1.5rem" as={renderIcon(option)} />
                 {option}
@@ -51,11 +53,16 @@ export const PlayScene = () => {
           </Flex>
         </RadioGroup>
       </SceneContainer>
-      <HStack mt="1.5rem" justifyContent="center" position="relative" width="full">
+      <HStack mt="1.5rem" justifyContent="center" position="relative" width="100%">
         {index > 0 && (
           <IconButton
             position="absolute"
-            left="calc(50% - 10rem)"
+            left={{
+              base: 'calc(50% - 8rem)',
+              sm: 'calc(50% - 9rem)',
+              md: 'calc(50% - 10rem)',
+              lg: 'calc(50% - 11rem)',
+            }}
             aria-label="previous-question"
             bg="none"
             icon={<ChevronLeftIcon boxSize="2rem" />}
@@ -64,10 +71,9 @@ export const PlayScene = () => {
         )}
         <Spacer />
         <Button
-          h="auto"
-          padding="10px 20px"
+          variant="proceed"
+          padding="12px 30px"
           fontSize={{ base: '14px', sm: '16px', md: '18px', lg: '20px' }}
-          colorScheme="yellow"
           onClick={checkAnswer}
           isDisabled={!value && !showAnswer}
         >

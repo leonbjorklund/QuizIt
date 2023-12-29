@@ -35,11 +35,7 @@ export default function App() {
     <Flex sx={PageWrapperStyle}>
       <Header />
       <Flex as="main" sx={MainWrapperStyle}>
-        {/* <MainContainer>{renderScene(scene)}</MainContainer> */}
-        <SceneContainer>
-          <PlayScene />
-          {/* <Example /> */}
-        </SceneContainer>
+        <SceneContainer>{renderScene(scene)}</SceneContainer>
       </Flex>
     </Flex>
   );
