@@ -22,5 +22,9 @@
       "medium": "Medium",
       "hard": "Hard"
     }
+  },
+  "btns": {
+    "back": "Back to home",
+    "generate": "Generate quiz"
   }
 }
