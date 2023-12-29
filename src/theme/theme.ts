@@ -73,6 +73,11 @@ const MainContainer = defineStyleConfig({
     primary: {
       color: 'red',
     },
+    option: {
+      bg: colors.selected,
+      p: '20px',
+      borderRadius: '5px'
+    }
   },
 });
 
