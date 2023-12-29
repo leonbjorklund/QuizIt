@@ -1,5 +1,6 @@
 import { Button, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
 
+import { useState } from 'react';
 import { OptionsData } from '.';
 import { Scene } from '../../App';
 import { optionsStrings } from '../../assets/strings';
@@ -7,14 +8,30 @@ import { SceneCard } from '../../chakra/SceneCard';
 import { SceneContainer } from '../../chakra/SceneContainer';
 import { Option } from './components';
 
-interface IOptions {
+interface IOptionsScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
-export const OptionsScene = ({ setScene }: IOptions) => {
-  const isDesktop = useBreakpointValue({ base: false, sm: true });
+interface OptionType {
+  title: string;
+  alternatives: string[];
+}
 
+export const OptionsScene = ({ setScene }: IOptionsScene) => {
+  const isDesktop = useBreakpointValue({ base: false, sm: true });
   const { btns } = optionsStrings;
+
+  const defaultQuizRequest = {
+    type: OptionsData.options[0].alternatives[1],
+    amount: OptionsData.options[1].alternatives[1],
+    difficulty: OptionsData.options[2].alternatives[1],
+  };
+
+  const [customQuizReq, setCustomQuizReq] = useState(defaultQuizRequest);
+
+  const handleGenerateQuiz = () => {
+    console.log('Generated Quiz:', customQuizReq);
+  };
 
   return (
     <>
@@ -22,8 +39,13 @@ export const OptionsScene = ({ setScene }: IOptions) => {
         <Text variant="optionsSceneTitle">Customize your quiz</Text>
 
         <SceneCard variant="optionsCard">
-          {OptionsData.options.map((option, index: number) => (
-            <Option key={index} title={option.title} alternatives={option.alternatives} />
+          {OptionsData.options.map((option: OptionType, index: number) => (
+            <Option
+              key={index}
+              title={option.title}
+              alternatives={option.alternatives}
+              setCustomQuizReq={setCustomQuizReq}
+            />
           ))}
         </SceneCard>
 
@@ -31,7 +53,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
           <Button variant="return" onClick={() => setScene(Scene.HOME)}>
             {btns.back}
           </Button>
-          <Button variant="proceed" onClick={() => setScene(Scene.HOME)}>
+          <Button variant="proceed" onClick={handleGenerateQuiz}>
             {btns.generate}
           </Button>
         </Flex>
