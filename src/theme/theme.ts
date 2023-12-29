@@ -70,8 +70,11 @@ const MainContainer = defineStyleConfig({
     maxWidth: '800px',
   },
   variants: {
-    primary: {
-      color: 'red',
+    funFact: {
+      position: 'absolute',
+      bottom: 120,
+      textAlign: 'center',
+      px: '1rem',
     },
   },
 });
@@ -135,6 +138,48 @@ const components = {
     baseStyle: {
       fontFamily: 'Dosis, sans-serif',
       fontSize: { base: 'sm', md: 'md', lg: 'lg' },
+    },
+    variants: {
+      loading: {
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: '800',
+        fontSize: {
+          base: '4xl',
+          sm: '5xl',
+          md: '6xl',
+          lg: '7xl',
+        },
+      },
+      loadSubtitle: {
+        fontSize: {
+          base: 'md',
+          sm: 'lg',
+          md: 'xl',
+          lg: '2xl',
+        },
+        opacity: '.4',
+        fontWeight: '500',
+        textAlign: 'center',
+      },
+      funFactTitle: {
+        fontWeight: '800',
+        fontSize: {
+          base: 'md',
+          sm: 'lg',
+          md: 'xl',
+          lg: '2xl',
+        },
+      },
+      funFact: {
+        fontWeight: '500',
+        opacity: '.8',
+        fontSize: {
+          base: 'md',
+          sm: 'lg',
+          md: 'xl',
+          lg: '2xl',
+        },
+      },
     },
   },
   Button: {
