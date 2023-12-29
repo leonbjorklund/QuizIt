@@ -145,6 +145,16 @@ const components = {
       fontSize: { base: 'sm', md: 'md', lg: 'lg' },
     },
     variants: {
+      optionsSceneTitle: {
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: "800",
+        fontSize: {
+          base: 'lg',
+          sm: '2xl',
+          md: '3xl',
+          lg: '3xl',
+        },
+      },
       loading: {
         fontFamily: 'Poppins, sans-serif',
         fontWeight: '800',

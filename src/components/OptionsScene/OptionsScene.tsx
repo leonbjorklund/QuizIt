@@ -16,7 +16,7 @@ export const OptionsScene = ({ setScene }: IOptions) => {
   return (
     <>
       <MainContainer gap="20px">
-        <Text>Customize your quiz</Text>
+        <Text variant="optionsSceneTitle">Customize your quiz</Text>
 
         <MainContainer p="10px" bg="blue.900" borderRadius="5px" gap="10px">
           <MainContainer variant="option">
