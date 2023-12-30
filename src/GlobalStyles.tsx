@@ -8,6 +8,7 @@ export const MainWrapperStyle = {
   flexGrow: 1,
   justifyContent: 'center',
   alignItems: 'center',
+  transform: 'translateY(-20px)',
   paddingX: {
     base: '20px',
     sm: '40px',

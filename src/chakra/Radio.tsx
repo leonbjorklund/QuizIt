@@ -1,8 +1,43 @@
 import { radioAnatomy } from '@chakra-ui/anatomy';
-import { Radio as ChakraRadio, RadioProps as ChakraRadioProps, createMultiStyleConfigHelpers } from '@chakra-ui/react';
-import { useMemo } from 'react';
-import { PlayQuizRadioContainer, getBackgroundColor } from '../components/PlayScene/PlayQuizRadioContainer';
+import {
+  Box,
+  Radio as ChakraRadio,
+  RadioProps as ChakraRadioProps,
+  createMultiStyleConfigHelpers,
+  useColorMode,
+} from '@chakra-ui/react';
+import React, { useMemo } from 'react';
+import { getRadioBackgroundColor, quizRadioContainerStyle } from '../components';
 
+interface RadioProps extends ChakraRadioProps {
+  isPlayQuizScene?: boolean;
+  isChecked?: boolean;
+  showAnswer?: boolean;
+  isCorrectOption?: boolean;
+  isUserPreviousChoice?: boolean;
+}
+
+export const Radio: React.FC<RadioProps> = ({
+  isPlayQuizScene,
+  isChecked = false,
+  showAnswer = false,
+  isCorrectOption = false,
+  isUserPreviousChoice = false,
+  ...props
+}) => {
+  const { colorMode } = useColorMode();
+
+  const bgColor = useMemo(() => {
+    if (!isPlayQuizScene) return undefined;
+    return getRadioBackgroundColor({ isChecked, showAnswer, isCorrectOption, isUserPreviousChoice }, colorMode);
+  }, [isPlayQuizScene, isChecked, showAnswer, isCorrectOption, isUserPreviousChoice, colorMode]);
+
+  return (
+    <Box bgColor={bgColor} display={isPlayQuizScene ? 'block' : 'none'} sx={quizRadioContainerStyle}>
+      <ChakraRadio {...props} />
+    </Box>
+  );
+};
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(radioAnatomy.keys);
 
 const baseStyle = definePartsStyle({
@@ -83,34 +118,3 @@ export const radioTheme = defineMultiStyleConfig({
   baseStyle,
   variants,
 });
-
-interface RadioProps extends ChakraRadioProps {
-  isPlayQuizScene?: boolean;
-  isChecked?: boolean;
-  showAnswer?: boolean;
-  isCorrectOption?: boolean;
-  isUserPreviousChoice?: boolean;
-}
-
-export const Radio: React.FC<RadioProps> = ({
-  isPlayQuizScene,
-  isChecked = false,
-  showAnswer = false,
-  isCorrectOption = false,
-  isUserPreviousChoice = false,
-  ...props
-}) => {
-  const bgColor = useMemo(() => {
-    return getBackgroundColor({ isCorrectOption, showAnswer, isChecked, isUserPreviousChoice });
-  }, [isCorrectOption, showAnswer, isChecked, isUserPreviousChoice]);
-
-  if (isPlayQuizScene) {
-    return (
-      <PlayQuizRadioContainer bgColor={bgColor}>
-        <ChakraRadio {...props} />
-      </PlayQuizRadioContainer>
-    );
-  } else {
-    return <ChakraRadio {...props} />;
-  }
-};

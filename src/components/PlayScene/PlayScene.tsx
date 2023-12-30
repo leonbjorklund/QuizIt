@@ -38,7 +38,12 @@ export const PlayScene = () => {
       </HStack>
       <SceneCard variant="playCard">
         <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
-        <RadioGroup isDisabled={showAnswer} w="100%" onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}>
+        <RadioGroup
+          isDisabled={showAnswer}
+          w="100%"
+          value={value}
+          onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}
+        >
           <Flex sx={AnswerFlexStyle}>
             {currentQuestion.options?.map((option, i) => (
               <Radio
