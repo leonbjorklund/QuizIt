@@ -1,9 +1,8 @@
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
 import { Radio } from '../../chakra/Radio';
 
-import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { SceneCard } from '../../chakra/SceneCard';
-import { SceneContainer } from '../../chakra/SceneContainer';
+import { SceneCard, SceneContainer } from '../../chakra';
 import quizData from './quizData.json';
 import {
   AnswerFlexStyle,
