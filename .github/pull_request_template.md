@@ -1,11 +1,10 @@
 ## Issues worked on in this branch
+
 Link to the issue/issues here...
 
 ## Solution / Implementation
-How has the issue/issues been solved...
 
-## Testing
-If tests were written, describe the tests...
+How has the issue/issues been solved...
 
 # PR-checklist
 

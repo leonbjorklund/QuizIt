@@ -237,7 +237,7 @@ const components = {
         },
         _disabled: {
           _hover: {
-            bg: 'yellow.200!important',
+            bg: 'yellow.300!important',
           },
         },
       },

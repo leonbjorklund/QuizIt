@@ -1,9 +1,8 @@
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
 import { Radio } from '../../chakra/Radio';
 
-import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { SceneCard } from '../../chakra/SceneCard';
-import { SceneContainer } from '../../chakra/SceneContainer';
+import { SceneCard, SceneContainer } from '../../chakra';
 import quizData from './quizData.json';
 import {
   AnswerFlexStyle,
@@ -38,7 +37,12 @@ export const PlayScene = () => {
       </HStack>
       <SceneCard variant="playCard">
         <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
-        <RadioGroup isDisabled={showAnswer} w="100%" onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}>
+        <RadioGroup
+          isDisabled={showAnswer}
+          w="100%"
+          value={value}
+          onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}
+        >
           <Flex sx={AnswerFlexStyle}>
             {currentQuestion.options?.map((option, i) => (
               <Radio

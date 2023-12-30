@@ -2,5 +2,5 @@ TO-DO:
 
 - Crop Logo
 - Header max-width
-- Title + favIcon
-- Offset height
+- add favIcon
+- Gör headern loggan till en gå till homepage
