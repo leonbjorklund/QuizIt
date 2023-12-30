@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { MdOutlineCheckCircle, MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
+
 import quizData from './quizData.json';
 
 type QuizState = {

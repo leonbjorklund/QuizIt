@@ -35,3 +35,12 @@ export const PreviousQuestionButtonStyle = {
 export const ProceedButtonStyle = {
   fontSize: { base: '14px', sm: '16px', md: '18px', lg: '20px' },
 };
+
+export const quizRadioContainerStyle = {
+  w: '100%',
+  maxWidth: { base: '360px', sm: '380px', md: '260px', lg: '360px' },
+  borderRadius: '5px',
+  _hover: {
+    opacity: '0.9',
+  },
+};
