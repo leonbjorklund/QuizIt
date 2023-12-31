@@ -1,3 +1,6 @@
 {
-  "placeholder": "placeholder"
+  "btns": {
+    "back": "Back to home",
+    "generate": "Generate quiz"
+  }
 }

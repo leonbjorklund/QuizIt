@@ -1,0 +1,16 @@
+{
+  "options": [
+    {
+      "title": "Type of quiz",
+      "alternatives": ["True/False", "Multichoice"]
+    },
+    {
+      "title": "Amount of questions",
+      "alternatives": ["5", "10", "15", "20"]
+    },
+    {
+      "title": "Difficulty",
+      "alternatives": ["Easy", "Medium", "Hard"]
+    }
+  ]
+}

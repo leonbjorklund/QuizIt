@@ -7,17 +7,17 @@ import { SceneContainer } from '../../chakra/SceneContainer';
 import { Loading } from './components';
 import { LoadingContainerStyle } from './styles';
 
-interface ILoading {
+interface ILoadingScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
-export const LoadingScene = ({ setScene }: ILoading) => {
+export const LoadingScene = ({ setScene }: ILoadingScene) => {
   const isDesktop = useBreakpointValue({ base: false, sm: true });
 
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const [isOops, setIsOops] = useState(true);
+  const [isOops, setIsOops] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {

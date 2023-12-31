@@ -21,7 +21,7 @@ export default function App() {
       case Scene.HOME:
         return <HomeScene setScene={setScene} />;
       case Scene.OPTIONS:
-        return <OptionsScene />;
+        return <OptionsScene setScene={setScene} />;
       case Scene.LOADING:
         return <LoadingScene setScene={setScene} />;
       case Scene.PLAY:

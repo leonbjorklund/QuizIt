@@ -17,7 +17,7 @@ import { LogoBlack, OGLogo } from '../../assets/images';
 import { homeStrings } from '../../assets/strings';
 import { HomeSceneLogoStyle } from './styles';
 
-interface IHome {
+interface IHomeScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
@@ -26,7 +26,7 @@ enum InputType {
   TEXT = 'text',
 }
 
-export const HomeScene = ({ setScene }: IHome) => {
+export const HomeScene = ({ setScene }: IHomeScene) => {
   const { colorMode } = useColorMode();
   const { subtitle, urlPlaceholder, textPlaceholder, continueBtn } = homeStrings;
 
@@ -88,7 +88,7 @@ export const HomeScene = ({ setScene }: IHome) => {
           )}
         </InputRightElement>
       </InputGroup>
-      <Button variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.PLAY)}>
+      <Button variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.OPTIONS)}>
         {continueBtn}
       </Button>
     </>
