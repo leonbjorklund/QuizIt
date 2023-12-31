@@ -27,7 +27,7 @@ export default function App() {
       case Scene.PLAY:
         return <PlayScene />;
       case Scene.END:
-        return <EndScene />;
+        return <EndScene setScene={setScene} />;
     }
   };
 
