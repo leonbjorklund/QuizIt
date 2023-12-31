@@ -1,4 +1,4 @@
-import { Button, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 
 import { useState } from 'react';
 import { OptionsData } from '.';
@@ -18,7 +18,6 @@ interface OptionType {
 }
 
 export const OptionsScene = ({ setScene }: IOptionsScene) => {
-  const isDesktop = useBreakpointValue({ base: false, sm: true });
   const { btns } = optionsStrings;
 
   const defaultQuizRequest = {
@@ -49,7 +48,7 @@ export const OptionsScene = ({ setScene }: IOptionsScene) => {
           ))}
         </SceneCard>
 
-        <Flex gap="1.5em" flexDirection={!isDesktop ? 'column-reverse' : 'row'} width={!isDesktop ? '100%' : 'auto'}>
+        <Flex gap="1.5em" flexDirection={{ base: 'column-reverse', sm: 'row' }} width={{ base: '100%', sm: 'auto' }}>
           <Button variant="return" onClick={() => setScene(Scene.HOME)}>
             {btns.back}
           </Button>

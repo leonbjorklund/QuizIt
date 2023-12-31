@@ -44,6 +44,9 @@ const SceneContainer = defineStyleConfig({
       textAlign: 'center',
       px: '1rem',
     },
+    endScene: {
+      gap: '2rem',
+    },
   },
 });
 
@@ -243,6 +246,7 @@ const components = {
       },
       return: {
         border: '.5px solid',
+        height: 'auto',
         bg: 'transparent',
         _hover: {
           bg: colors.backButtonBorder,
