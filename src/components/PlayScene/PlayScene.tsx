@@ -2,6 +2,7 @@ import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
 import { Radio } from '../../chakra/Radio';
 
+import { Scene } from '../../App';
 import { SceneCard, SceneContainer } from '../../chakra';
 import quizData from './quizData.json';
 import {
@@ -14,7 +15,11 @@ import {
 } from './styles';
 import useQuiz from './useQuiz';
 
-export const PlayScene = () => {
+interface IPlayScene {
+  setScene: React.Dispatch<React.SetStateAction<Scene>>;
+}
+
+export const PlayScene = ({ setScene }: IPlayScene) => {
   const {
     index,
     currentQuestion,

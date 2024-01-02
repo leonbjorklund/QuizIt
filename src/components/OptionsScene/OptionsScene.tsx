@@ -29,6 +29,7 @@ export const OptionsScene = ({ setScene }: IOptionsScene) => {
   const [customQuizReq, setCustomQuizReq] = useState(defaultQuizRequest);
 
   const handleGenerateQuiz = () => {
+    setScene(Scene.PLAY);
     console.log('Generated Quiz:', customQuizReq);
   };
 

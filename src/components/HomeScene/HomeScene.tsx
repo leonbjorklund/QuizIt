@@ -48,7 +48,9 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
   return (
     <>
       <Image src={colorMode === 'dark' ? OGLogo : LogoBlack} alt="QuizItLogo" sx={HomeSceneLogoStyle} />
-      <Text textAlign="center">{subtitle}</Text>
+      <Text mb="0.25rem" textAlign="center">
+        {subtitle}
+      </Text>
       <InputGroup maxWidth="600px">
         {inputType === InputType.URL ? (
           <Input
@@ -66,22 +68,22 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
           />
         )}
 
-        <InputRightElement>
+        <InputRightElement h="100%" alignItems="top">
           {inputValue !== '' ? (
             <Tooltip hasArrow label="Clear text" offset={[0, 10]}>
-              <Button variant="ghost" onClick={() => setInputValue('')}>
+              <Button h="auto" variant="ghost" onClick={() => setInputValue('')}>
                 <CloseIcon />
               </Button>
             </Tooltip>
           ) : inputType === InputType.URL ? (
             <Tooltip hasArrow label="Text mode" offset={[0, 10]}>
-              <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
+              <Button my="3px" mr="6px" h="auto" variant="searchbarBtn" onClick={handleSwitchInputType}>
                 <EditIcon />
               </Button>
             </Tooltip>
           ) : (
             <Tooltip hasArrow label="URL mode" offset={[0, 10]}>
-              <Button variant="searchbarBtn" onClick={handleSwitchInputType}>
+              <Button my="3px" mr="6px" variant="searchbarBtn" onClick={handleSwitchInputType}>
                 <LinkIcon />
               </Button>
             </Tooltip>
