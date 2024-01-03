@@ -6,8 +6,6 @@ import { queryGPT } from './queryGPT.js';
 
 const app = express();
 app.use(express.json());
-const port = process.env.PORT || 3001;
-// app.use(express.static(path.join(__dirname, '../client/build'))); for production
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 app.post('/test', async (req, res) => {
@@ -25,6 +23,8 @@ app.post('/test', async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+const port = process.env.PORT || 3001;
 
 app.get('/hej', (req, res) => {
   res.json({ message: 'Hello World!' });

@@ -14,16 +14,31 @@ interface IHomeScene {
 export const HomeScene = ({ setScene }: IHomeScene) => {
   const { colorMode } = useColorMode();
   const { subtitle, continueBtn } = homeStrings;
+  const [data, setData] = useState(null);
 
   const [inputValue, setInputValue] = useState('');
   const [isTouched, setIsTouched] = useState<boolean>(false);
+
+  const sendToServer = (queryString: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fetch('/test', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: queryString }),
+    })
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  };
 
   const handleNextScene = (scene: Scene) => {
     if (inputValue === '') {
       setIsTouched(true);
       return;
     }
-    setScene(scene);
+    sendToServer(inputValue);
+    console.log(data);
   };
 
   return (
@@ -34,6 +49,7 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
       <Button variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.OPTIONS)}>
         {continueBtn}
       </Button>
+      <Text>{data}</Text>
     </>
   );
 };
