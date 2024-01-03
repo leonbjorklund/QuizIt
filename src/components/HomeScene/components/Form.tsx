@@ -43,7 +43,7 @@ export const Form = ({ inputValue, setInputValue, isTouched, setIsTouched }: IFo
           {inputType === InputType.URL ? (
             <Input placeholder={urlPlaceholder} name="searchbar" onChange={handleInputChange} value={inputValue} maxLength={100}/>
           ) : (
-            <Textarea placeholder={textPlaceholder} name="searchbar" onChange={handleInputChange} value={inputValue} maxLength={100}/>
+            <Textarea placeholder={textPlaceholder} name="searchbar" onChange={handleInputChange} value={inputValue} maxLength={500}/>
           )}
 
           <InputRightElement>
