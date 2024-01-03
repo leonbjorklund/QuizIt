@@ -41,9 +41,21 @@ export const Form = ({ inputValue, setInputValue, isTouched, setIsTouched }: IFo
       <FormControl display="flex" alignItems="center" flexDirection="column" isInvalid={isError}>
         <InputGroup maxWidth="600px">
           {inputType === InputType.URL ? (
-            <Input placeholder={urlPlaceholder} name="searchbar" onChange={handleInputChange} value={inputValue} maxLength={100}/>
+            <Input
+              placeholder={urlPlaceholder}
+              name="searchbar"
+              onChange={handleInputChange}
+              value={inputValue}
+              maxLength={100}
+            />
           ) : (
-            <Textarea placeholder={textPlaceholder} name="searchbar" onChange={handleInputChange} value={inputValue} maxLength={500}/>
+            <Textarea
+              placeholder={textPlaceholder}
+              name="searchbar"
+              onChange={handleInputChange}
+              value={inputValue}
+              maxLength={500}
+            />
           )}
 
           <InputRightElement>
@@ -68,7 +80,7 @@ export const Form = ({ inputValue, setInputValue, isTouched, setIsTouched }: IFo
             )}
           </InputRightElement>
         </InputGroup>
-      {isError && <Text variant="invalidInput">Invalid input</Text>}
+        {isError && <Text variant="invalidInput">Invalid input</Text>}
       </FormControl>
     </>
   );

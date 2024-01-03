@@ -90,7 +90,7 @@ const components = {
         color: colors.wrongAnswer,
         position: 'absolute',
         bottom: 0,
-        fontWeight: '900'
+        fontWeight: '900',
       },
       optionsSceneTitle: {
         fontFamily: 'Poppins, sans-serif',
