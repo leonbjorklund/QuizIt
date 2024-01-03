@@ -32,6 +32,7 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
 
   const [inputType, setInputType] = useState<InputType>(InputType.URL);
   const [inputValue, setInputValue] = useState('');
+  const [response, setResponse] = useState('');
 
   const handleNextScene = (scene: Scene) => {
     setScene(scene);
@@ -42,6 +43,28 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
       setInputType(InputType.URL);
     } else {
       setInputType(InputType.TEXT);
+    }
+  };
+
+  const fetchGPTResponse = async (query: string) => {
+    try {
+      const response = await fetch('http://localhost:3000/test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      setResponse(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   };
 
@@ -88,7 +111,15 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
           )}
         </InputRightElement>
       </InputGroup>
-      <Button variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.OPTIONS)}>
+      <Button
+        variant="proceed"
+        mt="1rem"
+        onClick={() => {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          fetchGPTResponse('Hello, how are you today?');
+          handleNextScene(Scene.OPTIONS);
+        }}
+      >
         {continueBtn}
       </Button>
     </>
