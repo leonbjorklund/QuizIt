@@ -86,6 +86,12 @@ const components = {
       fontSize: { base: '14px', sm: '16px', md: '18px', lg: '20px' },
     },
     variants: {
+      invalidInput: {
+        color: colors.wrongAnswer,
+        position: 'absolute',
+        bottom: 0,
+        fontWeight: '900'
+      },
       optionsSceneTitle: {
         fontFamily: 'Poppins, sans-serif',
         fontWeight: '800',
