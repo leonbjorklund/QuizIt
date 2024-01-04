@@ -13,7 +13,7 @@ import {
   QuestionTextStyle,
   TopTextStackStyle,
 } from './styles';
-import useQuiz from './useQuiz';
+import useQuizTest from './useQuizTest';
 
 interface IPlayScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
@@ -31,7 +31,7 @@ export const PlayScene = ({ setScene }: IPlayScene) => {
     navigateQuestion,
     checkAnswer,
     renderIcon,
-  } = useQuiz();
+  } = useQuizTest();
 
   return (
     <SceneContainer variant="playScene">
