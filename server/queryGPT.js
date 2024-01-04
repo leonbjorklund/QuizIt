@@ -15,5 +15,6 @@ export async function queryGPT(query) {
     model: 'gpt-3.5-turbo-1106',
     response_format: { type: 'json_object' },
   });
+  console.log(completion);
   return completion.choices[0].message.content;
 }

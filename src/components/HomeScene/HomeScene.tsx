@@ -20,7 +20,6 @@ export const HomeScene = ({ setScene }: IHomeScene) => {
   const [isTouched, setIsTouched] = useState<boolean>(false);
 
   const sendToServer = (queryString: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetch('/test', {
       method: 'POST',
       headers: {
