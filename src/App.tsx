@@ -50,9 +50,10 @@ export default function App() {
 
   const handleGenerateQuiz = () => {
     sendToServer(prompt);
+    setScene(Scene.LOADING)
   };
 
-  console.log(quizData    )
+  console.log(quizData)
 
   const renderScene = (clickedScene: Scene) => {
     switch (clickedScene) {
@@ -67,7 +68,7 @@ export default function App() {
           />
         );
       case Scene.LOADING:
-        return <LoadingScene setScene={setScene} />;
+        return <LoadingScene setScene={setScene} quizData={quizData}/>;
       case Scene.PLAY:
         return <PlayScene />;
       case Scene.END:

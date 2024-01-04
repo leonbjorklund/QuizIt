@@ -9,9 +9,10 @@ import { LoadingContainerStyle } from './styles';
 
 interface ILoadingScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
+  quizData: any;
 }
 
-export const LoadingScene = ({ setScene }: ILoadingScene) => {
+export const LoadingScene = ({ setScene, quizData }: ILoadingScene) => {
   const isDesktop = useBreakpointValue({ base: false, sm: true });
 
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
@@ -30,6 +31,10 @@ export const LoadingScene = ({ setScene }: ILoadingScene) => {
 
   const renderFunFact = () => {
     return fun_facts.fun_facts[currentFactIndex];
+  };
+
+  const renderPlay = () => {
+    setScene(Scene.PLAY);
   };
 
   return (
@@ -54,7 +59,7 @@ export const LoadingScene = ({ setScene }: ILoadingScene) => {
             </Button>
           </Flex>
         </>
-      ) : (
+      ) : !quizData ? (
         <>
           <Flex sx={LoadingContainerStyle}>
             <Loading />
@@ -66,6 +71,8 @@ export const LoadingScene = ({ setScene }: ILoadingScene) => {
             <Text variant="funFact">{renderFunFact()}</Text>
           </SceneContainer>
         </>
+      ) : (
+        { renderPlay }
       )}
     </>
   );
