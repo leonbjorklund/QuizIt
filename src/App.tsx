@@ -1,8 +1,9 @@
 import { Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 
+import { atom } from 'jotai';
 import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
-import { SceneContainer } from './chakra/SceneContainer';
+import { SceneContainer } from './chakra';
 import { EndScene, Header, HomeScene, LoadingScene, OptionsScene, PlayScene } from './components';
 
 export enum Scene {
@@ -12,6 +13,12 @@ export enum Scene {
   PLAY = 'play',
   END = 'end',
 }
+
+export interface QuizData {
+  response: string;
+}
+
+export const quizDataAtom = atom<QuizData | null>(null);
 
 export default function App() {
   const [scene, setScene] = useState<Scene>(Scene.HOME);
@@ -30,6 +37,9 @@ export default function App() {
         return <EndScene setScene={setScene} />;
     }
   };
+
+  // const [quizData, setQuizData] = useAtom(quizDataAtom);
+  // console.log('quizData', quizData);
 
   return (
     <Flex sx={PageWrapperStyle}>

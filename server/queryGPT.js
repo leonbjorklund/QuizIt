@@ -8,7 +8,7 @@ export async function queryGPT(query) {
     messages: [
       {
         role: 'system',
-        content: 'You are a helpful assistant designed to output JSON.',
+        content: 'You are a helpful assistant designed to output quizzes in JSON format.',
       },
       { role: 'user', content: query },
     ],

@@ -1,8 +1,9 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
 
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { OptionsData } from '.';
-import { Scene } from '../../App';
+import { Scene, quizDataAtom } from '../../App';
 import { optionsStrings } from '../../assets/strings';
 import { SceneCard } from '../../chakra/SceneCard';
 import { SceneContainer } from '../../chakra/SceneContainer';
@@ -31,6 +32,8 @@ export const OptionsScene = ({ setScene }: IOptionsScene) => {
   const handleGenerateQuiz = () => {
     console.log('Generated Quiz:', customQuizReq);
   };
+  const [quizData, setQuizData] = useAtom(quizDataAtom);
+  console.log('quizData', quizData);
 
   return (
     <>
