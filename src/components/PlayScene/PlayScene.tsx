@@ -12,7 +12,7 @@ import {
   QuestionTextStyle,
   TopTextStackStyle,
 } from './styles';
-import useQuiz from './useQuiz';
+import useQuizTest from './useQuizTest';
 
 export const PlayScene = () => {
   const {
@@ -26,7 +26,7 @@ export const PlayScene = () => {
     navigateQuestion,
     checkAnswer,
     renderIcon,
-  } = useQuiz();
+  } = useQuizTest();
 
   return (
     <SceneContainer variant="playScene">

@@ -16,3 +16,10 @@ lg: "62em", // ~992px
 xl: "80em", // ~1280px
 "2xl": "96em", // ~1536px
 };
+
+1. User inputs URL / User inputs text (skip step 3) **HomeScene**
+2. Submits
+3. Some package parse text content of link **OptionsScene**
+4. (maybe) tokenize text **OptionsScene**
+5. step 3 & 4 must be done before user presses generate quiz on optionsscene
+6. Prompt is ready, and sends to OPENAI API **LoadingScene**
