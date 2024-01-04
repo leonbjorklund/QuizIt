@@ -1,9 +1,7 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
 
-import { useAtom } from 'jotai';
-import { useState } from 'react';
 import { OptionsData } from '.';
-import { Scene, quizDataAtom } from '../../App';
+import { Scene } from '../../App';
 import { optionsStrings } from '../../assets/strings';
 import { SceneCard } from '../../chakra/SceneCard';
 import { SceneContainer } from '../../chakra/SceneContainer';
@@ -11,6 +9,14 @@ import { Option } from './components';
 
 interface IOptionsScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
+  setCustomQuizReq: React.Dispatch<
+    React.SetStateAction<{
+      type: string;
+      amount: string;
+      difficulty: string;
+    }>
+  >;
+  handleGenerateQuiz: () => void;
 }
 
 interface OptionType {
@@ -18,23 +24,8 @@ interface OptionType {
   alternatives: string[];
 }
 
-export const OptionsScene = ({ setScene }: IOptionsScene) => {
+export const OptionsScene = ({ setScene, setCustomQuizReq, handleGenerateQuiz }: IOptionsScene) => {
   const { btns } = optionsStrings;
-
-  const defaultQuizRequest = {
-    type: OptionsData.options[0].alternatives[1],
-    amount: OptionsData.options[1].alternatives[1],
-    difficulty: OptionsData.options[2].alternatives[1],
-  };
-
-  const [customQuizReq, setCustomQuizReq] = useState(defaultQuizRequest);
-
-  const handleGenerateQuiz = () => {
-    setScene(Scene.PLAY);
-    console.log('Generated Quiz:', customQuizReq);
-  };
-  const [quizData, setQuizData]: [any, (data: any) => void] = useAtom(quizDataAtom);
-  console.log('quizData', quizData);
 
   return (
     <>

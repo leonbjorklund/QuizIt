@@ -1,8 +1,7 @@
 import { Button, Image, Text, useColorMode } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import { useAtom } from 'jotai';
-import { Scene, quizDataAtom } from '../../App';
+import { Scene } from '../../App';
 import { LogoBlack, OGLogo } from '../../assets/images';
 import { homeStrings } from '../../assets/strings';
 import { Form } from './components';
@@ -10,36 +9,21 @@ import { HomeSceneLogoStyle } from './styles';
 
 interface IHomeScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const HomeScene = ({ setScene }: IHomeScene) => {
+export const HomeScene = ({ setScene, inputValue, setInputValue }: IHomeScene) => {
   const { colorMode } = useColorMode();
   const { subtitle, continueBtn } = homeStrings;
 
-  const [quizData, setQuizData]: [any, (data: any) => void] = useAtom(quizDataAtom);
-  console.log(quizData);
-
-  const [inputValue, setInputValue] = useState('');
   const [isTouched, setIsTouched] = useState<boolean>(false);
-
-  const sendToServer = (queryString: string) => {
-    fetch('/test', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: queryString }),
-    })
-      .then((res) => res.json())
-      .then((data) => setQuizData(data));
-  };
 
   const handleNextScene = (scene: Scene) => {
     if (inputValue === '') {
       setIsTouched(true);
       return;
     }
-    sendToServer(inputValue);
     setScene(scene);
   };
 
