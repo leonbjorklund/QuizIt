@@ -1,29 +1,32 @@
 {
-  "questions": [
-    {
-      "question": "What is the capital of France?",
-      "options": ["Paris", "London", "Berlin", "Madrid"],
-      "correctAnswer": "Paris"
-    },
-    {
-      "question": "What is the square root of 81?",
-      "options": ["7", "8", "9", "10"],
-      "correctAnswer": "9"
-    },
-    {
-      "question": "Who wrote 'To Kill a Mockingbird'?",
-      "options": ["Ernest Hemingway", "Harper Lee", "F. Scott Fitzgerald", "George Orwell"],
-      "correctAnswer": "Harper Lee"
-    },
-    {
-      "question": "What is the chemical symbol for Hydrogen?",
-      "options": ["H", "He", "Hy", "Ha"],
-      "correctAnswer": "H"
-    },
-    {
-      "question": "Who painted the Mona Lisa?",
-      "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"],
-      "correctAnswer": "Leonardo da Vinci"
-    }
-  ]
+  "quiz": {
+    "title": "Test Your Knowledge About Turkey!",
+    "questions": [
+      {
+        "question": "What is the capital city of Turkey?",
+        "options": ["Ankara", "Istanbul", "Izmir", "Antalya"],
+        "answer": "Ankara"
+      },
+      {
+        "question": "Which strait separates European and Asian Turkey?",
+        "options": ["Bosporus", "Dardanelles", "Suez", "Panama"],
+        "answer": "Bosporus"
+      },
+      {
+        "question": "What is the national currency of Turkey?",
+        "options": ["Euro", "Lira", "Dollar", "Pound"],
+        "answer": "Lira"
+      },
+      {
+        "question": "What is the famous monument in Istanbul that was originally a church, then a mosque, and now a museum?",
+        "options": ["Hagia Sophia", "Blue Mosque", "Topkapi Palace", "Dolmabahçe Palace"],
+        "answer": "Hagia Sophia"
+      },
+      {
+        "question": "Who founded the Republic of Turkey in 1923?",
+        "options": ["Mustafa Kemal Atatürk", "Suleiman the Magnificent", "Mehmed the Conqueror", "Rumi"],
+        "answer": "Mustafa Kemal Atatürk"
+      }
+    ]
+  }
 }

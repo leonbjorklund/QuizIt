@@ -33,7 +33,7 @@ export const OptionsScene = ({ setScene }: IOptionsScene) => {
     setScene(Scene.PLAY);
     console.log('Generated Quiz:', customQuizReq);
   };
-  const [quizData, setQuizData] = useAtom(quizDataAtom);
+  const [quizData, setQuizData]: [any, (data: any) => void] = useAtom(quizDataAtom);
   console.log('quizData', quizData);
 
   return (

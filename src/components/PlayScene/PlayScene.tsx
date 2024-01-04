@@ -1,10 +1,10 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
+import { useAtom } from 'jotai';
 import { Radio } from '../../chakra/Radio';
 
-import { Scene } from '../../App';
+import { QuizData, Scene, quizDataAtom } from '../../App';
 import { SceneCard, SceneContainer } from '../../chakra';
-import quizData from './quizData.json';
 import {
   AnswerFlexStyle,
   BottomButtomStackStyle,
@@ -13,13 +13,17 @@ import {
   QuestionTextStyle,
   TopTextStackStyle,
 } from './styles';
-import useQuizTest from './useQuizTest';
+import useQuiz from './useQuiz';
 
 interface IPlayScene {
   setScene: React.Dispatch<React.SetStateAction<Scene>>;
 }
 
 export const PlayScene = ({ setScene }: IPlayScene) => {
+  const [quizData] = useAtom<QuizData>(quizDataAtom);
+
+  console.log(quizData);
+
   const {
     index,
     currentQuestion,
@@ -31,13 +35,13 @@ export const PlayScene = ({ setScene }: IPlayScene) => {
     navigateQuestion,
     checkAnswer,
     renderIcon,
-  } = useQuizTest();
+  } = useQuiz();
 
   return (
     <SceneContainer variant="playScene">
       <HStack sx={TopTextStackStyle}>
         <Text>
-          {index + 1} / {quizData.questions.length}
+          {index + 1} / {quizData.quiz.questions.length}
         </Text>
       </HStack>
       <SceneCard variant="playCard">
@@ -56,7 +60,7 @@ export const PlayScene = ({ setScene }: IPlayScene) => {
                 isPlayQuizScene
                 value={option}
                 showAnswer={showAnswer}
-                isCorrectOption={showAnswer && option === currentQuestion.correctAnswer}
+                isCorrectOption={showAnswer && option === currentQuestion.answer}
                 isChecked={value === option}
                 isUserPreviousChoice={userAnswers[index] === option}
               >
