@@ -1,3 +1,7 @@
 {
-  "placeholder": "placeholder"
+  "btns": {
+    "next": "Next Question",
+    "reveal": "Reveal Answer",
+    "result": "See Result"
+  }
 }
