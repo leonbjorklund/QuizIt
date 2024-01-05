@@ -2,25 +2,33 @@
 // import { IoMdCloseCircleOutline } from 'react-icons/io';
 // import { MdOutlineCheckCircle, MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 
+// import { QuizData } from '../../utils/types';
 // import quizData from './quizData.json';
+
+// // export type QuizData = {
+// //   quiz: {
+// //     quiz: string;
+// //     questions: {
+// //       question: string;
+// //       options: string[];
+// //       answer: string;
+// //     }[];
+// //   };
+// // };
 
 // type QuizState = {
 //   index: number;
-//   currentQuestion: (typeof quizData.questions)[number];
+//   currentQuestion: QuizData['quiz']['questions'][number];
 //   value: string;
 //   showAnswer: boolean;
 //   userAnswers: { [key: number]: string };
 // };
 
-// const useQuiz = () => {
-//   const [loadedQuizData, setLoadedQuizData] = useState(() => {
-//     const savedData = localStorage.getItem('quizData');
-//     return savedData ? JSON.parse(savedData) : quizData;
-//   });
-
+// const useQuizTest = () => {
+//   console.log('quizData', quizData);
 //   const [quizState, setQuizState] = useState<QuizState>({
 //     index: 0,
-//     currentQuestion: quizData.questions[0],
+//     currentQuestion: quizData?.quiz?.questions ? quizData.quiz.questions[0] : null,
 //     value: '',
 //     showAnswer: false,
 //     userAnswers: {},
@@ -31,7 +39,7 @@
 //   useEffect(() => {
 //     setQuizState((prevState) => ({
 //       ...prevState,
-//       currentQuestion: quizData.questions[prevState.index],
+//       currentQuestion: quizData.quiz.questions[prevState.index],
 //       showAnswer: answeredQuestions.includes(prevState.index),
 //     }));
 //   }, [quizState.index, answeredQuestions]);
@@ -39,7 +47,7 @@
 //   const navigateQuestion = useCallback((direction: 'next' | 'previous') => {
 //     setQuizState((prevState) => {
 //       let newIndex = direction === 'next' ? prevState.index + 1 : prevState.index - 1;
-//       newIndex = Math.max(0, Math.min(newIndex, quizData.questions.length - 1));
+//       newIndex = Math.max(0, Math.min(newIndex, quizData.quiz.questions.length - 1)); // Corrected path
 //       return {
 //         ...prevState,
 //         index: newIndex,
@@ -51,7 +59,7 @@
 //   const checkAnswer = useCallback(() => {
 //     const isAnswerShown = quizState.showAnswer;
 //     if (!isAnswerShown) {
-//       const isCorrect = quizState.value === quizState.currentQuestion.correctAnswer;
+//       const isCorrect = quizState.value === quizState.currentQuestion.answer;
 //       setQuizState((prevState) => ({
 //         ...prevState,
 //         showAnswer: true,
@@ -71,7 +79,7 @@
 //     (option: string) => {
 //       const { showAnswer, currentQuestion, userAnswers, index, value } = quizState;
 //       if (showAnswer) {
-//         if (option === currentQuestion.correctAnswer) {
+//         if (option === currentQuestion.answer) {
 //           return MdOutlineCheckCircle;
 //         }
 //         if (option === userAnswers[index]) {
@@ -94,4 +102,4 @@
 //   };
 // };
 
-// export default useQuiz;
+// export default useQuizTest;

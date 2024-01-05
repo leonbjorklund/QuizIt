@@ -172,15 +172,17 @@ const components = {
   Input: {
     baseStyle: {
       field: {
-        mt: '.25rem',
+        // mt: '.25rem',
         border: 'none',
         py: '1.4rem',
-        pr: '4rem',
+        // pr: '4rem',
         fontSize: {
           base: 'sm',
           sm: 'md',
         },
         _dark: {
+          border: 'none',
+          boxShadow: 'sm',
           bg: '#2D3748',
           _placeholder: {
             color: '#FFFFFF99',
@@ -194,8 +196,7 @@ const components = {
         },
       },
       element: {
-        mt: '.45rem',
-        mr: '.2rem',
+        h: 'auto',
       },
     },
   },
@@ -203,13 +204,14 @@ const components = {
     baseStyle: {
       resize: 'none',
       height: '15rem',
-      mt: '.25rem',
       pr: '4rem',
       fontSize: {
         base: 'sm',
         sm: 'md',
       },
       _dark: {
+        border: 'none',
+        boxShadow: 'sm',
         bg: '#2D3748',
         _placeholder: {
           color: '#FFFFFF99',

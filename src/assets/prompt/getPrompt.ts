@@ -1,7 +1,7 @@
 export const GetPrompt = (input: string, quizType: string, questionsAmount: string, difficulty: string) => {
   switch (quizType) {
     case 'True/False': {
-      return `Generate a quiz containing ${questionsAmount} statements that are either true or false. The distribution between true and false statements should be random. Craft statements that are concise and clear, using the provided text: '${input}'. The difficulty of the statements and the correlating answers should be ${difficulty} relative to an average person. The quiz statements should be created through generation. Provide the results in JSON format, including the statement text and its truth value. The JSON response should have the same structure the following example: 
+      return `Generate a quiz containing ${questionsAmount} statements that are either true or false. The distribution between true and false statements should be random. Craft statements that are concise and clear, using the provided text: '${input}'. The difficulty of the statements and the correlating answers should be ${difficulty} relative to an average person. The quiz statements should be created through generation. Provide the results in JSON format, including the statement text and its truth value. The JSON response should have the same structure the following example:
           {
             "data": [
               {
@@ -27,30 +27,22 @@ export const GetPrompt = (input: string, quizType: string, questionsAmount: stri
             The difficulty of the questions and the correlating answers should be ${difficulty} relative to an average person.
             The JSON response should have the same structure the following example:
             {
-              "data": [
-                {
-                  "question": "Generated question based on the text",
-                  "choices": [
-                    {
-                      "option": "Answer (strictly 8 words or less) from the text.",
-                      "isTrue": false
-                    },
-                    {
-                      "option": "Answer (strictly 8 words or less) from the text.",
-                      "isTrue": false
-                    },
-                    {
-                      "option": "Answer (strictly 8 words or less) from the text.",
-                      "isTrue": true
-                    },
-                    {
-                      "option": "Answer (strictly 8 words or less) from the text.",
-                      "isTrue": false
-                    },
-                  ],
-                },
-                ...
-              ]
+              "quiz": {
+                "title": "Your Quiz Title Here",
+                "questions": [
+                  {
+                    "question": "Generated question based on the text",
+                    "options": [
+                      "Answer from the text.",
+                      "Answer from the text.",
+                      "Answer from the text.",
+                      "Answer from the text."
+                    ],
+                    "answer": "Answer from the text that is true"
+                  },
+                  // ... Add more questions in the same format
+                ]
+              }
             }`;
     }
     default:

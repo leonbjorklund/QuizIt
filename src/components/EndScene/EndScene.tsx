@@ -1,13 +1,13 @@
 import { Button, Flex, HStack, Heading, Icon, IconButton, Text, VStack } from '@chakra-ui/react';
 import { FaDiscord, FaFacebook, FaRegCopy } from 'react-icons/fa';
-import { Scene } from '../../App';
+
 import { SceneContainer } from '../../chakra';
+import { useAppContext } from '../../context/AppContext';
+import { Scene } from '../../utils/types';
 
-interface IEndScene {
-  setScene: React.Dispatch<React.SetStateAction<Scene>>;
-}
+export const EndScene = () => {
+  const { setScene } = useAppContext();
 
-export const EndScene = ({ setScene }: IEndScene) => {
   return (
     <SceneContainer variant="endScene">
       <Heading lineHeight="1.2" fontSize={{ base: '46px', sm: '58px', md: '68px', lg: '78px' }} fontWeight="bold">

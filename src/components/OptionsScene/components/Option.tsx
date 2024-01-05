@@ -1,20 +1,16 @@
 import { Flex, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
 import { SceneCard } from '../../../chakra/SceneCard';
+import { useAppContext } from '../../../context/AppContext';
 import { OptionStyle } from './styles';
 
 interface IOption {
   title: string;
   alternatives: string[];
-  setCustomQuizReq: React.Dispatch<
-    React.SetStateAction<{
-      type: string;
-      amount: string;
-      difficulty: string;
-    }>
-  >;
 }
 
-export const Option = ({ title, alternatives, setCustomQuizReq }: IOption) => {
+export const Option = ({ title, alternatives }: IOption) => {
+  const { setCustomQuizReq } = useAppContext();
+
   const handleRequestCustom = (title: string, alt: string) => {
     if (title === 'Type of quiz') {
       setCustomQuizReq((prevCustomQuizReq) => ({

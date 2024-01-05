@@ -1,0 +1,57 @@
+{
+  "quiz": {
+    "title": "Sweden Quiz",
+    "questions": [
+      {
+        "question": "What is the capital of Sweden?",
+        "options": [
+          "Stockholm is the capital city.",
+          "The capital city is Oslo.",
+          "Copenhagen is the capital city.",
+          "Helsinki is the capital city."
+        ],
+        "answer": "Stockholm is the capital city."
+      },
+      {
+        "question": "Which Swedish car manufacturer is known for its safety features?",
+        "options": [
+          "Saab prioritizes safety in its cars.",
+          "Volvo is famous for its safety features.",
+          "Koenigsegg is renowned for safety design.",
+          "Scania is known for safety engineering."
+        ],
+        "answer": "Volvo is famous for its safety features."
+      },
+      {
+        "question": "What is the currency of Sweden?",
+        "options": [
+          "Euro is the currency used in Sweden.",
+          "Swiss franc is the currency of Sweden.",
+          "Krona is the currency used in Sweden.",
+          "Pound sterling is the currency of Sweden."
+        ],
+        "answer": "Krona is the currency used in Sweden."
+      },
+      {
+        "question": "Which Swedish furniture company is known for its ready-to-assemble furniture?",
+        "options": [
+          "H&M offers ready-to-assemble furniture.",
+          "Ikea is famous for its ready-to-assemble furniture.",
+          "Clas Ohlson is known for ready-to-assemble furniture.",
+          "Jysk is known for ready-to-assemble furniture."
+        ],
+        "answer": "Ikea is famous for its ready-to-assemble furniture."
+      },
+      {
+        "question": "What is the name of the traditional Swedish dish consisting of seasoned raw herring?",
+        "options": [
+          "Smorgasbord is a traditional Swedish dish.",
+          "Surstromming is a traditional Swedish dish.",
+          "Kottbullar is a traditional Swedish dish.",
+          "Raggmunk is a traditional Swedish dish."
+        ],
+        "answer": "Surstromming is a traditional Swedish dish."
+      }
+    ]
+  }
+}
