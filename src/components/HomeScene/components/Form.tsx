@@ -3,6 +3,7 @@ import { Button, FormControl, Input, InputGroup, InputRightElement, Text, Textar
 
 import { useState } from 'react';
 import { homeStrings } from '../../../assets';
+import { useAppContext } from '../../../context/AppContext';
 
 enum InputType {
   URL = 'url',
@@ -10,13 +11,13 @@ enum InputType {
 }
 
 interface IForm {
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
   isTouched: boolean;
   setIsTouched: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Form = ({ inputValue, setInputValue, isTouched, setIsTouched }: IForm) => {
+export const Form = ({ isTouched, setIsTouched }: IForm) => {
+  const { inputValue, setInputValue } = useAppContext();
+
   const { urlPlaceholder, textPlaceholder } = homeStrings;
 
   const [inputType, setInputType] = useState<InputType>(InputType.TEXT);
@@ -57,7 +58,6 @@ export const Form = ({ inputValue, setInputValue, isTouched, setIsTouched }: IFo
               maxLength={500}
             />
           )}
-
           <InputRightElement>
             {inputValue !== '' ? (
               <Tooltip hasArrow label="Clear text" offset={[0, 10]}>

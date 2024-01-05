@@ -1,21 +1,18 @@
 import { Button, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import { Scene } from '../../App';
 import { fun_facts, loadingStrings } from '../../assets/strings';
 import { SceneContainer } from '../../chakra/SceneContainer';
+import { useAppContext } from '../../context/AppContext';
+import { Scene } from '../../utils/types';
 import { Loading } from './components';
 import { LoadingContainerStyle } from './styles';
 
-interface ILoadingScene {
-  setScene: React.Dispatch<React.SetStateAction<Scene>>;
-  quizData: any;
-}
-
-export const LoadingScene = ({ setScene, quizData }: ILoadingScene) => {
-  const isDesktop = useBreakpointValue({ base: false, sm: true });
-
+export const LoadingScene = () => {
+  const { setScene, quizData } = useAppContext();
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
+
+  const isDesktop = useBreakpointValue({ base: false, sm: true });
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [isOops, setIsOops] = useState(false);
@@ -33,10 +30,12 @@ export const LoadingScene = ({ setScene, quizData }: ILoadingScene) => {
     return fun_facts.fun_facts[currentFactIndex];
   };
 
-  const renderPlay = () => {
-    setScene(Scene.PLAY);
-  };
-
+  useEffect(() => {
+    if (quizData) {
+      console.log(quizData);
+      setScene(Scene.PLAY);
+    }
+  }, [quizData, setScene]);
   return (
     <>
       {isOops ? (
@@ -71,9 +70,7 @@ export const LoadingScene = ({ setScene, quizData }: ILoadingScene) => {
             <Text variant="funFact">{renderFunFact()}</Text>
           </SceneContainer>
         </>
-      ) : (
-        { renderPlay }
-      )}
+      ) : null}
     </>
   );
 };

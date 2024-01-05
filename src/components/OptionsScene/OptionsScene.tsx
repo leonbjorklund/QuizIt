@@ -1,30 +1,15 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
 
 import { OptionsData } from '.';
-import { Scene } from '../../App';
 import { optionsStrings } from '../../assets/strings';
 import { SceneCard } from '../../chakra/SceneCard';
 import { SceneContainer } from '../../chakra/SceneContainer';
+import { useAppContext } from '../../context/AppContext';
+import { OptionType, Scene } from '../../utils/types';
 import { Option } from './components';
 
-interface IOptionsScene {
-  setScene: React.Dispatch<React.SetStateAction<Scene>>;
-  setCustomQuizReq: React.Dispatch<
-    React.SetStateAction<{
-      type: string;
-      amount: string;
-      difficulty: string;
-    }>
-  >;
-  handleGenerateQuiz: () => void;
-}
-
-interface OptionType {
-  title: string;
-  alternatives: string[];
-}
-
-export const OptionsScene = ({ setScene, setCustomQuizReq, handleGenerateQuiz }: IOptionsScene) => {
+export const OptionsScene = () => {
+  const { setScene, handleGenerateQuiz } = useAppContext();
   const { btns } = optionsStrings;
 
   return (
@@ -34,12 +19,7 @@ export const OptionsScene = ({ setScene, setCustomQuizReq, handleGenerateQuiz }:
 
         <SceneCard variant="optionsCard">
           {OptionsData.options.map((option: OptionType, index: number) => (
-            <Option
-              key={index}
-              title={option.title}
-              alternatives={option.alternatives}
-              setCustomQuizReq={setCustomQuizReq}
-            />
+            <Option key={index} title={option.title} alternatives={option.alternatives} />
           ))}
         </SceneCard>
 

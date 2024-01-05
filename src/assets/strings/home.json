@@ -1,6 +1,6 @@
 {
   "subtitle": "Generate you own personal quiz about anything!",
   "urlPlaceholder": "Enter URL here...",
-  "textPlaceholder": "Enter your text here...",
+  "textPlaceholder": "What do you want to be quizzed about?",
   "continueBtn": "Continue"
 }
