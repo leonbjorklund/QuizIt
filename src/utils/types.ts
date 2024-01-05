@@ -21,7 +21,7 @@ export enum Scene {
 
 export enum NavigateQuestion {
   NEXT = 'next',
-  PREV = 'previous'
+  PREV = 'previous',
 }
 
 export interface OptionType {

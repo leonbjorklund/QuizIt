@@ -76,7 +76,7 @@ export const PlayScene = () => {
             onClick={() => navigateQuestion(NavigateQuestion.PREV)}
           />
         )}
-        {index === quizData.quiz.questions.length -1 && showAnswer ? (
+        {index === quizData.quiz.questions.length - 1 && showAnswer ? (
           <Button variant="proceed" onClick={() => setScene(Scene.END)}>
             {btns.result}
           </Button>
