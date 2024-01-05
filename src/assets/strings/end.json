@@ -1,3 +1,8 @@
 {
-  "placeholder": "placeholder"
+  "goodJob": "Good Job!",
+  "btns": {
+    "new": "New Quiz",
+    "again": "Play Again"
+  },
+  "share": "Share this quiz"
 }

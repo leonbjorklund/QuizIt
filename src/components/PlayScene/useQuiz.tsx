@@ -26,7 +26,7 @@ type QuizState = {
 
 const useQuizTest = () => {
   const { quizData } = useAppContext();
-  console.log('quizData', quizData);
+  
   const [quizState, setQuizState] = useState<QuizState>({
     index: 0,
     currentQuestion: quizData?.quiz?.questions ? quizData.quiz.questions[0] : null,
