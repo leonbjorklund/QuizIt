@@ -1,15 +1,13 @@
-import { Button, Image, Text, useColorMode } from '@chakra-ui/react';
+import { Button, Heading, Text, useColorMode } from '@chakra-ui/react';
 import { useState } from 'react';
 
-import { LogoBlack, OGLogo } from '../../assets/images';
 import { homeStrings } from '../../assets/strings';
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
 import { Form } from './components';
-import { HomeSceneLogoStyle } from './styles';
 
 export const HomeScene = () => {
-  const { setScene, inputValue } = useAppContext();
+  const { setScene, inputValue, setInputValue } = useAppContext();
   const { colorMode } = useColorMode();
   const { subtitle, continueBtn } = homeStrings;
 
@@ -20,12 +18,15 @@ export const HomeScene = () => {
       setIsTouched(true);
       return;
     }
+    setInputValue('');
     setScene(scene);
   };
 
   return (
     <>
-      <Image src={colorMode === 'dark' ? OGLogo : LogoBlack} alt="QuizItLogo" sx={HomeSceneLogoStyle} />
+      <Heading fontSize={{ base: '38px', sm: '44px', md: '52px' }} fontWeight="bold">
+        QuizIt
+      </Heading>
       <Text textAlign="center">{subtitle}</Text>
       <Form isTouched={isTouched} setIsTouched={setIsTouched} />
       <Button variant="proceed" mt="1rem" onClick={() => handleNextScene(Scene.OPTIONS)}>

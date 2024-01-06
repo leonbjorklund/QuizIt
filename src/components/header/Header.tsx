@@ -1,19 +1,27 @@
-import { Flex, Image, useColorMode } from '@chakra-ui/react';
+import { Flex, Heading, useColorMode } from '@chakra-ui/react';
 
-import { LogoBlack, OGLogo } from '../../assets/images';
+import { useAppContext } from '../../context/AppContext';
+import { Scene } from '../../utils/types';
 import { DarkLightModeButton } from './DarkLightModeButton';
 import { HeaderContainerStyle } from './styles';
 
 export const Header = () => {
+  const { setScene, setScore, setQuizData } = useAppContext();
   const { colorMode } = useColorMode();
 
   return (
     <Flex sx={HeaderContainerStyle}>
-      <Image
-        src={colorMode === 'dark' ? OGLogo : LogoBlack}
-        alt="QuizItLogo"
-        width={{ base: '100px', sm: '125px', md: '150px' }}
-      />
+      <Heading
+        fontSize={{ base: '38px', sm: '44px', md: '52px' }}
+        fontWeight="bold"
+        onClick={() => {
+          setScore(0);
+          setQuizData(null);
+          setScene(Scene.HOME);
+        }}
+      >
+        QuizIt
+      </Heading>
       <DarkLightModeButton />
     </Flex>
   );

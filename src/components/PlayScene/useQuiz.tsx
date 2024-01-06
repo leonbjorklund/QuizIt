@@ -5,17 +5,6 @@ import { MdOutlineCheckCircle, MdRadioButtonChecked, MdRadioButtonUnchecked } fr
 import { useAppContext } from '../../context/AppContext';
 import { NavigateQuestion, QuizData } from '../../utils/types';
 
-// export type QuizData = {
-//   quiz: {
-//     quiz: string;
-//     questions: {
-//       question: string;
-//       options: string[];
-//       answer: string;
-//     }[];
-//   };
-// };
-
 type QuizState = {
   index: number;
   currentQuestion: QuizData['quiz']['questions'][number];
@@ -25,7 +14,7 @@ type QuizState = {
 };
 
 const useQuizTest = () => {
-  const { quizData } = useAppContext();
+  const { quizData, score, setScore } = useAppContext();
 
   const [quizState, setQuizState] = useState<QuizState>({
     index: 0,
@@ -34,7 +23,6 @@ const useQuizTest = () => {
     showAnswer: false,
     userAnswers: {},
   });
-  const [score, setScore] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState<number[]>([]);
 
   useEffect(() => {

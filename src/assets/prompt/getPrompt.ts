@@ -4,7 +4,7 @@ export const GetPrompt = (input: string, quizType: string, questionsAmount: stri
       return `Generate a quiz containing ${questionsAmount} statements that are either true or false. The distribution between true and false statements should be random. Craft statements that are concise and clear, using the provided text: '${input}'. The difficulty of the statements and the correlating answers should be ${difficulty} relative to an average person. The quiz statements should be created through generation. Provide the results in JSON format, including the statement text and its truth value. The JSON response should have the same structure the following example:
       {
         "quiz": {
-          "title": "Your Quiz Title Here",
+          "title": "Title of the quiz based on input",
           "questions": [
             {
               "question": "Generated statement based on the text",
@@ -31,7 +31,7 @@ export const GetPrompt = (input: string, quizType: string, questionsAmount: stri
             The JSON response should have the same structure the following example:
             {
               "quiz": {
-                "title": "Your Quiz Title Here",
+                "title": "Title of the quiz based on input",
                 "questions": [
                   {
                     "question": "Generated question based on the text",

@@ -5,22 +5,9 @@ import { endStrings } from '../../assets';
 import { SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
-import useQuiz from '../PlayScene/useQuiz';
 
 export const EndScene = () => {
-  const { setScene, quizData } = useAppContext();
-  const {
-    index,
-    currentQuestion,
-    value,
-    showAnswer,
-    score /* ANVÄNDS SENARE */,
-    userAnswers,
-    setQuizState,
-    navigateQuestion,
-    checkAnswer,
-    renderIcon,
-  } = useQuiz();
+  const { setScene, quizData, score, setScore, setQuizData } = useAppContext();
 
   const { goodJob, btns, share } = endStrings;
 
@@ -35,14 +22,21 @@ export const EndScene = () => {
         <Button
           fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '22px' }}
           variant="return"
-          onClick={() => setScene(Scene.HOME)}
+          onClick={() => {
+            setQuizData(null);
+            setScore(0);
+            setScene(Scene.HOME);
+          }}
         >
           {btns.new}
         </Button>
         <Button
           fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '22px' }}
           variant="proceed"
-          onClick={() => console.log('hello')}
+          onClick={() => {
+            setScore(0);
+            setScene(Scene.PLAY);
+          }}
         >
           {btns.again}
         </Button>
@@ -73,7 +67,7 @@ export const EndScene = () => {
             _hover={{ bg: '#5865f2bc' }}
           />
           <IconButton
-            icon={<Icon as={FaFacebook} boxSize="3rem" color="blue" />}
+            icon={<Icon as={FaFacebook} boxSize="3rem" color="#0866FF" />}
             aria-label="share-discord"
             isRound
             w="auto"

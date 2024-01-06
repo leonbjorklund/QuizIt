@@ -1,4 +1,5 @@
 import { defineStyleConfig, extendTheme, type ThemeConfig } from '@chakra-ui/react';
+
 import { radioTheme } from './Radio';
 
 const config: ThemeConfig = {
@@ -92,16 +93,7 @@ const components = {
         bottom: 0,
         fontWeight: '900',
       },
-      optionsSceneTitle: {
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: '800',
-        fontSize: {
-          base: 'lg',
-          sm: '2xl',
-          md: '3xl',
-          lg: '3xl',
-        },
-      },
+
       optionTitle: {
         color: '#FFF',
         fontSize: {
@@ -167,6 +159,17 @@ const components = {
       textAlign: 'center',
       fontFamily: 'Poppins, sans-serif',
       fontWeight: 'medium',
+    },
+    variants: {
+      optionsSceneTitle: {
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: '600',
+        fontSize: {
+          base: '30px',
+          sm: '32px',
+          md: '36px',
+        },
+      },
     },
   },
   Input: {
