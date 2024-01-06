@@ -25,3 +25,4 @@ General stuff:
 
 - persist state?
 - share quiz?
+- state rerender
