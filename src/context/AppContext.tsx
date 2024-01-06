@@ -9,9 +9,9 @@ interface AppContextType {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   scene: Scene;
   setScene: (scene: Scene) => void;
+  sendToServer: (queryString: string) => void;
   quizData: QuizData | null;
   setQuizData: React.Dispatch<React.SetStateAction<QuizData | null>>;
-  sendToServer: (queryString: string) => void;
   handleGenerateQuiz: () => void;
   setCustomQuizReq: React.Dispatch<
     React.SetStateAction<{
@@ -20,6 +20,8 @@ interface AppContextType {
       difficulty: string;
     }>
   >;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const AppContext = createContext({} as AppContextType);
@@ -29,6 +31,7 @@ export function AppProvider({ children }: PropsWithChildren) {
   const [scene, setScene] = useState<Scene>(Scene.HOME);
   const [inputValue, setInputValue] = useState('');
   const [quizData, setQuizData] = useState<QuizData | null>(null);
+  const [score, setScore] = useState(0);
 
   const defaultQuizRequest = {
     type: OptionsData.options[0].alternatives[1],
@@ -68,6 +71,8 @@ export function AppProvider({ children }: PropsWithChildren) {
         sendToServer,
         handleGenerateQuiz,
         setCustomQuizReq,
+        score,
+        setScore,
       }}
     >
       {children}

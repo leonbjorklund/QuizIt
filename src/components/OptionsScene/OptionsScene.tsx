@@ -1,4 +1,4 @@
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Heading } from '@chakra-ui/react';
 
 import { OptionsData } from '.';
 import { optionsStrings } from '../../assets/strings';
@@ -15,8 +15,7 @@ export const OptionsScene = () => {
   return (
     <>
       <SceneContainer variant="optionsScene">
-        <Text variant="optionsSceneTitle">Customize your quiz</Text>
-
+        <Heading variant="optionsSceneTitle">Customize your quiz</Heading>
         <SceneCard variant="optionsCard">
           {OptionsData.options.map((option: OptionType, index: number) => (
             <Option key={index} title={option.title} alternatives={option.alternatives} />

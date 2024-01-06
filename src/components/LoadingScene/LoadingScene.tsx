@@ -32,7 +32,6 @@ export const LoadingScene = () => {
 
   useEffect(() => {
     if (quizData) {
-      console.log(quizData);
       setScene(Scene.PLAY);
     }
   }, [quizData, setScene]);

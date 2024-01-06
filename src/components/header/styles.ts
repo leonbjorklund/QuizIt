@@ -9,4 +9,7 @@ export const HeaderContainerStyle = {
     sm: '10px 30px',
     md: '10px 40px',
   },
+  maxWidth: '1440px',
+  left: '50%',
+  transform: 'translateX(-50%)',
 };

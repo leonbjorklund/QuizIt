@@ -17,7 +17,7 @@ app.post('/test', async (req, res) => {
     const gptResponse = await queryGPT(query);
 
     // Send the GPT-3 response back to the client
-    return res.status(200).json(gptResponse);
+    return res.status(200).send(gptResponse);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal Server Error' });

@@ -19,6 +19,11 @@ export enum Scene {
   END = 'end',
 }
 
+export enum NavigateQuestion {
+  NEXT = 'next',
+  PREV = 'previous',
+}
+
 export interface OptionType {
   title: string;
   alternatives: string[];
