@@ -20,3 +20,8 @@ Input stuff:
 - text input
 - URL input
 - nice to have (image input)
+
+General stuff:
+
+- persist state?
+- share quiz?
