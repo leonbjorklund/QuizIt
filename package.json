@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "cd server && node app.js",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prettierC": "prettier --check \"src/**/*.{ts,tsx}\"",
