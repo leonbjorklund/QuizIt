@@ -6,22 +6,24 @@ import { DarkLightModeButton } from './DarkLightModeButton';
 import { HeaderContainerStyle } from './styles';
 
 export const Header = () => {
-  const { setScene, setScore, setQuizData } = useAppContext();
+  const { scene, setScene, setScore, setQuizData } = useAppContext();
 
   return (
-    <Flex sx={HeaderContainerStyle}>
-      <Heading
-        fontSize={{ base: '38px', sm: '44px', md: '52px' }}
-        sx={{ cursor: 'pointer' }}
-        fontWeight="bold"
-        onClick={() => {
-          setScore(0);
-          setQuizData(null);
-          setScene(Scene.HOME);
-        }}
-      >
-        QuizIt
-      </Heading>
+    <Flex justifyContent={scene === Scene.HOME ? 'flex-end' : 'space-between'} sx={HeaderContainerStyle}>
+      {scene !== Scene.HOME && (
+        <Heading
+          fontSize={{ base: '38px', sm: '44px', md: '52px' }}
+          sx={{ cursor: 'pointer' }}
+          fontWeight="bold"
+          onClick={() => {
+            setScore(0);
+            setQuizData(null);
+            setScene(Scene.HOME);
+          }}
+        >
+          QuizIt
+        </Heading>
+      )}
       <DarkLightModeButton />
     </Flex>
   );

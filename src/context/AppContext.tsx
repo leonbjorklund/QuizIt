@@ -5,8 +5,16 @@ import { OptionsData } from '../components';
 import { QuizData, Scene } from '../utils/types';
 
 interface AppContextType {
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  quizInput: {
+    value: string;
+    isURL: boolean;
+  };
+  setQuizInput: React.Dispatch<
+    React.SetStateAction<{
+      value: string;
+      isURL: boolean;
+    }>
+  >;
   scene: Scene;
   setScene: (scene: Scene) => void;
   sendToServer: (queryString: string) => void;
@@ -28,8 +36,9 @@ export const AppContext = createContext({} as AppContextType);
 export const useAppContext = () => useContext(AppContext);
 
 export function AppProvider({ children }: PropsWithChildren) {
-  const [scene, setScene] = useState<Scene>(Scene.HOME);
-  const [inputValue, setInputValue] = useState('');
+  const [scene, setScene] = useState<Scene>(Scene.HOME); // default scene, persistance fixas här
+  const [quizInput, setQuizInput] = useState({ value: '', isURL: false });
+
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [score, setScore] = useState(0);
 
@@ -40,30 +49,30 @@ export function AppProvider({ children }: PropsWithChildren) {
   };
   const [customQuizReq, setCustomQuizReq] = useState(defaultQuizRequest);
 
-  const prompt = GetPrompt(inputValue, customQuizReq.type, customQuizReq.amount, customQuizReq.difficulty);
-
-  const sendToServer = (queryString: string) => {
-    fetch('/test', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: queryString }),
-    })
-      .then((res) => res.json())
-      .then((data) => setQuizData(data as QuizData));
-  };
+  const prompt = GetPrompt(quizInput.value, customQuizReq.type, customQuizReq.amount, customQuizReq.difficulty);
 
   const handleGenerateQuiz = () => {
     sendToServer(prompt);
     setScene(Scene.LOADING);
   };
 
+  const sendToServer = (prompt: string) => {
+    fetch('/test', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: prompt }),
+    })
+      .then((res) => res.json())
+      .then((data) => setQuizData(data as QuizData));
+  };
+
   return (
     <AppContext.Provider
       value={{
-        inputValue,
-        setInputValue,
+        quizInput,
+        setQuizInput,
         scene,
         setScene,
         quizData,

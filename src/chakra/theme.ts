@@ -175,10 +175,8 @@ const components = {
   Input: {
     baseStyle: {
       field: {
-        // mt: '.25rem',
-        border: 'none',
-        py: '1.4rem',
-        // pr: '4rem',
+        py: '1.5rem',
+        pr: '5rem',
         fontSize: {
           base: 'sm',
           sm: 'md',
