@@ -1,4 +1,4 @@
-import { Flex, Heading, useColorMode } from '@chakra-ui/react';
+import { Flex, Heading } from '@chakra-ui/react';
 
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
@@ -7,7 +7,6 @@ import { HeaderContainerStyle } from './styles';
 
 export const Header = () => {
   const { setScene, setScore, setQuizData } = useAppContext();
-  const { colorMode } = useColorMode();
 
   return (
     <Flex sx={HeaderContainerStyle}>
