@@ -8,11 +8,13 @@ Styling:
 - dark mode options scene
 - funktion för att resetta quiz i context
 - Header heading variant
+- Min height för options
 
 Prompt engineering:
 
 - title quiz thingy
 - error handling & oops
+- language
 
 Input stuff:
 
