@@ -10,11 +10,11 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import { FaImage } from 'react-icons/fa';
 import * as Yup from 'yup';
 
 import { CloseIcon } from '@chakra-ui/icons';
 import { useRef } from 'react';
-import { FaImage } from 'react-icons/fa';
 import { homeStrings } from '../../../assets';
 import { useAppContext } from '../../../context/AppContext';
 import { checkAndValidateURL } from '../../../utils/checkAndValidateURL';
@@ -24,11 +24,6 @@ export const QuizInputForm = () => {
   const { setQuizInput, setScene } = useAppContext();
   const { textPlaceholder, continueBtn } = homeStrings;
   const inputRef = useRef(null);
-
-  const handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    formik.setFieldTouched('quizInput', false);
-    event.target.placeholder = '';
-  };
 
   const validationSchema = Yup.object({
     quizInput: Yup.string().required('Input is required').min(2, 'Input must be at least 2 characters long'),
@@ -46,6 +41,11 @@ export const QuizInputForm = () => {
       actions.resetForm();
     },
   });
+
+  const handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    formik.setFieldTouched('quizInput', false);
+    event.target.placeholder = '';
+  };
 
   return (
     <form autoComplete="off" onSubmit={formik.handleSubmit} style={{ width: '100%', maxWidth: '600px' }}>
@@ -89,7 +89,6 @@ export const QuizInputForm = () => {
             </Tooltip>
           </InputRightElement>
         </InputGroup>
-
         <FormErrorMessage>{formik.errors.quizInput}</FormErrorMessage>
         <Button type="submit" variant="proceed" mt="1rem">
           {continueBtn}
