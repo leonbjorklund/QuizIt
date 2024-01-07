@@ -13,6 +13,7 @@ export const Header = () => {
     <Flex sx={HeaderContainerStyle}>
       <Heading
         fontSize={{ base: '38px', sm: '44px', md: '52px' }}
+        sx={{ cursor: 'pointer' }}
         fontWeight="bold"
         onClick={() => {
           setScore(0);
