@@ -9,7 +9,9 @@ import { OptionType, Scene } from '../../utils/types';
 import { Option } from './components';
 
 export const OptionsScene = () => {
-  const { setScene, handleGenerateQuiz } = useAppContext();
+  const { setScene, handleGenerateQuiz, quizInput } = useAppContext();
+  console.log('quizInput', quizInput);
+
   const { btns } = optionsStrings;
 
   return (

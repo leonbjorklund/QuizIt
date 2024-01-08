@@ -20,7 +20,6 @@ import { Scene } from '../../../utils/types';
 export const QuizInputForm = () => {
   const { setQuizInput, setScene } = useAppContext();
   const { textPlaceholder, continueBtn } = homeStrings;
-  console.log('continueBtn', continueBtn);
   const inputRef = useRef(null);
 
   const validationSchema = Yup.object({
@@ -35,16 +34,15 @@ export const QuizInputForm = () => {
     onSubmit: (values, actions) => {
       const { isURL, processedInput } = checkAndValidateURL(values.quizInput);
       setQuizInput({ value: processedInput, isURL });
-      console.log('processedInput', processedInput);
-      console.log('isURL', isURL);
       setScene(Scene.OPTIONS);
       actions.resetForm();
     },
   });
 
   const handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    formik.setFieldTouched('quizInput', false);
     event.target.placeholder = '';
+    formik.setFieldTouched('quizInput', false);
+    event.stopPropagation();
   };
 
   return (

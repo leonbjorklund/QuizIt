@@ -9,7 +9,8 @@ import { Loading } from './components';
 import { LoadingContainerStyle } from './styles';
 
 export const LoadingScene = () => {
-  const { setScene, quizData } = useAppContext();
+  const { setScene, quizData, quizInput } = useAppContext();
+  console.log('quizInput', quizInput);
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);

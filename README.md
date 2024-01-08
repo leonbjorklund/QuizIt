@@ -23,6 +23,7 @@ Prompt engineering:
 - error handling & oops
 - language
 - give back difficulty & other parameters?
+- use quizInput instead of custom prompt thingy
 
 Input stuff:
 
@@ -32,3 +33,12 @@ General stuff:
 
 - persist state & quizState
 - share quiz?
+- skapa nytt GPT-konto?
+- kolla genom eslint & ts-config
+
+States-Local Storage:
+
+- scene
+- quizInput, (query, isURL, type of quiz, amount of questions, difficulty)
+- quizData
+- quizState

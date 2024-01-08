@@ -2,19 +2,11 @@ import React, { PropsWithChildren, createContext, useContext, useEffect, useRef,
 
 import { GetPrompt } from '../assets';
 import { OptionsData } from '../components';
-import { QuizData, Scene } from '../utils/types';
+import { QuizData, QuizInputType, Scene } from '../utils/types';
 
 interface AppContextType {
-  quizInput: {
-    value: string;
-    isURL: boolean;
-  };
-  setQuizInput: React.Dispatch<
-    React.SetStateAction<{
-      value: string;
-      isURL: boolean;
-    }>
-  >;
+  quizInput: QuizInputType;
+  setQuizInput: React.Dispatch<React.SetStateAction<QuizInputType>>;
   scene: Scene;
   setScene: (scene: Scene) => void;
   sendToServer: (queryString: string) => void;
@@ -47,6 +39,19 @@ export function AppProvider({ children }: PropsWithChildren) {
     return savedScene === 'loading' ? Scene.HOME : (savedScene as Scene) || Scene.HOME;
   });
 
+  const [quizInput, setQuizInput] = useState(() => {
+    // Try to get the stored value from localStorage
+    const savedQuizInput = localStorage.getItem('quizInput');
+
+    if (savedQuizInput) {
+      // Parse the saved string back into an object
+      return JSON.parse(savedQuizInput);
+    } else {
+      // Fallback to the default state if nothing is stored
+      return { value: '', isURL: false };
+    }
+  });
+
   const [quizData, setQuizData] = useState<QuizData | null>(() => {
     const savedScene = localStorage.getItem('scene');
     return savedScene === 'loading' ? null : JSON.parse(localStorage.getItem('quizData') || 'null');
@@ -56,12 +61,25 @@ export function AppProvider({ children }: PropsWithChildren) {
     localStorage.setItem('scene', scene);
   }, [scene]);
 
+  useEffect(() => {
+    localStorage.setItem('quizInput', JSON.stringify(quizInput));
+  }, [quizInput]);
+
   // Effect to update localStorage when 'quizData' changes
   useEffect(() => {
     localStorage.setItem('quizData', JSON.stringify(quizData));
   }, [quizData]);
+
   const [score, setScore] = useState(0);
-  const [quizInput, setQuizInput] = useState({ value: '', isURL: false });
+
+  const appendQuizReqToInput = () => {
+    setQuizInput((prevState) => ({
+      ...prevState,
+      type: customQuizReq.type,
+      amount: customQuizReq.amount,
+      difficulty: customQuizReq.difficulty,
+    }));
+  };
 
   const defaultQuizRequest = {
     type: OptionsData.options[0].alternatives[1],
@@ -74,6 +92,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
   const handleGenerateQuiz = () => {
     sendToServer(prompt);
+    appendQuizReqToInput();
     setScene(Scene.LOADING);
   };
 
