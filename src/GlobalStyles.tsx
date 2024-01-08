@@ -16,4 +16,18 @@ export const MainWrapperStyle = {
   },
 };
 
-export const HeadingStyle = {};
+export const HeaderLogoStyle = {
+  fontSize: { base: '38px', sm: '44px', md: '52px' },
+  fontWeight: 'bold',
+  cursor: 'pointer',
+};
+
+export const HeadingStyle = {
+  fontSize: { base: '24px', sm: '28px', md: '32px', lg: '36px' },
+};
+
+export const ButtonFlexStyle = {
+  gap: '1.5em',
+  w: '100%',
+  justifyContent: 'center',
+};

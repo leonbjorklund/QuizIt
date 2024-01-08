@@ -1,5 +1,6 @@
 import { Flex, Heading } from '@chakra-ui/react';
 
+import { HeaderLogoStyle } from '../../GlobalStyles';
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
 import { DarkLightModeButton } from './DarkLightModeButton';
@@ -12,9 +13,7 @@ export const Header = () => {
     <Flex justifyContent={scene === Scene.HOME ? 'flex-end' : 'space-between'} sx={HeaderContainerStyle}>
       {scene !== Scene.HOME && (
         <Heading
-          fontSize={{ base: '38px', sm: '44px', md: '52px' }}
-          sx={{ cursor: 'pointer' }}
-          fontWeight="bold"
+          sx={HeaderLogoStyle}
           onClick={() => {
             if (scene === Scene.LOADING) {
               abortController.current.abort();

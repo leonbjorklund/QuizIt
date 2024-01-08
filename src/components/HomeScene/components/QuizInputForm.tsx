@@ -46,7 +46,12 @@ export const QuizInputForm = () => {
   };
 
   return (
-    <form autoComplete="off" onSubmit={formik.handleSubmit} style={{ width: '100%', maxWidth: '600px' }}>
+    <form
+      name="quizInput"
+      autoComplete="off"
+      onSubmit={formik.handleSubmit}
+      style={{ width: '100%', maxWidth: '600px' }}
+    >
       <FormControl
         display="flex"
         alignItems="center"

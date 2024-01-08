@@ -1,6 +1,7 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
 
+import { HeadingStyle } from '../../GlobalStyles';
 import { playStrings } from '../../assets';
 import { Radio, SceneCard, SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
@@ -9,7 +10,6 @@ import {
   AnswerFlexStyle,
   BottomButtomStackStyle,
   PreviousQuestionButtonStyle,
-  ProceedButtonStyle,
   QuestionTextStyle,
   TopTextStackStyle,
 } from './styles';
@@ -34,7 +34,9 @@ export const PlayScene = () => {
 
   return (
     <SceneContainer variant="playScene">
-      <Heading mb="1rem">{quizData.quiz.title}</Heading>
+      <Heading sx={HeadingStyle} mb="1rem">
+        {quizData.quiz.title}
+      </Heading>
       <HStack sx={TopTextStackStyle}>
         <Text>
           {index + 1} / {quizData.quiz.questions.length}
@@ -78,11 +80,11 @@ export const PlayScene = () => {
           />
         )}
         {index === quizData.quiz.questions.length - 1 && showAnswer ? (
-          <Button sx={ProceedButtonStyle} variant="proceed" onClick={() => setScene(Scene.END)}>
+          <Button variant="proceed" onClick={() => setScene(Scene.END)}>
             {btns.result}
           </Button>
         ) : (
-          <Button sx={ProceedButtonStyle} variant="proceed" onClick={checkAnswer} isDisabled={!value && !showAnswer}>
+          <Button variant="proceed" onClick={checkAnswer} isDisabled={!value && !showAnswer}>
             {showAnswer ? btns.next : btns.reveal}
           </Button>
         )}

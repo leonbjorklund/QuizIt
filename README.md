@@ -1,21 +1,21 @@
-TO-DO:
+TO-DO IMON:
+
+States-Local Storage / Refactor Context:
+
+- persist quizState!
+- scene
+- quizInput, (query, isURL, type of quiz, amount of questions, difficulty)
+- quizData
+- quizState
 
 Styling:
 
 - consistent styling
-- dark mode options scene
 - funktion för att resetta quiz i context
-- Header heading variant: options header, quiz title header
-- Continue button disabled while no input?
 - set header ha height, en flexbox
-
-Chakra Styles Object:
-
-- proceed button font size
-- Heading för "customize your quiz" & "quiz title"
-- Flex style för dem 2 knapparna
-- Share Icon Button
-- Header LOGO
+- true/false styling
+- options scene styling
+- Share Icon Button // Refactor this component
 
 Prompt engineering:
 
@@ -31,14 +31,8 @@ Input stuff:
 
 General stuff:
 
-- persist state & quizState
-- share quiz?
 - skapa nytt GPT-konto?
 - kolla genom eslint & ts-config
-
-States-Local Storage:
-
-- scene
-- quizInput, (query, isURL, type of quiz, amount of questions, difficulty)
-- quizData
-- quizState
+- kolla genom theme, unused shiet
+- kolla abort controller bug
+- playscene refactor ternerary button logic

@@ -64,20 +64,42 @@ const SceneCard = defineStyleConfig({
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
       borderRadius: '5px',
       padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
-      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
+      gap: { base: '24px', sm: '28px', md: '32px', lg: '20px' },
       _light: {
-        bg: 'gray.200',
+        bg: 'gray.400',
       },
     },
     optionsCard: {
-      bg: colors.secondary,
       boxShadow: 'md',
       maxWidth: '500px',
       borderRadius: '5px',
       padding: '10px',
       gap: '10px',
+      _dark: {
+        bg: colors.secondary,
+        color: 'white',
+      },
+      _light: {
+        color: 'black',
+        bg: 'gray.400',
+      },
     },
     playSceneTrueFalse: {},
+    option: {
+      boxShadow: 'md',
+      gap: '10px',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+      padding: { base: '5px', sm: '10px 20px' },
+      borderRadius: '5px',
+      _dark: {
+        bg: 'blue.700',
+      },
+      _light: {
+        bg: 'gray.500',
+      },
+    },
   },
 });
 
@@ -159,7 +181,6 @@ const components = {
       textAlign: 'center',
       fontFamily: 'Poppins, sans-serif',
       fontWeight: '500',
-      fontSize: '66px',
     },
   },
   Input: {
@@ -235,6 +256,12 @@ const components = {
         color: '#000',
         bg: colors.proceedButton,
         height: 'auto',
+        fontSize: {
+          base: '16px',
+          sm: '16px',
+          md: '18px',
+          lg: '18px',
+        },
         _hover: {
           bg: 'yellow.200',
         },
@@ -245,6 +272,12 @@ const components = {
         },
       },
       return: {
+        fontSize: {
+          base: '16px',
+          sm: '16px',
+          md: '18px',
+          lg: '18px',
+        },
         border: '.5px solid',
         bg: 'transparent',
         _hover: {

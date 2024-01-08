@@ -12,5 +12,5 @@ export const getRadioBackgroundColor = (options: BackgroundColorOptions, colorMo
   if (showAnswer && !isCorrectOption && (isChecked || isUserPreviousChoice))
     return colorMode === 'light' ? 'red.600' : 'red.600';
 
-  return colorMode === 'light' ? 'gray.400' : 'blue.700';
+  return colorMode === 'light' ? 'gray.500' : 'blue.700';
 };

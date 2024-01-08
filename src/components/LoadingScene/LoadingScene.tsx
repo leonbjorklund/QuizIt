@@ -1,6 +1,7 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
+import { ButtonFlexStyle } from '../../GlobalStyles';
 import { fun_facts, loadingStrings } from '../../assets/strings';
 import { SceneContainer } from '../../chakra/SceneContainer';
 import { useAppContext } from '../../context/AppContext';
@@ -44,7 +45,7 @@ export const LoadingScene = () => {
               {oopsSubtitle}
             </Text>
           </Flex>
-          <Flex gap="1.5em">
+          <Flex sx={ButtonFlexStyle}>
             <Button variant="return" onClick={() => setScene(Scene.HOME)}>
               {homeBtn}
             </Button>

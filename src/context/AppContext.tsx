@@ -35,13 +35,13 @@ export const useAppContext = () => useContext(AppContext);
 
 export function AppProvider({ children }: PropsWithChildren) {
   const [scene, setScene] = useState<Scene>(() => {
-    const savedScene = localStorage.getItem('scene');
+    const savedScene = sessionStorage.getItem('scene');
     return savedScene === 'loading' ? Scene.HOME : (savedScene as Scene) || Scene.HOME;
   });
 
   const [quizInput, setQuizInput] = useState(() => {
     // Try to get the stored value from localStorage
-    const savedQuizInput = localStorage.getItem('quizInput');
+    const savedQuizInput = sessionStorage.getItem('quizInput');
 
     if (savedQuizInput) {
       // Parse the saved string back into an object
@@ -53,21 +53,21 @@ export function AppProvider({ children }: PropsWithChildren) {
   });
 
   const [quizData, setQuizData] = useState<QuizData | null>(() => {
-    const savedScene = localStorage.getItem('scene');
-    return savedScene === 'loading' ? null : JSON.parse(localStorage.getItem('quizData') || 'null');
+    const savedScene = sessionStorage.getItem('scene');
+    return savedScene === 'loading' ? null : JSON.parse(sessionStorage.getItem('quizData') || 'null');
   });
 
   useEffect(() => {
-    localStorage.setItem('scene', scene);
+    sessionStorage.setItem('scene', scene);
   }, [scene]);
 
   useEffect(() => {
-    localStorage.setItem('quizInput', JSON.stringify(quizInput));
+    sessionStorage.setItem('quizInput', JSON.stringify(quizInput));
   }, [quizInput]);
 
-  // Effect to update localStorage when 'quizData' changes
+  // Effect to update sessionStorage when 'quizData' changes
   useEffect(() => {
-    localStorage.setItem('quizData', JSON.stringify(quizData));
+    sessionStorage.setItem('quizData', JSON.stringify(quizData));
   }, [quizData]);
 
   const [score, setScore] = useState(0);

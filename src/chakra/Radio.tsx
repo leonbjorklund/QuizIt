@@ -52,8 +52,6 @@ const baseStyle = definePartsStyle({
   // containern runt hela radion
   container: {
     borderRadius: '5px',
-    // satte till röd nu så du ser den
-    bg: 'red',
     padding: '10px',
   },
   // själva radioknappen, den lilla cirkeln
@@ -61,9 +59,13 @@ const baseStyle = definePartsStyle({
     color: 'white!important',
     borderColor: 'white!important',
     background: 'transparent!important',
+    _light: {
+      color: 'white!important',
+    },
   },
   // texten bredvid radioknappen
   label: {
+    color: 'white',
     fontFamily: 'Dosis, sans-serif',
     fontSize: {
       base: '18px',
