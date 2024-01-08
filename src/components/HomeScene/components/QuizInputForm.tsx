@@ -2,15 +2,12 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  Icon,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
-  Tooltip,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import { FaImage } from 'react-icons/fa';
 import * as Yup from 'yup';
 
 import { CloseIcon } from '@chakra-ui/icons';
@@ -23,6 +20,7 @@ import { Scene } from '../../../utils/types';
 export const QuizInputForm = () => {
   const { setQuizInput, setScene } = useAppContext();
   const { textPlaceholder, continueBtn } = homeStrings;
+  console.log('continueBtn', continueBtn);
   const inputRef = useRef(null);
 
   const validationSchema = Yup.object({
@@ -37,6 +35,8 @@ export const QuizInputForm = () => {
     onSubmit: (values, actions) => {
       const { isURL, processedInput } = checkAndValidateURL(values.quizInput);
       setQuizInput({ value: processedInput, isURL });
+      console.log('processedInput', processedInput);
+      console.log('isURL', isURL);
       setScene(Scene.OPTIONS);
       actions.resetForm();
     },
@@ -59,7 +59,9 @@ export const QuizInputForm = () => {
           <Input
             ref={inputRef}
             name="quizInput"
-            pr={formik.values.quizInput ? '5rem' : '3rem'}
+            // for if we have image input
+            // pr={formik.values.quizInput ? '5rem' : '3rem'}
+            pr={formik.values.quizInput ? '3rem' : '1rem'}
             onChange={formik.handleChange}
             onFocus={handleInputFocus}
             onBlur={(e) => (e.target.placeholder = textPlaceholder)}
@@ -79,17 +81,21 @@ export const QuizInputForm = () => {
                 _hover={{ bg: 'transparent' }}
               />
             )}
-            <Tooltip hasArrow label="Upload Image" offset={[0, 10]}>
+
+            {
+              // for if we have image input
+              /* <Tooltip hasArrow label="Upload Image" offset={[0, 10]}>
               <IconButton
                 h="100%"
                 aria-label="Image mode"
                 icon={<Icon as={FaImage} boxSize="1.25rem" />}
                 onClick={() => console.log('hej')}
               />
-            </Tooltip>
+            </Tooltip> */
+            }
           </InputRightElement>
         </InputGroup>
-        <FormErrorMessage>{formik.errors.quizInput}</FormErrorMessage>
+        <FormErrorMessage fontSize="18px">{formik.errors.quizInput}</FormErrorMessage>
         <Button type="submit" variant="proceed" mt="1rem">
           {continueBtn}
         </Button>

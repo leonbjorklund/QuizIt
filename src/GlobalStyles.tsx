@@ -15,3 +15,5 @@ export const MainWrapperStyle = {
     md: '80px',
   },
 };
+
+export const HeadingStyle = {};

@@ -34,7 +34,14 @@ export const Radio: React.FC<RadioProps> = ({
   }, [isPlayQuizScene, isChecked, showAnswer, isCorrectOption, isUserPreviousChoice, colorMode]);
 
   return (
-    <Box bgColor={bgColor} display={isPlayQuizScene ? 'block' : 'none'} sx={quizRadioContainerStyle}>
+    <Box
+      bgColor={bgColor}
+      display={isPlayQuizScene ? 'block' : 'none'}
+      sx={{
+        ...quizRadioContainerStyle,
+        ...(showAnswer ? {} : { _hover: { opacity: '0.9' } }),
+      }}
+    >
       <ChakraRadio {...props} />
     </Box>
   );
@@ -75,6 +82,7 @@ const variants = {
     container: {
       boxShadow: 'md',
       width: '100%',
+      height: '100%',
       bg: 'transparent',
       padding: {
         base: '8px',

@@ -15,14 +15,14 @@ export const OptionsScene = () => {
   return (
     <>
       <SceneContainer variant="optionsScene">
-        <Heading variant="optionsSceneTitle">Customize your quiz</Heading>
+        <Heading fontSize={{ base: '24px', sm: '28px', md: '32px', lg: '36px' }}>Customize your quiz</Heading>
         <SceneCard variant="optionsCard">
           {OptionsData.options.map((option: OptionType, index: number) => (
             <Option key={index} title={option.title} alternatives={option.alternatives} />
           ))}
         </SceneCard>
 
-        <Flex gap="1.5em" flexDirection={{ base: 'column-reverse', sm: 'row' }} width={{ base: '100%', sm: 'auto' }}>
+        <Flex gap="1.5em" w="100%" justifyContent="center">
           <Button variant="return" onClick={() => setScene(Scene.HOME)}>
             {btns.back}
           </Button>

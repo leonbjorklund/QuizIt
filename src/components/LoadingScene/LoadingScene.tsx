@@ -1,4 +1,4 @@
-import { Button, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { fun_facts, loadingStrings } from '../../assets/strings';
@@ -11,8 +11,6 @@ import { LoadingContainerStyle } from './styles';
 export const LoadingScene = () => {
   const { setScene, quizData } = useAppContext();
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
-
-  const isDesktop = useBreakpointValue({ base: false, sm: true });
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [isOops, setIsOops] = useState(false);
@@ -45,7 +43,7 @@ export const LoadingScene = () => {
               {oopsSubtitle}
             </Text>
           </Flex>
-          <Flex gap="1.5em" flexDirection={!isDesktop ? 'column-reverse' : 'row'} width={!isDesktop ? '100%' : 'auto'}>
+          <Flex gap="1.5em">
             <Button variant="return" onClick={() => setScene(Scene.HOME)}>
               {homeBtn}
             </Button>

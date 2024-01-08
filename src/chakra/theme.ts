@@ -71,6 +71,7 @@ const SceneCard = defineStyleConfig({
     },
     optionsCard: {
       bg: colors.secondary,
+      boxShadow: 'md',
       maxWidth: '500px',
       borderRadius: '5px',
       padding: '10px',
@@ -93,7 +94,6 @@ const components = {
         bottom: 0,
         fontWeight: '900',
       },
-
       optionTitle: {
         color: '#FFF',
         fontSize: {
@@ -158,18 +158,8 @@ const components = {
     baseStyle: {
       textAlign: 'center',
       fontFamily: 'Poppins, sans-serif',
-      fontWeight: 'medium',
-    },
-    variants: {
-      optionsSceneTitle: {
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: '600',
-        fontSize: {
-          base: '30px',
-          sm: '32px',
-          md: '36px',
-        },
-      },
+      fontWeight: '500',
+      fontSize: '66px',
     },
   },
   Input: {
@@ -236,11 +226,12 @@ const components = {
       fontWeight: '500',
       borderRadius: '5px',
       border: 'none',
-      fontSize: { base: '14px', sm: '14px', md: '16px', lg: '16px' },
+      height: 'auto',
+      boxShadow: 'sm',
+      padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
     },
     variants: {
       proceed: {
-        padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
         color: '#000',
         bg: colors.proceedButton,
         height: 'auto',
@@ -255,7 +246,6 @@ const components = {
       },
       return: {
         border: '.5px solid',
-        height: 'auto',
         bg: 'transparent',
         _hover: {
           bg: colors.backButtonBorder,
@@ -285,7 +275,6 @@ const components = {
           lg: 'calc(50% - 11rem)',
         },
       },
-
       searchbarBtn: {
         _dark: {
           bg: '#4A556899',

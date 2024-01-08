@@ -1,6 +1,7 @@
 import { Button, Flex, HStack, Heading, Icon, IconButton, Text, VStack } from '@chakra-ui/react';
 import { FaDiscord, FaFacebook, FaRegCopy } from 'react-icons/fa';
 
+import { useEffect, useState } from 'react';
 import { endStrings } from '../../assets';
 import { SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
@@ -11,6 +12,21 @@ export const EndScene = () => {
 
   const { goodJob, btns, share } = endStrings;
 
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
+  const copyUrl = () => {
+    const el = document.createElement('input');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
+
   return (
     <SceneContainer variant="endScene">
       <Heading lineHeight="1.2" fontSize={{ base: '46px', sm: '58px', md: '68px', lg: '78px' }} fontWeight="bold">
@@ -18,7 +34,7 @@ export const EndScene = () => {
         <br />
         {goodJob}
       </Heading>
-      <Flex gap="1.5em" flexDirection={{ base: 'column-reverse', sm: 'row' }}>
+      <Flex gap="1.5em" flexDirection="row">
         <Button
           fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '22px' }}
           variant="return"
@@ -50,10 +66,10 @@ export const EndScene = () => {
             icon={<Icon as={FaRegCopy} boxSize="2rem" />}
             aria-label="share-discord"
             isRound
-            onClick={() => console.log('hello')}
             w="auto"
             h="auto"
             padding=".5rem"
+            onClick={copyUrl}
           />
           <IconButton
             icon={<Icon as={FaDiscord} boxSize="2rem" />}

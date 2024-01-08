@@ -6,7 +6,7 @@ import { DarkLightModeButton } from './DarkLightModeButton';
 import { HeaderContainerStyle } from './styles';
 
 export const Header = () => {
-  const { scene, setScene, setScore, setQuizData } = useAppContext();
+  const { scene, setScene, setScore, setQuizData, abortController } = useAppContext();
 
   return (
     <Flex justifyContent={scene === Scene.HOME ? 'flex-end' : 'space-between'} sx={HeaderContainerStyle}>
@@ -16,6 +16,9 @@ export const Header = () => {
           sx={{ cursor: 'pointer' }}
           fontWeight="bold"
           onClick={() => {
+            if (scene === Scene.LOADING) {
+              abortController.current.abort();
+            }
             setScore(0);
             setQuizData(null);
             setScene(Scene.HOME);

@@ -2,6 +2,9 @@ export const TopTextStackStyle = {
   w: '100%',
   justifyContent: 'space-between',
   px: '5px',
+  '>p': {
+    fontSize: { base: '18px', sm: '18px', md: '20px', lg: '22px' },
+  },
 };
 
 export const QuestionTextStyle = {
@@ -40,7 +43,7 @@ export const quizRadioContainerStyle = {
   w: '100%',
   maxWidth: { base: '360px', sm: '380px', md: '260px', lg: '360px' },
   borderRadius: '5px',
-  _hover: {
-    opacity: '0.9',
-  },
+  // _hover: {
+  //   opacity: '0.9',
+  // },
 };
