@@ -2,12 +2,6 @@ TO-DO IMON:
 
 States-Local Storage / Refactor Context:
 
-- persist quizState!
-- scene
-- quizInput, (query, isURL, type of quiz, amount of questions, difficulty)
-- quizData
-- quizState
-
 Styling:
 
 - consistent styling
@@ -19,7 +13,6 @@ Styling:
 
 Prompt engineering:
 
-- title quiz thingy
 - error handling & oops
 - language
 - give back difficulty & other parameters?
@@ -34,5 +27,5 @@ General stuff:
 - skapa nytt GPT-konto?
 - kolla genom eslint & ts-config
 - kolla genom theme, unused shiet
-- kolla abort controller bug
 - playscene refactor ternerary button logic
+- on play scene: if click header logo, make "are you sure? you will lose ur quiz"

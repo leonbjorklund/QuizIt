@@ -1,90 +1,57 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { MdOutlineCheckCircle, MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 
 import { useAppContext } from '../../context/AppContext';
-import { NavigateQuestion, QuizData } from '../../utils/types';
-
-type QuizState = {
-  index: number;
-  currentQuestion: QuizData['quiz']['questions'][number];
-  value: string;
-  showAnswer: boolean;
-  userAnswers: { [key: number]: string };
-};
 
 const useQuizTest = () => {
-  const { quizData, score, setScore } = useAppContext();
+  const { playQuizState, setPlayQuizState, quizData } = useAppContext();
 
-  const [quizState, setQuizState] = useState<QuizState>({
-    index: 0,
-    currentQuestion: quizData?.quiz?.questions ? quizData.quiz.questions[0] : null,
-    value: '',
-    showAnswer: false,
-    userAnswers: {},
-  });
-  const [answeredQuestions, setAnsweredQuestions] = useState<number[]>([]);
-
-  useEffect(() => {
-    setQuizState((prevState) => ({
-      ...prevState,
-      currentQuestion: quizData.quiz.questions[prevState.index],
-      showAnswer: answeredQuestions.includes(prevState.index),
-    }));
-  }, [quizState.index, answeredQuestions]);
-
-  const navigateQuestion = useCallback((direction: NavigateQuestion.NEXT | NavigateQuestion.PREV) => {
-    setQuizState((prevState) => {
-      let newIndex = direction === NavigateQuestion.NEXT ? prevState.index + 1 : prevState.index - 1;
-      newIndex = Math.max(0, Math.min(newIndex, quizData.quiz.questions.length - 1)); // Corrected path
-      return {
-        ...prevState,
-        index: newIndex,
-        value: '',
-      };
-    });
-  }, []);
+  const navigateQuestion = useCallback(
+    (direction: 'NEXT' | 'PREV') => {
+      setPlayQuizState((prevState) => {
+        const totalQuestions = quizData.quiz.questions.length;
+        const newIndex = direction === 'NEXT' ? prevState.index + 1 : prevState.index - 1;
+        return {
+          ...prevState,
+          index: Math.max(0, Math.min(newIndex, totalQuestions - 1)),
+          value: '',
+        };
+      });
+    },
+    [quizData.quiz.questions.length],
+  );
 
   const checkAnswer = useCallback(() => {
-    const isAnswerShown = quizState.showAnswer;
-    if (!isAnswerShown) {
-      const isCorrect = quizState.value === quizState.currentQuestion.answer;
-      setQuizState((prevState) => ({
+    if (!playQuizState.showAnswer) {
+      const isCorrect = playQuizState.value === playQuizState.currentQuestion.answer;
+      setPlayQuizState((prevState) => ({
         ...prevState,
         showAnswer: true,
-        userAnswers: { ...prevState.userAnswers, [prevState.index]: quizState.value },
+        userAnswers: { ...prevState.userAnswers, [prevState.index]: playQuizState.value },
+        answeredQuestions: [...prevState.answeredQuestions, prevState.index],
+        score: isCorrect ? prevState.score + 1 : prevState.score,
       }));
-      setAnsweredQuestions((prev) => [...prev, quizState.index]);
-
-      if (isCorrect) {
-        setScore((prevScore) => prevScore + 1);
-      }
     } else {
-      navigateQuestion(NavigateQuestion.NEXT);
+      navigateQuestion('NEXT');
     }
-  }, [quizState, navigateQuestion]);
+  }, [playQuizState, navigateQuestion]);
 
   const renderIcon = useCallback(
     (option: string) => {
-      const { showAnswer, currentQuestion, userAnswers, index, value } = quizState;
+      const { showAnswer, currentQuestion, userAnswers, index, value } = playQuizState;
       if (showAnswer) {
-        if (option === currentQuestion.answer) {
-          return MdOutlineCheckCircle;
-        }
-        if (option === userAnswers[index]) {
-          return IoMdCloseCircleOutline;
-        }
+        if (option === currentQuestion.answer) return MdOutlineCheckCircle;
+        if (option === userAnswers[index]) return IoMdCloseCircleOutline;
       }
       return option === value ? MdRadioButtonChecked : MdRadioButtonUnchecked;
     },
-    [quizState],
+    [playQuizState],
   );
 
   return {
-    ...quizState,
-    score,
-    answeredQuestions,
-    setQuizState,
+    ...playQuizState,
+    setPlayQuizState,
     navigateQuestion,
     checkAnswer,
     renderIcon,

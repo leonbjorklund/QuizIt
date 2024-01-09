@@ -8,10 +8,11 @@ import { ButtonFlexStyle } from '../../GlobalStyles';
 import { endStrings } from '../../assets';
 import { SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
+import { initialPlayQuizState } from '../../context/updateQuiz';
 import { Scene } from '../../utils/types';
 
 export const EndScene = () => {
-  const { setScene, quizData, score, setScore, setQuizData } = useAppContext();
+  const { setScene, quizData, setQuizData, playQuizState, setPlayQuizState } = useAppContext();
 
   const { goodJob, btns, share } = endStrings;
 
@@ -48,10 +49,18 @@ export const EndScene = () => {
     setIsCopied(false);
   };
 
+  const resetPlayQuizState = () => {
+    const newState = {
+      ...initialPlayQuizState,
+      currentQuestion: quizData?.quiz?.questions[initialPlayQuizState.index],
+    };
+    setPlayQuizState(newState);
+  };
+
   return (
     <SceneContainer variant="endScene">
       <Heading lineHeight="1.2" fontSize={{ base: '46px', sm: '58px', md: '68px', lg: '78px' }} fontWeight="bold">
-        {`${score} / ${quizData.quiz.questions.length}`}
+        {`${playQuizState.score} / ${quizData.quiz.questions.length}`}
         <br />
         {goodJob}
       </Heading>
@@ -60,7 +69,6 @@ export const EndScene = () => {
           variant="return"
           onClick={() => {
             setQuizData(null);
-            setScore(0);
             setScene(Scene.HOME);
           }}
         >
@@ -69,7 +77,7 @@ export const EndScene = () => {
         <Button
           variant="proceed"
           onClick={() => {
-            setScore(0);
+            resetPlayQuizState();
             setScene(Scene.PLAY);
           }}
         >
@@ -115,7 +123,7 @@ export const EndScene = () => {
           >
             <IconButton
               name="copy-link"
-              icon={<Icon as={FaRegCopy} boxSize="1.8rem" />}
+              icon={<Icon as={FaRegCopy} boxSize="1.8rem" color="white" />}
               aria-label="share-discord"
               isRound
               onMouseEnter={handleMouseEnter}

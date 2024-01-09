@@ -36,3 +36,9 @@ export interface QuizInputType {
   amount?: string; // Optional property
   difficulty?: string; // Optional property
 }
+
+export interface customQuizReqType {
+  type: string;
+  amount: string;
+  difficulty: string;
+}

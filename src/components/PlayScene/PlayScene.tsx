@@ -5,7 +5,7 @@ import { HeadingStyle } from '../../GlobalStyles';
 import { playStrings } from '../../assets';
 import { Radio, SceneCard, SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
-import { NavigateQuestion, Scene } from '../../utils/types';
+import { Scene } from '../../utils/types';
 import {
   AnswerFlexStyle,
   BottomButtomStackStyle,
@@ -16,21 +16,16 @@ import {
 import useQuiz from './useQuiz';
 
 export const PlayScene = () => {
-  const { setScene, quizData, customQuizReq } = useAppContext();
+  const { setScene, quizData, customQuizReq, playQuizState, setPlayQuizState } = useAppContext();
+  const { index, currentQuestion, value, showAnswer, userAnswers } = playQuizState;
 
   const { btns } = playStrings;
 
-  const {
-    index,
-    currentQuestion,
-    value,
-    showAnswer,
-    userAnswers,
-    setQuizState,
-    navigateQuestion,
-    checkAnswer,
-    renderIcon,
-  } = useQuiz();
+  const { navigateQuestion, checkAnswer, renderIcon } = useQuiz();
+
+  const handleOptionChange = (e) => {
+    setPlayQuizState((prev) => ({ ...prev, value: e }));
+  };
 
   return (
     <SceneContainer variant="playScene">
@@ -45,12 +40,7 @@ export const PlayScene = () => {
       </HStack>
       <SceneCard variant="playCard">
         <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
-        <RadioGroup
-          isDisabled={showAnswer}
-          w="100%"
-          value={value}
-          onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}
-        >
+        <RadioGroup isDisabled={showAnswer} w="100%" value={value} onChange={handleOptionChange}>
           <Flex sx={AnswerFlexStyle}>
             {currentQuestion.options?.map((option, i) => (
               <Radio
@@ -76,7 +66,7 @@ export const PlayScene = () => {
             sx={PreviousQuestionButtonStyle}
             icon={<ChevronLeftIcon boxSize="2rem" />}
             aria-label="previous-question"
-            onClick={() => navigateQuestion(NavigateQuestion.PREV)}
+            onClick={() => navigateQuestion('PREV')}
           />
         )}
         {index === quizData.quiz.questions.length - 1 && showAnswer ? (
