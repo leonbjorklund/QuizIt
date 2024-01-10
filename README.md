@@ -3,8 +3,6 @@ Prompt engineering:
 - difficulty
 - error handling & oops
 - language
-- give back difficulty & other parameters?
-- use quizInput instead of custom prompt thingy
 
 Styling & refactoring:
 
@@ -14,6 +12,7 @@ Styling & refactoring:
 - playscene refactor ternerary button logic
 - combine quizInput & customQuizReq states
 - form error text font size
+- refactor each component
 
 Input stuff:
 
