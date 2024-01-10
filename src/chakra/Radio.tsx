@@ -128,10 +128,10 @@ const variants = {
     control: {},
     label: {
       fontSize: {
-        base: '18px',
-        sm: '20px',
-        md: '22px',
-        lg: '24px',
+        base: '16px',
+        sm: '18px',
+        md: '20px',
+        lg: '22px',
       },
     },
   }),

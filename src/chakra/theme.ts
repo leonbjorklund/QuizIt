@@ -32,12 +32,12 @@ const SceneContainer = defineStyleConfig({
   variants: {
     playScene: {
       borderRadius: '5px',
-      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      maxWidth: { sm: '460px', md: '600px', lg: '100%' },
     },
     playSceneTrueFalse: {},
     optionsScene: {
       gap: '20px',
-      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      maxWidth: { sm: '460px', md: '600px', lg: '100%' },
     },
     funFact: {
       position: 'absolute',
@@ -64,7 +64,7 @@ const SceneCard = defineStyleConfig({
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
       borderRadius: '5px',
       padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
-      gap: { base: '24px', sm: '28px', md: '32px', lg: '20px' },
+      gap: { base: '24px', sm: '28px', md: '32px', lg: '32px' },
       _light: {
         bg: 'gray.400',
       },
@@ -87,7 +87,6 @@ const SceneCard = defineStyleConfig({
     playSceneTrueFalse: {},
     option: {
       boxShadow: 'md',
-      gap: '10px',
       flexDirection: 'column',
       alignItems: 'center',
       width: '100%',
@@ -119,10 +118,10 @@ const components = {
       optionTitle: {
         color: '#FFF',
         fontSize: {
-          base: '20px',
-          sm: '22px',
-          md: '24px',
-          lg: '26px',
+          base: '18px',
+          sm: '20px',
+          md: '22px',
+          lg: '24px',
         },
       },
       optionText: {
@@ -188,10 +187,7 @@ const components = {
       field: {
         py: '1.5rem',
         pr: '5rem',
-        fontSize: {
-          base: 'sm',
-          sm: 'md',
-        },
+        fontSize: { base: '14px', sm: '14px', md: '16px', lg: '16px' },
         _dark: {
           border: 'none',
           boxShadow: 'sm',
@@ -282,6 +278,11 @@ const components = {
         bg: 'transparent',
         _hover: {
           bg: colors.backButtonBorder,
+        },
+        _light: {
+          _hover: {
+            bg: 'gray.100',
+          },
         },
       },
       searchbarBtn: {

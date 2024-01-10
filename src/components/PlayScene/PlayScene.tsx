@@ -16,10 +16,11 @@ import {
 import useQuiz from './useQuiz';
 
 export const PlayScene = () => {
-  const { setScene, quizData, customQuizReq, playQuizState, setPlayQuizState } = useAppContext();
+  const { setScene, quizData, customQuizReq, playQuizState, setPlayQuizState, quizInput } = useAppContext();
   const { index, currentQuestion, value, showAnswer, userAnswers } = playQuizState;
 
   const { btns } = playStrings;
+  const isTrueFalse = quizInput.type === 'True/False';
 
   const { navigateQuestion, checkAnswer, renderIcon } = useQuiz();
 
@@ -41,7 +42,7 @@ export const PlayScene = () => {
       <SceneCard variant="playCard">
         <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
         <RadioGroup isDisabled={showAnswer} w="100%" value={value} onChange={handleOptionChange}>
-          <Flex sx={AnswerFlexStyle}>
+          <Flex sx={AnswerFlexStyle} flexWrap={isTrueFalse ? 'nowrap' : 'wrap'}>
             {currentQuestion.options?.map((option, i) => (
               <Radio
                 variant="playQuiz"

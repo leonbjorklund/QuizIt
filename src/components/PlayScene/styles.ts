@@ -8,17 +8,13 @@ export const TopTextStackStyle = {
 };
 
 export const QuestionTextStyle = {
-  // FIX!
-  height: { base: '24px', sm: '28px', md: '32px', lg: '53px' },
-  display: 'flex',
-  alignItems: 'center',
   color: 'white',
   fontSize: { base: '18px', sm: '20px', md: '22px', lg: '24px' },
 };
 
 export const AnswerFlexStyle = {
   gap: { base: '18px', lg: '20px' },
-  flexWrap: 'wrap',
+
   justifyContent: 'center',
 };
 

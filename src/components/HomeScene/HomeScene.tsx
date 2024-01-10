@@ -8,10 +8,10 @@ export const HomeScene = () => {
 
   return (
     <>
-      <Heading fontSize={{ base: '40px', sm: '48px', md: '56px' }} fontWeight="bold">
+      <Heading fontSize={{ base: '42px', sm: '48px', md: '52px', lg: '56px' }} fontWeight="bold">
         QuizIt
       </Heading>
-      <Text textAlign="center" mb=".4rem" fontSize={{ base: '18px', sm: '20px', md: '22px' }}>
+      <Text textAlign="center" mb=".4rem" fontSize={{ base: '16px', sm: '18px', md: '20px', lg: '22px' }}>
         {subtitle}
       </Text>
       <QuizInputForm />
