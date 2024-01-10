@@ -7,7 +7,7 @@ export type PlayQuizState = {
   showAnswer: boolean;
   userAnswers: { [key: number]: string };
   answeredQuestions: number[];
-  score: number; // Add the score here
+  score: number;
 };
 
 export const updatePlayQuizState = (quizData: QuizData, prevState: PlayQuizState) => {

@@ -24,3 +24,5 @@ General stuff:
 - skapa nytt GPT-konto?
 - kolla genom eslint & ts-config
 - on play scene: if click header logo, make "are you sure? you will lose ur quiz"
+- prettier lr ngt script som seperarerar lokala & lib imports
+- refactor context med tanke på sessionStorage??

@@ -1,3 +1,4 @@
+import { CloseIcon } from '@chakra-ui/icons';
 import {
   Button,
   FormControl,
@@ -8,10 +9,9 @@ import {
   InputRightElement,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import { useRef } from 'react';
 import * as Yup from 'yup';
 
-import { CloseIcon } from '@chakra-ui/icons';
-import { useRef } from 'react';
 import { homeStrings } from '../../../assets';
 import { useAppContext } from '../../../context/AppContext';
 import { checkAndValidateURL } from '../../../utils/checkAndValidateURL';
