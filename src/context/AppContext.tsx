@@ -1,7 +1,6 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { QuizData, QuizInputType, Scene } from '../utils/types';
-// import { generatePrompt } from './sendToGPT';
 import { generatePrompt } from './sendToGPT';
 import { PlayQuizState, initialPlayQuizState, updatePlayQuizState } from './updateQuiz';
 import useSessionStorage from './useSessionStorage';
@@ -29,7 +28,6 @@ export function AppProvider({ children }: PropsWithChildren) {
   const [quizData, setQuizData] = useSessionStorage<QuizData | null>('quizData', null);
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [stringPrompt, setStringPrompt] = useSessionStorage<string>('stringPrompt', '');
 
 
   useEffect(() => {
@@ -54,21 +52,10 @@ export function AppProvider({ children }: PropsWithChildren) {
     }
   }, [scene, isFirstLoad]);
 
-
-  const exampleQuizInput: QuizInputType = {
-    "topic": "anatomy",
-    "questionAmount": "5",
-    "difficulty": "hard",
-    "type": "multichoice",
-    "isURL": false
-  }
-
-
-  const prompt = generatePrompt(exampleQuizInput);
+  const prompt = generatePrompt(quizInput);
 
   const handleGenerateQuiz = () => {
     sendToServer(prompt);
-    setStringPrompt(prompt);
     setScene(Scene.LOADING);
   };
 
