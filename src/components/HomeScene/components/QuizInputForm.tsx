@@ -33,7 +33,7 @@ export const QuizInputForm = () => {
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
       const { isURL, processedInput } = checkAndValidateURL(values.quizInput);
-      setQuizInput({ value: processedInput, isURL });
+      setQuizInput({ topic: processedInput, isURL });
       setScene(Scene.OPTIONS);
       actions.resetForm();
     },

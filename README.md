@@ -13,6 +13,7 @@ Styling & refactoring:
 - lägg allt i styling objekt
 - playscene refactor ternerary button logic
 - combine quizInput & customQuizReq states
+- form error text font size
 
 Input stuff:
 
@@ -26,3 +27,4 @@ General stuff:
 - on play scene: if click header logo, make "are you sure? you will lose ur quiz"
 - prettier lr ngt script som seperarerar lokala & lib imports
 - refactor context med tanke på sessionStorage??
+- vrf 99999 font requests

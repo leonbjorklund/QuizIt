@@ -30,15 +30,10 @@ export interface OptionType {
 }
 
 export interface QuizInputType {
-  value: string;
+  topic: string;
   isURL: boolean;
   type?: string; // Optional property
-  amount?: string; // Optional property
+  questionAmount?: string; // Optional property
   difficulty?: string; // Optional property
 }
 
-export interface customQuizReqType {
-  type: string;
-  amount: string;
-  difficulty: string;
-}
