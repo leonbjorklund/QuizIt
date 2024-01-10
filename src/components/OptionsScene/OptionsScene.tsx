@@ -11,7 +11,6 @@ import { Option } from './components';
 
 export const OptionsScene = () => {
   const { setScene, handleGenerateQuiz, quizInput } = useAppContext();
-  console.log('quizInput', quizInput);
 
   const { btns } = optionsStrings;
 
