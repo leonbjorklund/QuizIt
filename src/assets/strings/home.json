@@ -1,6 +1,6 @@
 {
-  "subtitle": "Generate you own personal quiz about anything!",
+  "subtitle": "Generate a quiz about anything, simply enter a topic, URL or an image below to create a quiz!",
   "urlPlaceholder": "Enter URL here...",
-  "textPlaceholder": "What do you want to be quizzed about? (Example: 'The Simpsons')",
+  "textPlaceholder": "What do you want to make a quiz about?",
   "continueBtn": "Continue"
 }

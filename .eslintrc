@@ -23,7 +23,9 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "no-useless-escape": "off",
     "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off",

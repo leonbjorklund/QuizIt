@@ -32,12 +32,12 @@ const SceneContainer = defineStyleConfig({
   variants: {
     playScene: {
       borderRadius: '5px',
-      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      maxWidth: { sm: '460px', md: '600px', lg: '100%' },
     },
     playSceneTrueFalse: {},
     optionsScene: {
       gap: '20px',
-      maxWidth: { sm: '500px', md: '600px', lg: '100%' },
+      maxWidth: { sm: '460px', md: '600px', lg: '100%' },
     },
     funFact: {
       position: 'absolute',
@@ -64,19 +64,41 @@ const SceneCard = defineStyleConfig({
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
       borderRadius: '5px',
       padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
-      gap: { base: '24px', sm: '28px', md: '32px', lg: '40px' },
+      gap: { base: '24px', sm: '28px', md: '32px', lg: '32px' },
       _light: {
-        bg: 'gray.200',
+        bg: 'gray.400',
       },
     },
     optionsCard: {
-      bg: colors.secondary,
+      boxShadow: 'md',
       maxWidth: '500px',
       borderRadius: '5px',
       padding: '10px',
       gap: '10px',
+      _dark: {
+        bg: colors.secondary,
+        color: 'white',
+      },
+      _light: {
+        color: 'black',
+        bg: 'gray.400',
+      },
     },
     playSceneTrueFalse: {},
+    option: {
+      boxShadow: 'md',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+      padding: { base: '5px', sm: '10px 20px' },
+      borderRadius: '5px',
+      _dark: {
+        bg: 'blue.700',
+      },
+      _light: {
+        bg: 'gray.500',
+      },
+    },
   },
 });
 
@@ -93,14 +115,13 @@ const components = {
         bottom: 0,
         fontWeight: '900',
       },
-
       optionTitle: {
         color: '#FFF',
         fontSize: {
-          base: '20px',
-          sm: '22px',
-          md: '24px',
-          lg: '26px',
+          base: '18px',
+          sm: '20px',
+          md: '22px',
+          lg: '24px',
         },
       },
       optionText: {
@@ -158,31 +179,15 @@ const components = {
     baseStyle: {
       textAlign: 'center',
       fontFamily: 'Poppins, sans-serif',
-      fontWeight: 'medium',
-    },
-    variants: {
-      optionsSceneTitle: {
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: '600',
-        fontSize: {
-          base: '30px',
-          sm: '32px',
-          md: '36px',
-        },
-      },
+      fontWeight: '500',
     },
   },
   Input: {
     baseStyle: {
       field: {
-        // mt: '.25rem',
-        border: 'none',
-        py: '1.4rem',
-        // pr: '4rem',
-        fontSize: {
-          base: 'sm',
-          sm: 'md',
-        },
+        py: '1.5rem',
+        pr: '5rem',
+        fontSize: { base: '14px', sm: '14px', md: '16px', lg: '16px' },
         _dark: {
           border: 'none',
           boxShadow: 'sm',
@@ -238,14 +243,21 @@ const components = {
       fontWeight: '500',
       borderRadius: '5px',
       border: 'none',
-      fontSize: { base: '14px', sm: '14px', md: '16px', lg: '16px' },
+      height: 'auto',
+      boxShadow: 'sm',
+      padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
     },
     variants: {
       proceed: {
-        padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
         color: '#000',
         bg: colors.proceedButton,
         height: 'auto',
+        fontSize: {
+          base: '16px',
+          sm: '16px',
+          md: '18px',
+          lg: '18px',
+        },
         _hover: {
           bg: 'yellow.200',
         },
@@ -256,11 +268,21 @@ const components = {
         },
       },
       return: {
+        fontSize: {
+          base: '16px',
+          sm: '16px',
+          md: '18px',
+          lg: '18px',
+        },
         border: '.5px solid',
-        height: 'auto',
         bg: 'transparent',
         _hover: {
           bg: colors.backButtonBorder,
+        },
+        _light: {
+          _hover: {
+            bg: 'gray.100',
+          },
         },
       },
       searchbarBtn: {
@@ -287,7 +309,6 @@ const components = {
           lg: 'calc(50% - 11rem)',
         },
       },
-
       searchbarBtn: {
         _dark: {
           bg: '#4A556899',

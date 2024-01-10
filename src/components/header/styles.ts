@@ -1,7 +1,7 @@
 export const HeaderContainerStyle = {
+  height: { base: '71px', sm: '71px', md: '79px', lg: '83px' },
   position: 'absolute',
   zIndex: 1,
-  justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
   padding: {

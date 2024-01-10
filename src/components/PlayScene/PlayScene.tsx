@@ -1,55 +1,48 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
 
+import { HeadingStyle } from '../../GlobalStyles';
 import { playStrings } from '../../assets';
 import { Radio, SceneCard, SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
-import { NavigateQuestion, Scene } from '../../utils/types';
+import { Scene } from '../../utils/types';
 import {
   AnswerFlexStyle,
   BottomButtomStackStyle,
   PreviousQuestionButtonStyle,
-  ProceedButtonStyle,
   QuestionTextStyle,
   TopTextStackStyle,
 } from './styles';
 import useQuiz from './useQuiz';
 
 export const PlayScene = () => {
-  const { quizData, setScene } = useAppContext();
-  console.log('quizData', quizData);
+  const { setScene, quizData, customQuizReq, playQuizState, setPlayQuizState, quizInput } = useAppContext();
+  const { index, currentQuestion, value, showAnswer, userAnswers } = playQuizState;
 
   const { btns } = playStrings;
+  const isTrueFalse = quizInput.type === 'True/False';
 
-  const {
-    index,
-    currentQuestion,
-    value,
-    showAnswer,
-    userAnswers,
-    setQuizState,
-    navigateQuestion,
-    checkAnswer,
-    renderIcon,
-  } = useQuiz();
+  const { navigateQuestion, checkAnswer, renderIcon } = useQuiz();
+
+  const handleOptionChange = (e) => {
+    setPlayQuizState((prev) => ({ ...prev, value: e }));
+  };
 
   return (
     <SceneContainer variant="playScene">
-      <Heading>{quizData.quiz.title}</Heading>
+      <Heading sx={HeadingStyle} mb="1rem">
+        {quizData.quiz.title}
+      </Heading>
       <HStack sx={TopTextStackStyle}>
         <Text>
           {index + 1} / {quizData.quiz.questions.length}
         </Text>
+        <Text>{customQuizReq.difficulty}</Text>
       </HStack>
       <SceneCard variant="playCard">
         <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
-        <RadioGroup
-          isDisabled={showAnswer}
-          w="100%"
-          value={value}
-          onChange={(e) => setQuizState((prev) => ({ ...prev, value: e }))}
-        >
-          <Flex sx={AnswerFlexStyle}>
+        <RadioGroup isDisabled={showAnswer} w="100%" value={value} onChange={handleOptionChange}>
+          <Flex sx={AnswerFlexStyle} flexWrap={isTrueFalse ? 'nowrap' : 'wrap'}>
             {currentQuestion.options?.map((option, i) => (
               <Radio
                 variant="playQuiz"
@@ -74,7 +67,7 @@ export const PlayScene = () => {
             sx={PreviousQuestionButtonStyle}
             icon={<ChevronLeftIcon boxSize="2rem" />}
             aria-label="previous-question"
-            onClick={() => navigateQuestion(NavigateQuestion.PREV)}
+            onClick={() => navigateQuestion('PREV')}
           />
         )}
         {index === quizData.quiz.questions.length - 1 && showAnswer ? (
@@ -82,7 +75,7 @@ export const PlayScene = () => {
             {btns.result}
           </Button>
         ) : (
-          <Button sx={ProceedButtonStyle} variant="proceed" onClick={checkAnswer} isDisabled={!value && !showAnswer}>
+          <Button variant="proceed" onClick={checkAnswer} isDisabled={!value && !showAnswer}>
             {showAnswer ? btns.next : btns.reveal}
           </Button>
         )}

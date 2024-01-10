@@ -34,7 +34,14 @@ export const Radio: React.FC<RadioProps> = ({
   }, [isPlayQuizScene, isChecked, showAnswer, isCorrectOption, isUserPreviousChoice, colorMode]);
 
   return (
-    <Box bgColor={bgColor} display={isPlayQuizScene ? 'block' : 'none'} sx={quizRadioContainerStyle}>
+    <Box
+      bgColor={bgColor}
+      display={isPlayQuizScene ? 'block' : 'none'}
+      sx={{
+        ...quizRadioContainerStyle,
+        ...(showAnswer ? {} : { _hover: { opacity: '0.9' } }),
+      }}
+    >
       <ChakraRadio {...props} />
     </Box>
   );
@@ -45,8 +52,6 @@ const baseStyle = definePartsStyle({
   // containern runt hela radion
   container: {
     borderRadius: '5px',
-    // satte till röd nu så du ser den
-    bg: 'red',
     padding: '10px',
   },
   // själva radioknappen, den lilla cirkeln
@@ -54,9 +59,13 @@ const baseStyle = definePartsStyle({
     color: 'white!important',
     borderColor: 'white!important',
     background: 'transparent!important',
+    _light: {
+      color: 'white!important',
+    },
   },
   // texten bredvid radioknappen
   label: {
+    color: 'white',
     fontFamily: 'Dosis, sans-serif',
     fontSize: {
       base: '18px',
@@ -75,6 +84,7 @@ const variants = {
     container: {
       boxShadow: 'md',
       width: '100%',
+      height: '100%',
       bg: 'transparent',
       padding: {
         base: '8px',
@@ -118,10 +128,10 @@ const variants = {
     control: {},
     label: {
       fontSize: {
-        base: '18px',
-        sm: '20px',
-        md: '22px',
-        lg: '24px',
+        base: '16px',
+        sm: '18px',
+        md: '20px',
+        lg: '22px',
       },
     },
   }),

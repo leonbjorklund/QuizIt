@@ -1,28 +1,28 @@
-TO-DO:
-
-Styling:
-
-- consistent styling
-- Min height på quiz containern
-- play quiz scene: ta bort hover när valet revealats
-- dark mode options scene
-- form validation & input field styling
-- funktion för att resetta quiz i context
-- Header heading variant
-
 Prompt engineering:
 
-- title quiz thingy
+- difficulty
 - error handling & oops
+- language
+- give back difficulty & other parameters?
+- use quizInput instead of custom prompt thingy
+
+Styling & refactoring:
+
+- consistent styling
+- kolla genom theme, unused shiet
+- lägg allt i styling objekt
+- playscene refactor ternerary button logic
+- combine quizInput & customQuizReq states
 
 Input stuff:
 
-- text input
-- URL input
+- url input logic
 - nice to have (image input)
 
 General stuff:
 
-- persist state?
-- share quiz?
-- state rerender
+- skapa nytt GPT-konto?
+- kolla genom eslint & ts-config
+- on play scene: if click header logo, make "are you sure? you will lose ur quiz"
+- prettier lr ngt script som seperarerar lokala & lib imports
+- refactor context med tanke på sessionStorage??

@@ -2,15 +2,19 @@ export const TopTextStackStyle = {
   w: '100%',
   justifyContent: 'space-between',
   px: '5px',
+  '>p': {
+    fontSize: { base: '18px', sm: '18px', md: '20px', lg: '22px' },
+  },
 };
 
 export const QuestionTextStyle = {
+  color: 'white',
   fontSize: { base: '18px', sm: '20px', md: '22px', lg: '24px' },
 };
 
 export const AnswerFlexStyle = {
   gap: { base: '18px', lg: '20px' },
-  flexWrap: 'wrap',
+
   justifyContent: 'center',
 };
 
@@ -32,15 +36,8 @@ export const PreviousQuestionButtonStyle = {
   bg: 'none',
 };
 
-export const ProceedButtonStyle = {
-  fontSize: { base: '14px', sm: '16px', md: '18px', lg: '20px' },
-};
-
 export const quizRadioContainerStyle = {
   w: '100%',
   maxWidth: { base: '360px', sm: '380px', md: '260px', lg: '360px' },
   borderRadius: '5px',
-  _hover: {
-    opacity: '0.9',
-  },
 };

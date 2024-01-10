@@ -28,3 +28,17 @@ export interface OptionType {
   title: string;
   alternatives: string[];
 }
+
+export interface QuizInputType {
+  value: string;
+  isURL: boolean;
+  type?: string; // Optional property
+  amount?: string; // Optional property
+  difficulty?: string; // Optional property
+}
+
+export interface customQuizReqType {
+  type: string;
+  amount: string;
+  difficulty: string;
+}
