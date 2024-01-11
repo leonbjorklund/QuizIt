@@ -23,7 +23,10 @@ export const QuizInputForm = () => {
   const inputRef = useRef(null);
 
   const validationSchema = Yup.object({
-    quizInput: Yup.string().required('Input is required').min(2, 'Input must be at least 2 characters long'),
+    quizInput: Yup.string()
+      .required('Input is required')
+      .min(2, 'Input must be at least 2 characters long')
+      .max(100, 'Input must be at most 100 characters long'),
   });
 
   const formik = useFormik({
@@ -33,7 +36,7 @@ export const QuizInputForm = () => {
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
       const { isURL, processedInput } = checkAndValidateURL(values.quizInput);
-      setQuizInput({ value: processedInput, isURL });
+      setQuizInput({ topic: processedInput, isURL });
       setScene(Scene.OPTIONS);
       actions.resetForm();
     },
@@ -42,7 +45,7 @@ export const QuizInputForm = () => {
   const handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.placeholder = '';
     formik.setFieldTouched('quizInput', false);
-    event.stopPropagation();
+    // event.stopPropagation();
   };
 
   return (
@@ -98,7 +101,9 @@ export const QuizInputForm = () => {
             }
           </InputRightElement>
         </InputGroup>
-        <FormErrorMessage fontSize="18px">{formik.errors.quizInput}</FormErrorMessage>
+        <FormErrorMessage textAlign="center" fontSize={{ base: '14px', sm: '14px', md: '16px', lg: '16px' }}>
+          {formik.errors.quizInput}
+        </FormErrorMessage>
         <Button type="submit" variant="proceed" mt="1rem">
           {continueBtn}
         </Button>

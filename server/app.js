@@ -7,8 +7,7 @@ import { queryGPT } from './queryGPT.js';
 const app = express();
 app.use(express.json());
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-app.post('/test', async (req, res) => {
+app.post('/sendToGPT', async (req, res) => {
   try {
     // Assuming the query is sent in the request body
     const query = req.body.query;
@@ -25,10 +24,6 @@ app.post('/test', async (req, res) => {
 });
 
 const port = process.env.PORT || 3001;
-
-app.get('/hej', (req, res) => {
-  res.json({ message: 'Hello World!' });
-});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

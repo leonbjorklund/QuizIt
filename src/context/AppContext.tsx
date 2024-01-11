@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import { QuizData, QuizInputType, Scene, customQuizReqType } from '../utils/types';
-import { defaultQuizRequest, generatePrompt } from './sendToGPT';
+import { QuizData, QuizInputType, Scene } from '../utils/types';
+import { generatePrompt } from './sendToGPT';
 import { PlayQuizState, initialPlayQuizState, updatePlayQuizState } from './updateQuiz';
 import useSessionStorage from './useSessionStorage';
 
@@ -14,9 +14,6 @@ interface AppContextType {
   quizData: QuizData | null;
   setQuizData: React.Dispatch<React.SetStateAction<QuizData | null>>;
   handleGenerateQuiz: () => void;
-  customQuizReq: customQuizReqType;
-  setCustomQuizReq: React.Dispatch<React.SetStateAction<customQuizReqType>>;
-  abortController: React.MutableRefObject<AbortController>;
   playQuizState: PlayQuizState;
   setPlayQuizState: React.Dispatch<React.SetStateAction<PlayQuizState>>;
 }
@@ -26,11 +23,11 @@ export const useAppContext = () => useContext(AppContext);
 
 export function AppProvider({ children }: PropsWithChildren) {
   const [scene, setScene] = useSessionStorage<Scene>('scene', Scene.HOME);
-  const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { value: '', isURL: false });
+  const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { topic: '', isURL: false });
   const [quizData, setQuizData] = useSessionStorage<QuizData | null>('quizData', null);
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [customQuizReq, setCustomQuizReq] = useState(defaultQuizRequest);
+  const abortController = useRef(new AbortController());
 
   useEffect(() => {
     if (quizData?.quiz?.questions?.length > 0) {
@@ -39,63 +36,45 @@ export function AppProvider({ children }: PropsWithChildren) {
   }, [quizData, playQuizState.index, setPlayQuizState]);
 
   useEffect(() => {
-    // Redirect to home if the user is on the loading page and refreshes the page
     if (scene === Scene.LOADING && isFirstLoad) {
       setScene(Scene.HOME);
     }
     setIsFirstLoad(false);
 
-    // Reset quiz data and abort fetch when navigating back to the home scene
     if (scene === Scene.HOME) {
       abortController.current.abort();
       setPlayQuizState(initialPlayQuizState);
       setQuizData(null);
-      setQuizInput({ value: '', isURL: false });
+      setQuizInput({ topic: '', isURL: false });
     }
   }, [scene, isFirstLoad]);
 
-  const appendQuizReqToInput = () => {
-    setQuizInput((prevState) => ({
-      ...prevState,
-      type: customQuizReq.type,
-      amount: customQuizReq.amount,
-      difficulty: customQuizReq.difficulty,
-    }));
-  };
-
-  const prompt = generatePrompt(quizInput, customQuizReq);
-
-  const handleGenerateQuiz = () => {
-    sendToServer(prompt);
-    appendQuizReqToInput();
+  const handleGenerateQuiz = async () => {
+    const prompt = generatePrompt(quizInput);
     setScene(Scene.LOADING);
+    try {
+      const quizData = await sendToServer(prompt);
+      setQuizData(quizData as QuizData);
+    } catch (error) {
+      console.error('Error generating quiz:', error);
+    }
   };
 
-  const sendToServer = (prompt: string) => {
-    abortController.current.abort();
+  const sendToServer = async (prompt: string): Promise<QuizData> => {
     abortController.current = new AbortController();
-    fetch('/test', {
+    const response = await fetch('/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: prompt }),
       signal: abortController.current.signal,
-    })
-      .then((res) => res.json())
-      .then((data) => setQuizData(data as QuizData))
-      .catch((error) => {
-        if (error.name !== 'AbortError') {
-          console.error('Fetch error:', error);
-        }
-      });
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return response.json();
   };
-
-  const abortController = useRef(new AbortController());
-
-  useEffect(() => {
-    // Reset the AbortController when the component unmounts
-    return () => abortController.current.abort();
-  }, []);
-
   return (
     <AppContext.Provider
       value={{
@@ -107,11 +86,8 @@ export function AppProvider({ children }: PropsWithChildren) {
         setQuizData,
         sendToServer,
         handleGenerateQuiz,
-        setCustomQuizReq,
-        customQuizReq,
         playQuizState,
         setPlayQuizState,
-        abortController,
       }}
     >
       {children}

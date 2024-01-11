@@ -1,7 +1,7 @@
 import { Button, Flex, Heading } from '@chakra-ui/react';
 
+import { OptionsData } from '.';
 import { ButtonFlexStyle, HeadingStyle } from '../../GlobalStyles';
-import { OptionsData } from '../../assets';
 import { optionsStrings } from '../../assets/strings';
 import { SceneCard } from '../../chakra/SceneCard';
 import { SceneContainer } from '../../chakra/SceneContainer';
@@ -10,7 +10,7 @@ import { OptionType, Scene } from '../../utils/types';
 import { Option } from './components';
 
 export const OptionsScene = () => {
-  const { setScene, handleGenerateQuiz, quizInput } = useAppContext();
+  const { setScene, handleGenerateQuiz } = useAppContext();
 
   const { btns } = optionsStrings;
 

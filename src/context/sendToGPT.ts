@@ -1,12 +1,12 @@
-import { GetPrompt, OptionsData } from '../assets';
-import { QuizInputType, customQuizReqType } from '../utils/types';
+import { QuizInputType } from '../utils/types';
 
-export const defaultQuizRequest = {
-  type: OptionsData.options[0].alternatives[1],
-  amount: OptionsData.options[1].alternatives[1],
-  difficulty: OptionsData.options[2].alternatives[1],
-};
+export const generatePrompt = (quizInput: QuizInputType): string => {
+  const { topic, questionAmount, difficulty, type } = quizInput;
 
-export const generatePrompt = (quizInput: QuizInputType, customQuizReq: customQuizReqType) => {
-  return GetPrompt(quizInput.value, customQuizReq.type, customQuizReq.amount, customQuizReq.difficulty);
+  const topicLower = topic.toLowerCase();
+  const questionAmountLower = questionAmount.toLowerCase();
+  const difficultyLower = difficulty.toLowerCase();
+  const typeLower = type.toLowerCase();
+
+  return `${topicLower}, ${questionAmountLower}, ${difficultyLower}, ${typeLower}`;
 };

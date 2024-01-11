@@ -2,7 +2,7 @@
   "options": [
     {
       "title": "Type of quiz",
-      "alternatives": ["True/False", "Multichoice"]
+      "alternatives": ["Multichoice", "True/False"]
     },
     {
       "title": "Amount of questions",

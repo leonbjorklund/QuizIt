@@ -7,14 +7,13 @@ export const CopySiteButton = ({ currentUrl }) => {
   const [isHovered, setIsHovered] = useState(false);
   const tooltipLabel = isCopied ? 'Copied!' : 'Copy Site Link';
 
-  const copyUrl = () => {
-    const el = document.createElement('input');
-    el.value = currentUrl;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    setIsCopied(true);
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      setIsCopied(true);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
   };
 
   const handleMouseEnter = () => {

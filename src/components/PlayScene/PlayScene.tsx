@@ -16,7 +16,7 @@ import {
 import useQuiz from './useQuiz';
 
 export const PlayScene = () => {
-  const { setScene, quizData, customQuizReq, playQuizState, setPlayQuizState, quizInput } = useAppContext();
+  const { setScene, quizData, playQuizState, setPlayQuizState, quizInput } = useAppContext();
   const { index, currentQuestion, value, showAnswer, userAnswers } = playQuizState;
 
   const { btns } = playStrings;
@@ -37,7 +37,7 @@ export const PlayScene = () => {
         <Text>
           {index + 1} / {quizData.quiz.questions.length}
         </Text>
-        <Text>{customQuizReq.difficulty}</Text>
+        <Text>{quizInput.difficulty}</Text>
       </HStack>
       <SceneCard variant="playCard">
         <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
