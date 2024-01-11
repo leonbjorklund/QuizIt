@@ -14,9 +14,9 @@ interface AppContextType {
   quizData: QuizData | null;
   setQuizData: React.Dispatch<React.SetStateAction<QuizData | null>>;
   handleGenerateQuiz: () => void;
-  abortController: React.MutableRefObject<AbortController>;
   playQuizState: PlayQuizState;
   setPlayQuizState: React.Dispatch<React.SetStateAction<PlayQuizState>>;
+  abortController: React.MutableRefObject<AbortController>;
 }
 
 export const AppContext = createContext({} as AppContextType);
@@ -28,7 +28,7 @@ export function AppProvider({ children }: PropsWithChildren) {
   const [quizData, setQuizData] = useSessionStorage<QuizData | null>('quizData', null);
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-
+  const abortController = useRef(new AbortController());
 
   useEffect(() => {
     if (quizData?.quiz?.questions?.length > 0) {
@@ -52,38 +52,31 @@ export function AppProvider({ children }: PropsWithChildren) {
     }
   }, [scene, isFirstLoad]);
 
-  const prompt = generatePrompt(quizInput);
-
-  const handleGenerateQuiz = () => {
-    sendToServer(prompt);
+  const handleGenerateQuiz = async () => {
+    const prompt = generatePrompt(quizInput);
     setScene(Scene.LOADING);
+    try {
+      const quizData = await sendToServer(prompt);
+      setQuizData(quizData as QuizData);
+    } catch (error) {
+      console.error('Error generating quiz:', error);
+    }
   };
 
-  const sendToServer = (prompt: string) => {
-    console.log(prompt);
-    abortController.current.abort();
-    abortController.current = new AbortController();
-    fetch('/test', {
+  const sendToServer = async (prompt: string): Promise<QuizData> => {
+    const response = await fetch('/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: prompt }),
       signal: abortController.current.signal,
-    })
-      .then((res) => res.json())
-      .then((data) => setQuizData(data as QuizData))
-      .catch((error) => {
-        if (error.name !== 'AbortError') {
-          console.error('Fetch error:', error);
-        }
-      });
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return response.json();
   };
-
-  const abortController = useRef(new AbortController());
-
-  useEffect(() => {
-    // Reset the AbortController when the component unmounts
-    return () => abortController.current.abort();
-  }, []);
 
   return (
     <AppContext.Provider

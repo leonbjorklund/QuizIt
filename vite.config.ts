@@ -6,15 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/hej': {
-        target: 'http://localhost:3001/hej',
+      '/sendToGPT': {
+        target: 'http://localhost:3001/sendToGPT',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/hej/, ''),
-      },
-      '/test': {
-        target: 'http://localhost:3001/test',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/test/, ''),
+        rewrite: (path) => path.replace(/^\/sendToGPT/, ''),
       },
     },
   },

@@ -253,7 +253,7 @@ const components = {
         bg: colors.proceedButton,
         height: 'auto',
         fontSize: {
-          base: '16px',
+          base: '14px',
           sm: '16px',
           md: '18px',
           lg: '18px',
@@ -269,7 +269,7 @@ const components = {
       },
       return: {
         fontSize: {
-          base: '16px',
+          base: '14px',
           sm: '16px',
           md: '18px',
           lg: '18px',
