@@ -5,8 +5,6 @@ import { SceneCard } from '../../../chakra';
 import { useAppContext } from '../../../context/AppContext';
 import { OptionType } from '../../../utils/types';
 
-
-
 export const Option = ({ title, alternatives }: OptionType) => {
   const { setQuizInput } = useAppContext();
 
@@ -24,7 +22,7 @@ export const Option = ({ title, alternatives }: OptionType) => {
           updatedQuizInput.difficulty = alt;
           break;
         default:
-          // Handle any other titles or log an error
+        // Handle any other titles or log an error
       }
       return updatedQuizInput;
     });
