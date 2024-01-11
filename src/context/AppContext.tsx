@@ -16,7 +16,6 @@ interface AppContextType {
   handleGenerateQuiz: () => void;
   playQuizState: PlayQuizState;
   setPlayQuizState: React.Dispatch<React.SetStateAction<PlayQuizState>>;
-  abortController: React.MutableRefObject<AbortController>;
 }
 
 export const AppContext = createContext({} as AppContextType);
@@ -37,13 +36,11 @@ export function AppProvider({ children }: PropsWithChildren) {
   }, [quizData, playQuizState.index, setPlayQuizState]);
 
   useEffect(() => {
-    // Redirect to home if the user is on the loading page and refreshes the page
     if (scene === Scene.LOADING && isFirstLoad) {
       setScene(Scene.HOME);
     }
     setIsFirstLoad(false);
 
-    // Reset quiz data and abort fetch when navigating back to the home scene
     if (scene === Scene.HOME) {
       abortController.current.abort();
       setPlayQuizState(initialPlayQuizState);
@@ -64,6 +61,7 @@ export function AppProvider({ children }: PropsWithChildren) {
   };
 
   const sendToServer = async (prompt: string): Promise<QuizData> => {
+    abortController.current = new AbortController();
     const response = await fetch('/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -77,7 +75,6 @@ export function AppProvider({ children }: PropsWithChildren) {
 
     return response.json();
   };
-
   return (
     <AppContext.Provider
       value={{
@@ -91,7 +88,6 @@ export function AppProvider({ children }: PropsWithChildren) {
         handleGenerateQuiz,
         playQuizState,
         setPlayQuizState,
-        abortController,
       }}
     >
       {children}
