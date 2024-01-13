@@ -31,7 +31,7 @@ export interface OptionType {
 
 export interface QuizInputType {
   topic: string;
-  isURL: boolean;
+  isURL?: boolean;
   type?: string; // Optional property
   questionAmount?: string; // Optional property
   difficulty?: string; // Optional property

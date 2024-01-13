@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { QuizData, QuizInputType, Scene } from '../utils/types';
-import { generatePrompt } from './sendToGPT';
+import { generatePrompt } from './generatePrompt';
 import { PlayQuizState, initialPlayQuizState, updatePlayQuizState } from './updateQuiz';
 import useSessionStorage from './useSessionStorage';
 
@@ -51,6 +51,8 @@ export function AppProvider({ children }: PropsWithChildren) {
 
   const handleGenerateQuiz = async () => {
     const prompt = generatePrompt(quizInput);
+    console.log('prompt', prompt);
+
     setScene(Scene.LOADING);
     try {
       const quizData = await sendToServer(prompt);
