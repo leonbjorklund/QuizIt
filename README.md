@@ -13,6 +13,8 @@ Styling & refactoring:
 - combine quizInput & customQuizReq states
 - form error text font size
 - refactor each component
+- react share icon, fixa deploy bugg
+- react share icon, stäng tooltip if click
 
 Input stuff:
 
