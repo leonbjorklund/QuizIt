@@ -46,5 +46,5 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["vite.config.ts", "*.config.js", "node_modules/", "netlify/**/*", "dist/**/*", "server/**/*"]
+  "ignorePatterns": ["vite.config.ts", "*.config.js", "netlify/**/*", "dist/**/*", "server/**/*"]
 }
