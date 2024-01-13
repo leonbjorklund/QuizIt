@@ -64,7 +64,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
   const sendToServer = async (prompt: string): Promise<QuizData> => {
     abortController.current = new AbortController();
-    const response = await fetch('/sendToGPT', {
+    const response = await fetch('/api/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: prompt }),

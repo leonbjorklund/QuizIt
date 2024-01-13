@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import serverless from 'serverless-http';
-import queryGPT from './lib/queryGPT';
+import { queryGPT } from './lib/queryGPT';
 
 const api = express();
 api.use(express.json());
