@@ -11,7 +11,7 @@ export async function queryGPT(query) {
 
     // Run the thread with a specific assistant
     const run = await openai.beta.threads.runs.create(thread.id, {
-      assistant_id: 'asst_eMr578TIXh5ZDuDQ0XiU1ciG',
+      assistant_id: 'asst_EpDrwTSxxuG9iRtxeQG3xslt',
     });
 
     // Wait for the run to complete
