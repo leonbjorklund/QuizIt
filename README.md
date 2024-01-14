@@ -3,6 +3,8 @@ Prompt engineering:
 - difficulty
 - error handling & oops
 - language
+- streaming till false
+- testa simultanious GPT call
 
 Styling & refactoring:
 
