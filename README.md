@@ -12,7 +12,6 @@ Styling & refactoring:
 - kolla genom theme, unused shiet
 - lägg allt i styling objekt
 - playscene refactor ternerary button logic
-- combine quizInput & customQuizReq states
 - form error text font size
 - refactor each component
 - react share icon, fixa deploy bugg
@@ -20,7 +19,6 @@ Styling & refactoring:
 
 Input stuff:
 
-- url input logic
 - nice to have (image input)
 
 General stuff:
