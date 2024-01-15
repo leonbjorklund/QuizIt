@@ -16,6 +16,7 @@ Styling & refactoring:
 - refactor each component
 - react share icon, fixa deploy bugg
 - react share icon, stäng tooltip if click
+- importing json strings
 
 Input stuff:
 
@@ -23,7 +24,7 @@ Input stuff:
 
 General stuff:
 
-- skapa nytt GPT-konto?
+- gpt 4 turbo vs gpt 3.5 turbo
 - kolla genom eslint & ts-config
 - on play scene: if click header logo, make "are you sure? you will lose ur quiz"
 - prettier lr ngt script som seperarerar lokala & lib imports
