@@ -21,7 +21,7 @@ export const LoadingScene = () => {
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * fun_facts.fun_facts.length);
       setCurrentFactIndex(randomIndex);
-    }, 5000);
+    }, 9000);
 
     return () => clearInterval(interval);
   }, []);

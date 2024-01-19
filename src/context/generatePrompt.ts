@@ -8,7 +8,7 @@ const multiChoiceJSON = `{
 
 // Adjusted to specifically include 'True' and 'False' as the options
 const trueFalseJSON = `{
-  'question': 'Generated question',
+  'question': 'True or false statement',
   'options': ['True', 'False'],
   'answer': 'True or False (select the correct answer)'
 }`;
@@ -25,5 +25,5 @@ export const generatePrompt = (quizInput: QuizInputType): string => {
     throw new Error('Invalid quiz type');
   }
 
-  return `Topic: ${topic}, AmountOfQuestions: ${questionAmount}, Difficulty: ${difficulty}, ${type}, JSON-structure: { 'quiz': { 'title': '${topic} Quiz', 'questions': [${questionsJSON} // Additional questions follow the same format ] } }`;
+  return `Topic: ${topic}, Amount of Questions: ${questionAmount}, Difficulty: ${difficulty}, Type of Quiz: ${type}, JSON-structure: { 'quiz': { 'title': '${topic} Quiz', 'questions': [${questionsJSON} // Additional questions follow the same format ] } }`;
 };

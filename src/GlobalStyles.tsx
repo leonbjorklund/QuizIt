@@ -16,12 +16,6 @@ export const MainWrapperStyle = {
   },
 };
 
-export const HeaderLogoStyle = {
-  fontSize: { base: '38px', sm: '44px', md: '52px' },
-  fontWeight: 'bold',
-  cursor: 'pointer',
-};
-
 export const HeadingStyle = {
   fontSize: { base: '24px', sm: '28px', md: '32px', lg: '36px' },
 };

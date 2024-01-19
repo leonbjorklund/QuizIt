@@ -23,7 +23,7 @@ export const useAppContext = () => useContext(AppContext);
 
 export function AppProvider({ children }: PropsWithChildren) {
   const [scene, setScene] = useSessionStorage<Scene>('scene', Scene.HOME);
-  const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { topic: '', isURL: false });
+  const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { topic: '' });
   const [quizData, setQuizData] = useSessionStorage<QuizData | null>('quizData', null);
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -45,7 +45,7 @@ export function AppProvider({ children }: PropsWithChildren) {
       abortController.current.abort();
       setPlayQuizState(initialPlayQuizState);
       setQuizData(null);
-      setQuizInput({ topic: '', isURL: false });
+      setQuizInput({ topic: '' });
     }
   }, [scene, isFirstLoad]);
 
@@ -64,7 +64,9 @@ export function AppProvider({ children }: PropsWithChildren) {
 
   const sendToServer = async (prompt: string): Promise<QuizData> => {
     abortController.current = new AbortController();
-    const response = await fetch('/api/sendToGPT', {
+    // change to /api/sendToGPT when deployed
+    // const response = await fetch('/api/sendToGPT', {
+    const response = await fetch('/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: prompt }),
@@ -77,6 +79,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
     return response.json();
   };
+
   return (
     <AppContext.Provider
       value={{

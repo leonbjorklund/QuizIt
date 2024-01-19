@@ -248,6 +248,13 @@ const components = {
       padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
     },
     variants: {
+      HeaderLogo: {
+        fontSize: { base: '38px', sm: '44px', md: '52px' },
+        fontWeight: 'bold',
+        cursor: 'pointer',
+        bg: 'transparent',
+        p: '0',
+      },
       proceed: {
         color: '#000',
         bg: colors.proceedButton,

@@ -1,10 +1,8 @@
 Prompt engineering:
 
-- difficulty
-- error handling & oops
-- language
-- streaming till false
-- testa simultanious GPT call
+1. error handling & oops
+2. fix deploy build bug C:\Users\Leon\Desktop\QuizIt\node_modules\react-share\dist\index.d.ts rad 269
+3. fix styling of are u sure header button
 
 Styling & refactoring:
 
@@ -14,19 +12,16 @@ Styling & refactoring:
 - playscene refactor ternerary button logic
 - form error text font size
 - refactor each component
-- react share icon, fixa deploy bugg
 - react share icon, stäng tooltip if click
 - importing json strings
+
+General stuff:
+
+- kolla genom eslint & ts-config
+- prettier lr ngt script som seperarerar lokala & lib imports
+- refactor context med tanke på sessionStorage??
+- vrf 99999 font requests
 
 Input stuff:
 
 - nice to have (image input)
-
-General stuff:
-
-- gpt 4 turbo vs gpt 3.5 turbo
-- kolla genom eslint & ts-config
-- on play scene: if click header logo, make "are you sure? you will lose ur quiz"
-- prettier lr ngt script som seperarerar lokala & lib imports
-- refactor context med tanke på sessionStorage??
-- vrf 99999 font requests
