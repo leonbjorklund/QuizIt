@@ -18,7 +18,7 @@ const colors = {
   wrongAnswer: 'red.600',
   proceedButton: 'yellow.300',
   proceedButtonHover: 'yellow.200',
-  backButtonBorder: '#FFFFFF66', // white with 40% opacity
+  backButtonBorder: '#FFFFFF26', // white with 40% opacity
 };
 
 const SceneContainer = defineStyleConfig({

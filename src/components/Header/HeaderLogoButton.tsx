@@ -1,45 +1,65 @@
 import {
   Button,
-  ButtonGroup,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
+  HStack,
+  Heading,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalOverlay,
+  VStack,
+  useColorMode,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
 
 export const HeaderLogoButton = () => {
   const { scene, setScene } = useAppContext();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode } = useColorMode();
 
   if (scene === Scene.PLAY) {
     return (
-      <Popover>
-        {({ isOpen, onClose }) => (
-          <>
-            <PopoverTrigger>
-              <Button variant="HeaderLogo" p="0!important">
-                QuizIt
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <PopoverArrow />
-              <PopoverBody textAlign="center">
-                Sure you want to go home? <br /> You will lose your current Quiz!
-              </PopoverBody>
-              <ButtonGroup padding="5px" size="sm" justifyContent="center">
-                <Button variant="outline" onClick={onClose}>
-                  Cancel
+      <>
+        <Button onClick={onOpen} variant="HeaderLogo" p="0!important">
+          QuizIt
+        </Button>
+
+        <Modal size="sm" isCentered isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent bg={colorMode === 'dark' ? 'blue.700' : 'gray.500'}>
+            <ModalBody paddingY="20px" display="flex" flexDirection="column" alignItems="center">
+              <VStack>
+                <Heading color="white" fontSize="xl">
+                  Sure you want to go Home?
+                </Heading>
+                <Heading color="white" fontSize="xl">
+                  {' '}
+                  You&apos;ll lose your current Quiz!
+                </Heading>
+              </VStack>
+              <HStack mt="1rem" gap="1rem">
+                <Button color="white" variant="return" onClick={onClose}>
+                  Close
                 </Button>
-                <Button colorScheme="red" onClick={() => setScene(Scene.HOME)}>
+                <Button
+                  color="white"
+                  bg="red.600"
+                  _hover={{
+                    bg: 'red.700',
+                  }}
+                  onClick={() => {
+                    onClose();
+                    setScene(Scene.HOME);
+                  }}
+                >
                   Go Home
                 </Button>
-              </ButtonGroup>
-            </PopoverContent>
-          </>
-        )}
-      </Popover>
+              </HStack>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </>
     );
   } else {
     return (
