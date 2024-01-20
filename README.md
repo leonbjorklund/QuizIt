@@ -1,7 +1,14 @@
-Today:
+Sunday:
 
-1. error handling & oops
-2. fix deploy build bug C:\Users\Leon\Desktop\QuizIt\node_modules\react-share\dist\index.d.ts rad 269
+error handling & oops:
+
+- fetch fel, visa i options
+- json-fel - kolla i queryGPT.js
+- server-error - kolla i app.js
+- gpt-fel - kolla i queryGPT.js
+- network fel - kolla i AppContext, handleGenerateQuiz/sendToServer
+
+Sunday & Monday:
 
 Styling & refactoring:
 
@@ -14,14 +21,12 @@ Styling & refactoring:
 - react share icon, stäng tooltip if click
 - importing json strings
 - fix styling of are u sure header button
+- kontrollera lokala & lib imports
+- refactor context med tanke på sessionStorage??
+- folder structure osv
 
 General stuff:
 
 - kolla genom eslint & ts-config
-- prettier lr ngt script som seperarerar lokala & lib imports
-- refactor context med tanke på sessionStorage??
 - vrf 99999 font requests
-
-Input stuff:
-
-- nice to have (image input)
+- deploy bug på: C:\Users\Leon\Desktop\QuizIt\node_modules\react-share\dist\index.d.ts rad 269

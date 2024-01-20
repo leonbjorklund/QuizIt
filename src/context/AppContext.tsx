@@ -28,6 +28,7 @@ export function AppProvider({ children }: PropsWithChildren) {
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const abortController = useRef(new AbortController());
+  const [isOops, setIsOops] = useState(false);
 
   useEffect(() => {
     if (quizData?.quiz?.questions?.length > 0) {
@@ -54,12 +55,8 @@ export function AppProvider({ children }: PropsWithChildren) {
     console.log('prompt', prompt);
 
     setScene(Scene.LOADING);
-    try {
-      const quizData = await sendToServer(prompt);
-      setQuizData(quizData as QuizData);
-    } catch (error) {
-      console.error('Error generating quiz:', error);
-    }
+    const quizData = await sendToServer(prompt);
+    setQuizData(quizData as QuizData);
   };
 
   const sendToServer = async (prompt: string): Promise<QuizData> => {

@@ -11,7 +11,7 @@ JSON-structure
 "
 This would create a true/false quiz about anatomy with 5 hard questions in the users specified JSON-structure.
 2. Create questions that match the selected topic and difficulty level. For 'hard' questions, incorporate esoteric and detailed knowledge about the topic.
-3. Ensure the questions correspond to the difficulty, and make sure questions are diverse and cover different aspects of the topic. Randomize the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
+3. Ensure the questions correspond to the difficulty. Ensure the correct option is always among the options and that the options are unique. Randomize the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
 `;
 
 export async function queryGPT(query) {
