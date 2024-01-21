@@ -1,18 +1,32 @@
 import { Button, Flex, Heading } from '@chakra-ui/react';
 
-import { OptionsData } from '.';
 import { useAppContext } from '../../AppContext';
 import { ButtonFlexStyle, HeadingStyle } from '../../GlobalStyles';
 import { optionsStrings } from '../../assets/strings';
-import { SceneCard } from '../../sharedcomponents/Wrappers/SceneCard';
-import { SceneContainer } from '../../sharedcomponents/Wrappers/SceneContainer';
-import { OptionType, Scene } from '../../utils/types';
-import { Option } from './components';
+import { SceneCard, SceneContainer } from '../../shared-components';
+import { OptionType, OptionsDataType, Scene } from '../../utils/types';
+import { Option } from './Option';
 
 export const OptionsScene = () => {
   const { setScene, handleGenerateQuiz } = useAppContext();
-
   const { btns } = optionsStrings;
+
+  const OptionsData: OptionsDataType = {
+    options: [
+      {
+        title: 'Type of Quiz',
+        alternatives: ['Multichoice', 'True/False'],
+      },
+      {
+        title: 'Amount of Questions',
+        alternatives: ['5', '10', '15'],
+      },
+      {
+        title: 'Difficulty',
+        alternatives: ['Easy', 'Medium', 'Hard'],
+      },
+    ],
+  };
 
   return (
     <>

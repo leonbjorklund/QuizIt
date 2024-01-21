@@ -39,9 +39,3 @@ export const PreviousQuestionButtonStyle = {
   },
   bg: 'none',
 };
-
-export const QuizRadioContainerStyle = {
-  w: '100%',
-  maxWidth: { base: '360px', sm: '380px', md: '260px', lg: '360px' },
-  borderRadius: '5px',
-};

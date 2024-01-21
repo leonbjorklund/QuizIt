@@ -1,6 +1,6 @@
 import { Box, Radio as ChakraRadio, RadioProps as ChakraRadioProps, useColorMode } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
-import { QuizRadioContainerStyle } from '../../scenes';
+import { QuizRadioContainerStyle } from './RadioStyles';
 import { getRadioBackgroundColor } from './getRadioBackgroundColor';
 
 interface RadioProps extends ChakraRadioProps {

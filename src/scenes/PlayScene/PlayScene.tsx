@@ -4,7 +4,7 @@ import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Stack, Tex
 import { useAppContext } from '../../AppContext';
 import { HeadingStyle } from '../../GlobalStyles';
 import { playStrings } from '../../assets';
-import { Radio, SceneCard, SceneContainer } from '../../sharedcomponents';
+import { Radio, SceneCard, SceneContainer } from '../../shared-components';
 import { Scene } from '../../utils/types';
 import useQuiz from '../../utils/useQuiz';
 import {

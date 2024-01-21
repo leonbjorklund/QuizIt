@@ -1,7 +1,7 @@
 import { Heading, Text } from '@chakra-ui/react';
 
 import { homeStrings } from '../../assets/strings';
-import { QuizInputForm } from './components';
+import { QuizInputForm } from './QuizInputForm';
 import { HomeSceneIntroTextStyle, HomeSceneLogoStyle } from './styles';
 
 export const HomeScene = () => {

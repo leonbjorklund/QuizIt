@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { useAppContext } from '../../AppContext';
 import { ButtonFlexStyle } from '../../GlobalStyles';
 import { fun_facts, loadingStrings } from '../../assets/strings';
-import { SceneContainer } from '../../sharedcomponents/Wrappers/SceneContainer';
+import { SceneContainer } from '../../shared-components';
 import { Scene } from '../../utils/types';
-import { Loading } from './components';
+import { Loading } from './Loading';
 import { LoadingContainerStyle } from './styles';
 
 export const LoadingScene = () => {

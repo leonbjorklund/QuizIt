@@ -1,2 +1,2 @@
 export * from './HomeScene';
-export * from './components';
+export * from './QuizInputForm';

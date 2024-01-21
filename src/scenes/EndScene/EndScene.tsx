@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useAppContext } from '../../AppContext';
 import { ButtonFlexStyle } from '../../GlobalStyles';
 import { endStrings } from '../../assets';
-import { SceneContainer } from '../../sharedcomponents/Wrappers/SceneContainer';
+import { SceneContainer } from '../../shared-components';
 import { Scene } from '../../utils/types';
 import { initialPlayQuizState } from '../../utils/updateQuiz';
 import { CopySiteButton } from './CopySiteButton';

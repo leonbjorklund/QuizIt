@@ -24,6 +24,10 @@ export enum NavigateQuestion {
   PREV = 'previous',
 }
 
+export interface OptionsDataType {
+  options: OptionType[];
+}
+
 export interface OptionType {
   title: string;
   alternatives: string[];

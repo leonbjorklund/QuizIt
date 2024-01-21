@@ -1,7 +1,7 @@
 import { Flex, Text, useColorMode } from '@chakra-ui/react';
 
-import { loadingStrings } from '../../../assets/strings';
-import { LoadingDotStyle } from '../styles';
+import { loadingStrings } from '../../assets/strings';
+import { LoadingDotStyle } from './styles';
 
 export const Loading = () => {
   const { colorMode } = useColorMode();

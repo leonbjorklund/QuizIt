@@ -1,2 +1,2 @@
+export * from './Loading';
 export * from './LoadingScene';
-export * from './components';

@@ -1,10 +1,10 @@
 import { Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
 
 import { useEffect } from 'react';
-import { useAppContext } from '../../../AppContext';
-import { SceneCard } from '../../../sharedcomponents/Wrappers/SceneCard';
-import { OptionType } from '../../../utils/types';
-import { OptionStackStyle } from '../styles';
+import { useAppContext } from '../../AppContext';
+import { SceneCard } from '../../shared-components';
+import { OptionType } from '../../utils/types';
+import { OptionStackStyle } from './styles';
 
 export const Option = ({ title, alternatives }: OptionType) => {
   const { setQuizInput } = useAppContext();
