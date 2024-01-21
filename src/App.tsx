@@ -1,10 +1,9 @@
 import { Flex } from '@chakra-ui/react';
 
 import { useAppContext } from './AppContext';
-import { MainWrapperStyle, PageWrapperStyle } from './GlobalStyles';
 import { EndScene, HomeScene, LoadingScene, OptionsScene, PlayScene } from './scenes';
 import { Header, SceneContainer } from './shared-components';
-import { Scene } from './utils/types';
+import { MainWrapperStyle, PageWrapperStyle, Scene } from './utils';
 
 export default function App() {
   const { scene } = useAppContext();

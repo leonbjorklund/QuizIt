@@ -2,20 +2,19 @@ import { Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { useAppContext } from '../../AppContext';
-import { ButtonFlexStyle } from '../../GlobalStyles';
 import { fun_facts, loadingStrings } from '../../assets/strings';
 import { SceneContainer } from '../../shared-components';
-import { Scene } from '../../utils/types';
+import { ButtonFlexStyle, Scene } from '../../utils';
 import { Loading } from './Loading';
 import { LoadingContainerStyle } from './styles';
 
+const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
+
 export const LoadingScene = () => {
-  const { setScene, quizData, quizInput } = useAppContext();
-  const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
+  const { setScene, quizData, quizInput, isOops, setIsOops } = useAppContext();
   console.log('quizInput', quizInput);
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const [isOops, setIsOops] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {

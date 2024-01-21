@@ -1,21 +1,29 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import { generatePrompt } from './utils/generatePrompt';
-import { QuizData, QuizInputType, Scene } from './utils/types';
-import { PlayQuizState, initialPlayQuizState, updatePlayQuizState } from './utils/updateQuiz';
-import useSessionStorage from './utils/useSessionStorage';
+import {
+  PlayQuizState,
+  QuizData,
+  QuizInputType,
+  Scene,
+  generatePrompt,
+  initialPlayQuizState,
+  updatePlayQuizState,
+  useSessionStorage,
+} from './utils';
 
 interface AppContextType {
   scene: Scene;
   setScene: (scene: Scene) => void;
   quizInput: QuizInputType;
   setQuizInput: React.Dispatch<React.SetStateAction<QuizInputType>>;
-  sendToServer: (queryString: string) => void;
+  fetchQuizData: (prompt: string) => void;
   quizData: QuizData | null;
   setQuizData: React.Dispatch<React.SetStateAction<QuizData | null>>;
   handleGenerateQuiz: () => void;
   playQuizState: PlayQuizState;
   setPlayQuizState: React.Dispatch<React.SetStateAction<PlayQuizState>>;
+  isOops: boolean;
+  setIsOops: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext({} as AppContextType);
@@ -26,9 +34,10 @@ export function AppProvider({ children }: PropsWithChildren) {
   const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { topic: '' });
   const [quizData, setQuizData] = useSessionStorage<QuizData | null>('quizData', null);
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
+  const [isOops, setIsOops] = useState(false);
+
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const abortController = useRef(new AbortController());
-  const [isOops, setIsOops] = useState(false);
 
   useEffect(() => {
     if (quizData?.quiz?.questions?.length > 0) {
@@ -44,6 +53,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
     if (scene === Scene.HOME) {
       abortController.current.abort();
+      setIsOops(false);
       setPlayQuizState(initialPlayQuizState);
       setQuizData(null);
       setQuizInput({ topic: '' });
@@ -51,18 +61,19 @@ export function AppProvider({ children }: PropsWithChildren) {
   }, [scene, isFirstLoad]);
 
   const handleGenerateQuiz = async () => {
-    const prompt = generatePrompt(quizInput);
-    console.log('prompt', prompt);
-
-    setScene(Scene.LOADING);
-    const quizData = await sendToServer(prompt);
-    setQuizData(quizData as QuizData);
+    try {
+      setScene(Scene.LOADING);
+      const prompt = generatePrompt(quizInput);
+      const quizData = await fetchQuizData(prompt);
+      setQuizData(quizData);
+    } catch (error) {
+      setIsOops(true);
+      console.error('Failed to generate quiz:', error.message);
+    }
   };
 
-  const sendToServer = async (prompt: string): Promise<QuizData> => {
+  const fetchQuizData = async (prompt: string): Promise<QuizData> => {
     abortController.current = new AbortController();
-    // change to /api/sendToGPT when deployed
-    // const response = await fetch('/api/sendToGPT', {
     const response = await fetch('/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -71,10 +82,12 @@ export function AppProvider({ children }: PropsWithChildren) {
     });
 
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      const errorResponse = await response.json();
+      setIsOops(true);
+      throw new Error(errorResponse.error || 'Network response was not ok');
     }
 
-    return response.json();
+    return await response.json();
   };
 
   return (
@@ -86,10 +99,12 @@ export function AppProvider({ children }: PropsWithChildren) {
         setScene,
         quizData,
         setQuizData,
-        sendToServer,
+        fetchQuizData,
         handleGenerateQuiz,
         playQuizState,
         setPlayQuizState,
+        isOops,
+        setIsOops,
       }}
     >
       {children}

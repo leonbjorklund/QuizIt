@@ -20,7 +20,7 @@ const baseStyle = definePartsStyle({
     background: 'transparent!important',
     _light: {
       color: 'white!important',
-      borderColor: 'red!important',
+      borderColor: 'white!important',
     },
   },
   label: {

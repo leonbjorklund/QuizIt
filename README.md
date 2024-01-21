@@ -1,14 +1,10 @@
-Sunday:
+Monday:
 
 error handling & oops:
 
-- fetch fel, visa i options
-- json-fel - kolla i queryGPT.js
-- server-error - kolla i app.js
-- gpt-fel - kolla i queryGPT.js
-- network fel - kolla i AppContext, handleGenerateQuiz/sendToServer
-
-Sunday & Monday:
+- try again oops-page
+- abort-request
+- oops state
 
 Styling & refactoring:
 
@@ -16,7 +12,6 @@ Styling & refactoring:
 - kolla genom theme, unused shiet
 - playscene refactor ternerary button logic
 - refactor each component
-- importing json strings
 - fix styling of are u sure header button
 - kontrollera lokala & lib imports
 - refactor context med tanke på sessionStorage??

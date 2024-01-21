@@ -1,12 +1,12 @@
 import { Heading, Text } from '@chakra-ui/react';
 
-import { homeStrings } from '../../assets/strings';
+import { homeStrings } from '../../assets/';
 import { QuizInputForm } from './QuizInputForm';
 import { HomeSceneIntroTextStyle, HomeSceneLogoStyle } from './styles';
 
-export const HomeScene = () => {
-  const { subtitle } = homeStrings;
+const { subtitle } = homeStrings;
 
+export const HomeScene = () => {
   return (
     <>
       <Heading sx={HomeSceneLogoStyle}>QuizIt</Heading>

@@ -4,7 +4,7 @@ import { MdOutlineCheckCircle, MdRadioButtonChecked, MdRadioButtonUnchecked } fr
 
 import { useAppContext } from '../AppContext';
 
-const useQuizTest = () => {
+export const useQuiz = () => {
   const { playQuizState, setPlayQuizState, quizData } = useAppContext();
 
   const navigateQuestion = useCallback(
@@ -57,5 +57,3 @@ const useQuizTest = () => {
     renderIcon,
   };
 };
-
-export default useQuizTest;

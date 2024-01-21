@@ -11,30 +11,42 @@ JSON-structure
 "
 This would create a true/false quiz about anatomy with 5 hard questions in the users specified JSON-structure.
 2. Create questions that match the selected topic and difficulty level. For 'hard' questions, incorporate esoteric and detailed knowledge about the topic.
-3. Ensure the questions correspond to the difficulty. Ensure the correct option is always among the options and that the options are unique. Randomize the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
+3. Very important, ensure and verify the following:
+Questions correspond to the difficulty.
+The amount of questions is correct.
+The correct option is always among the options.
+Options are unique, no repeating answers.
+Vary the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
+4. Output the quiz in the specified JSON-structure.
 `;
 
 export async function queryGPT(query) {
   const apiKey = process.env.OPENAI_API_KEY;
   const openai = new OpenAI({ apiKey });
-  const completion = await openai.chat.completions.create({
-    messages: [
-      {
-        role: 'system',
-        content: instruction,
-      },
-      { role: 'user', content: query },
-    ],
-    model: 'gpt-3.5-turbo-1106',
-    response_format: { type: 'json_object' },
-  });
 
-  console.log(completion);
-  console.log(completion.choices[0].message.content);
-  const validationResult = validateJSON(completion.choices[0].message.content);
-  console.log('validationResult', validationResult);
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content: instruction,
+        },
+        { role: 'user', content: query },
+      ],
+      model: 'gpt-3.5-turbo-1106',
+      response_format: { type: 'json_object' },
+    });
 
-  return completion.choices[0].message.content;
+    const validationResult = validateJSON(completion.choices[0].message.content);
+
+    if (!validationResult.isValid) {
+      throw new Error(validationResult.error);
+    }
+
+    return completion.choices[0].message.content;
+  } catch (error) {
+    throw error;
+  }
 }
 
 function validateJSON(jsonString) {
@@ -45,7 +57,6 @@ function validateJSON(jsonString) {
     return { isValid: false, error: 'Invalid JSON format' };
   }
 
-  // Check the structure of the parsed JSON
   if (!parsedJSON.quiz || !parsedJSON.quiz.title || !Array.isArray(parsedJSON.quiz.questions)) {
     return { isValid: false, error: 'JSON does not match expected structure' };
   }
@@ -54,7 +65,7 @@ function validateJSON(jsonString) {
     if (
       typeof question.question !== 'string' ||
       !Array.isArray(question.options) ||
-      question.options.length < 2 || // Assuming at least 2 options are required
+      question.options.length < 2 ||
       typeof question.answer !== 'string'
     ) {
       return { isValid: false, error: 'Invalid question format' };

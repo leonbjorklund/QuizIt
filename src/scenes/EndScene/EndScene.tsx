@@ -4,19 +4,18 @@ import { FacebookShareButton, LinkedinIcon, LinkedinShareButton, RedditIcon, Red
 
 import { useEffect, useState } from 'react';
 import { useAppContext } from '../../AppContext';
-import { ButtonFlexStyle } from '../../GlobalStyles';
 import { endStrings } from '../../assets';
 import { SceneContainer } from '../../shared-components';
-import { Scene } from '../../utils/types';
-import { initialPlayQuizState } from '../../utils/updateQuiz';
+import { ButtonFlexStyle, Scene, initialPlayQuizState } from '../../utils';
 import { CopySiteButton } from './CopySiteButton';
 import { FacebookShareButtonStyle, GoodJobText, ShareButtonsFlex, ShareQuizItText } from './styles';
+
+const { goodJob, btns, share } = endStrings;
 
 export const EndScene = () => {
   const { setScene, quizData, playQuizState, setPlayQuizState } = useAppContext();
   const [currentUrl, setCurrentUrl] = useState('');
 
-  const { goodJob, btns, share } = endStrings;
   const resetPlayQuizState = () => {
     const newState = {
       ...initialPlayQuizState,

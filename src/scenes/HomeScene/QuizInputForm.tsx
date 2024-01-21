@@ -22,9 +22,10 @@ import {
   SubmitQuizTopicButtonStyle,
 } from './styles';
 
+const { textPlaceholder, continueBtn } = homeStrings;
+
 export const QuizInputForm = () => {
   const { setQuizInput, setScene } = useAppContext();
-  const { textPlaceholder, continueBtn } = homeStrings;
   const inputRef = useRef(null);
 
   const validationSchema = Yup.object({

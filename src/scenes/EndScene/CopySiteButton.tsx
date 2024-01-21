@@ -1,6 +1,7 @@
 import { Icon, IconButton, Tooltip } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaRegCopy } from 'react-icons/fa';
+
 import { CopyIconButtonStyle } from './styles';
 
 export const CopySiteButton = ({ currentUrl }) => {
