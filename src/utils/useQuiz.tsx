@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { MdOutlineCheckCircle, MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 
-import { useAppContext } from '../../context/AppContext';
+import { useAppContext } from '../AppContext';
 
 const useQuizTest = () => {
   const { playQuizState, setPlayQuizState, quizData } = useAppContext();

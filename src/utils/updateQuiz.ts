@@ -1,4 +1,4 @@
-import { QuizData } from '../utils/types';
+import { QuizData } from './types';
 
 export type PlayQuizState = {
   index: number;

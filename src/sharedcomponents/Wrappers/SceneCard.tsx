@@ -5,6 +5,5 @@ export const SceneCard = (props: any) => {
 
   const styles = useStyleConfig('SceneCard', { variant });
 
-  // Pass the computed styles into the `__css` prop
   return <Box __css={styles} {...rest} />;
 };

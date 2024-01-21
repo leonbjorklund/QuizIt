@@ -1,10 +1,10 @@
 import { Button, Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
+import { useAppContext } from '../../AppContext';
 import { ButtonFlexStyle } from '../../GlobalStyles';
 import { fun_facts, loadingStrings } from '../../assets/strings';
-import { SceneContainer } from '../../chakra/SceneContainer';
-import { useAppContext } from '../../context/AppContext';
+import { SceneContainer } from '../../sharedcomponents/Wrappers/SceneContainer';
 import { Scene } from '../../utils/types';
 import { Loading } from './components';
 import { LoadingContainerStyle } from './styles';

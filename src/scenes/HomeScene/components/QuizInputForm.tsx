@@ -12,8 +12,8 @@ import { useFormik } from 'formik';
 import { useRef } from 'react';
 import * as Yup from 'yup';
 
+import { useAppContext } from '../../../AppContext';
 import { homeStrings } from '../../../assets';
-import { useAppContext } from '../../../context/AppContext';
 import { QuizInputType, Scene } from '../../../utils/types';
 import {
   FormErrorMessageStyle,

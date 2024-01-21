@@ -10,8 +10,8 @@ import {
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useAppContext } from '../../context/AppContext';
-import { Scene } from '../../utils/types';
+import { useAppContext } from '../../AppContext';
+import { Scene } from '../../utils';
 import { ModalGoHomeButtonStyle } from './styles';
 
 export const HeaderLogoButton = () => {

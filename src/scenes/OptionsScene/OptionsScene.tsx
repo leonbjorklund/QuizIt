@@ -1,11 +1,11 @@
 import { Button, Flex, Heading } from '@chakra-ui/react';
 
 import { OptionsData } from '.';
+import { useAppContext } from '../../AppContext';
 import { ButtonFlexStyle, HeadingStyle } from '../../GlobalStyles';
 import { optionsStrings } from '../../assets/strings';
-import { SceneCard } from '../../chakra/SceneCard';
-import { SceneContainer } from '../../chakra/SceneContainer';
-import { useAppContext } from '../../context/AppContext';
+import { SceneCard } from '../../sharedcomponents/Wrappers/SceneCard';
+import { SceneContainer } from '../../sharedcomponents/Wrappers/SceneContainer';
 import { OptionType, Scene } from '../../utils/types';
 import { Option } from './components';
 

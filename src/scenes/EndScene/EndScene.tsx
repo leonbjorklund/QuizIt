@@ -3,12 +3,12 @@ import { BsFacebook } from 'react-icons/bs';
 import { FacebookShareButton, LinkedinIcon, LinkedinShareButton, RedditIcon, RedditShareButton } from 'react-share';
 
 import { useEffect, useState } from 'react';
+import { useAppContext } from '../../AppContext';
 import { ButtonFlexStyle } from '../../GlobalStyles';
 import { endStrings } from '../../assets';
-import { SceneContainer } from '../../chakra';
-import { useAppContext } from '../../context/AppContext';
-import { initialPlayQuizState } from '../../context/updateQuiz';
+import { SceneContainer } from '../../sharedcomponents/Wrappers/SceneContainer';
 import { Scene } from '../../utils/types';
+import { initialPlayQuizState } from '../../utils/updateQuiz';
 import { CopySiteButton } from './CopySiteButton';
 import { FacebookShareButtonStyle, GoodJobText, ShareButtonsFlex, ShareQuizItText } from './styles';
 

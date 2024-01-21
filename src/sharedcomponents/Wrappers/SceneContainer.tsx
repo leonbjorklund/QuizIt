@@ -5,6 +5,5 @@ export const SceneContainer = (props: any) => {
 
   const styles = useStyleConfig('SceneContainer', { variant });
 
-  // Pass the computed styles into the `__css` prop
   return <Box __css={styles} {...rest} />;
 };

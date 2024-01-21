@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react';
-import { useAppContext } from '../../context/AppContext';
-import { Scene } from '../../utils/types';
+
+import { useAppContext } from '../../AppContext';
+import { Scene } from '../../utils';
 import { DarkLightModeButton } from './DarkLightModeButton';
 import { HeaderLogoButton } from './HeaderLogoButton';
 import { HeaderContainerStyle } from './styles';

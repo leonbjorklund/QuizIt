@@ -1,5 +1,5 @@
 import { defineStyleConfig, extendTheme, type ThemeConfig } from '@chakra-ui/react';
-import { radioTheme } from '../scenes/PlayScene/Radio';
+import { radioTheme } from './sharedcomponents/Radio';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',

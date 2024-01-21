@@ -1,9 +1,9 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useRef, useState } from 'react';
 
-import { QuizData, QuizInputType, Scene } from '../utils/types';
-import { generatePrompt } from './generatePrompt';
-import { PlayQuizState, initialPlayQuizState, updatePlayQuizState } from './updateQuiz';
-import useSessionStorage from './useSessionStorage';
+import { generatePrompt } from './utils/generatePrompt';
+import { QuizData, QuizInputType, Scene } from './utils/types';
+import { PlayQuizState, initialPlayQuizState, updatePlayQuizState } from './utils/updateQuiz';
+import useSessionStorage from './utils/useSessionStorage';
 
 interface AppContextType {
   scene: Scene;

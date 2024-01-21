@@ -1,4 +1,4 @@
-import { QuizInputType } from '../utils/types';
+import { QuizInputType } from './types';
 
 const multiChoiceJSON = `{
   'question': 'Generated question',
@@ -6,7 +6,6 @@ const multiChoiceJSON = `{
   'answer': 'Correct option'
 }`;
 
-// Adjusted to specifically include 'True' and 'False' as the options
 const trueFalseJSON = `{
   'question': 'True or false statement',
   'options': ['True', 'False'],

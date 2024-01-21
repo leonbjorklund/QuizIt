@@ -1,8 +1,8 @@
 import { Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
 
 import { useEffect } from 'react';
-import { SceneCard } from '../../../chakra';
-import { useAppContext } from '../../../context/AppContext';
+import { useAppContext } from '../../../AppContext';
+import { SceneCard } from '../../../sharedcomponents/Wrappers/SceneCard';
 import { OptionType } from '../../../utils/types';
 import { OptionStackStyle } from '../styles';
 
