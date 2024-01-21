@@ -24,6 +24,10 @@ export enum NavigateQuestion {
   PREV = 'previous',
 }
 
+export interface OptionsDataType {
+  options: OptionType[];
+}
+
 export interface OptionType {
   title: string;
   alternatives: string[];
@@ -31,7 +35,6 @@ export interface OptionType {
 
 export interface QuizInputType {
   topic: string;
-  isURL?: boolean;
   type?: string; // Optional property
   questionAmount?: string; // Optional property
   difficulty?: string; // Optional property

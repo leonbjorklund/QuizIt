@@ -1,73 +1,76 @@
-// import OpenAI from 'openai';
-// import process from 'process';
+import OpenAI from 'openai';
+import process from 'process';
 
-// const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const instruction = `Generate a quiz in JSON format with the specified parameters without any introductory text.
+1. Parse the user's input to identify the quiz topic, number of questions, difficulty level, and JSON-structure. If the input for example is:
+"Topic: anatomy,
+AmountOfQuestions: 5,
+Difficulty: hard,
+Type: True/False,
+JSON-structure
+"
+This would create a true/false quiz about anatomy with 5 hard questions in the users specified JSON-structure.
+2. Create questions that match the selected topic and difficulty level. For 'hard' questions, incorporate esoteric and detailed knowledge about the topic.
+3. Very important, ensure and verify the following:
+Questions correspond to the difficulty.
+The amount of questions is correct.
+The correct option is always among the options.
+Options are unique, no repeating answers.
+Vary the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
+4. Output the quiz in the specified JSON-structure.
+`;
 
-// export const instruction = `Generate a quiz in JSON format with the specified parameters without any introductory text.
-// 1. Parse the user's input to identify the quiz topic, number of questions, difficulty level, and JSON-structure. If the input for example is:
-// "Topic: anatomy,
-// AmountOfQuestions: 5,
-// Difficulty: hard,
-// Type: True/False,
-// JSON-structure
-// "
-// This would create a true/false quiz about anatomy with 5 hard questions in the users specified JSON-structure.
-// 2. Create questions that match the selected topic and difficulty level. For 'hard' questions, incorporate esoteric and detailed knowledge about the topic.
-// 3. Ensure the questions correspond to the difficulty, and make sure questions are diverse and cover different aspects of the topic. Randomize the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
-// 4. Output the completed quiz in the specified JSON format.`;
+export async function queryGPT(query) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  const openai = new OpenAI({ apiKey });
 
-// export async function queryGPT(query) {
-//   const completion = await openai.chat.completions.create({
-//     messages: [
-//       {
-//         role: 'system',
-//         content: instruction,
-//       },
-//       { role: 'user', content: query },
-//     ],
-//     model: 'gpt-3.5-turbo-1106',
-//     response_format: { type: 'json_object' },
-//   });
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content: instruction,
+        },
+        { role: 'user', content: query },
+      ],
+      model: 'gpt-3.5-turbo-1106',
+      response_format: { type: 'json_object' },
+    });
 
-//   console.log(completion.choices[0].message.content);
-//   return completion.choices[0].message.content;
-// }
+    const validationResult = validateJSON(completion.choices[0].message.content);
 
-// // export async function queryGPT(query) {
-// //   try {
-// //     // Create a thread and send the user's query
-// //     const thread = await openai.beta.threads.create();
-// //     await openai.beta.threads.messages.create(thread.id, { role: 'user', content: query });
+    if (!validationResult.isValid) {
+      throw new Error(validationResult.error);
+    }
 
-// //     // Run the thread with a specific assistant
-// //     const run = await openai.beta.threads.runs.create(thread.id, {
-// //       assistant_id: 'asst_EpDrwTSxxuG9iRtxeQG3xslt',
-// //     });
+    return completion.choices[0].message.content;
+  } catch (error) {
+    throw error;
+  }
+}
 
-// //     // Wait for the run to complete
-// //     let runStatus;
-// //     do {
-// //       await new Promise((resolve) => setTimeout(resolve, 1000));
-// //       runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
-// //     } while (runStatus.status === 'running' || runStatus.status === 'in_progress');
+function validateJSON(jsonString) {
+  let parsedJSON;
+  try {
+    parsedJSON = JSON.parse(jsonString);
+  } catch (error) {
+    return { isValid: false, error: 'Invalid JSON format' };
+  }
 
-// //     // Check for non-successful completion
-// //     if (runStatus.status !== 'completed') {
-// //       throw new Error(`Run failed with status: ${runStatus.status}`);
-// //     }
+  if (!parsedJSON.quiz || !parsedJSON.quiz.title || !Array.isArray(parsedJSON.quiz.questions)) {
+    return { isValid: false, error: 'JSON does not match expected structure' };
+  }
 
-// //     // Retrieve the last assistant message from the thread
-// //     const messages = await openai.beta.threads.messages.list(thread.id);
-// //     const lastMessage = messages.data
-// //       .filter((message) => message.run_id === run.id && message.role === 'assistant')
-// //       .pop();
+  for (const question of parsedJSON.quiz.questions) {
+    if (
+      typeof question.question !== 'string' ||
+      !Array.isArray(question.options) ||
+      question.options.length < 2 ||
+      typeof question.answer !== 'string'
+    ) {
+      return { isValid: false, error: 'Invalid question format' };
+    }
+  }
 
-// //     return lastMessage ? lastMessage.content[0]?.text?.value : null;
-// //   } catch (error) {
-// //     console.error('Error in queryGPT:', error);
-// //     return null;
-// //   }
-// // }
-// // queryGPT('create a quiz about sweden');
-
-// // queryGPT();
+  return { isValid: true };
+}
