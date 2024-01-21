@@ -1,15 +1,17 @@
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Text } from '@chakra-ui/react';
+import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Stack, Text } from '@chakra-ui/react';
 
 import { HeadingStyle } from '../../GlobalStyles';
 import { playStrings } from '../../assets';
-import { Radio, SceneCard, SceneContainer } from '../../chakra';
+import { SceneCard, SceneContainer } from '../../chakra';
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
+import { Radio } from '../PlayScene/Radio';
 import {
   AnswerFlexStyle,
   BottomButtomStackStyle,
   PreviousQuestionButtonStyle,
+  QuestionStackStyle,
   QuestionTextStyle,
   TopTextStackStyle,
 } from './styles';
@@ -30,7 +32,7 @@ export const PlayScene = () => {
 
   return (
     <SceneContainer variant="playScene">
-      <Heading sx={HeadingStyle} mb="1rem">
+      <Heading sx={HeadingStyle} marginTop={{ base: '1rem', sm: '1.25rem', md: '1.5rem' }}>
         {quizData.quiz.title}
       </Heading>
       <HStack sx={TopTextStackStyle}>
@@ -40,7 +42,9 @@ export const PlayScene = () => {
         <Text>{quizInput.difficulty}</Text>
       </HStack>
       <SceneCard variant="playCard">
-        <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
+        <Stack sx={QuestionStackStyle}>
+          <Heading sx={QuestionTextStyle}>{currentQuestion.question}</Heading>
+        </Stack>
         <RadioGroup isDisabled={showAnswer} w="100%" value={value} onChange={handleOptionChange}>
           <Flex sx={AnswerFlexStyle} flexWrap={isTrueFalse ? 'nowrap' : 'wrap'}>
             {currentQuestion.options?.map((option, i) => (

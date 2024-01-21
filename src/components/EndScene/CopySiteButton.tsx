@@ -1,6 +1,7 @@
 import { Icon, IconButton, Tooltip } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaRegCopy } from 'react-icons/fa';
+import { CopyIconButtonStyle } from './styles';
 
 export const CopySiteButton = ({ currentUrl }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -35,11 +36,7 @@ export const CopySiteButton = ({ currentUrl }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={copyUrl}
-        bg="blue.900"
-        padding=".8rem"
-        h="auto"
-        w="auto"
-        _hover={{ bg: 'blue.700' }}
+        sx={CopyIconButtonStyle}
       />
     </Tooltip>
   );

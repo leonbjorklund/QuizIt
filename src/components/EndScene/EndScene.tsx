@@ -10,16 +10,13 @@ import { useAppContext } from '../../context/AppContext';
 import { initialPlayQuizState } from '../../context/updateQuiz';
 import { Scene } from '../../utils/types';
 import { CopySiteButton } from './CopySiteButton';
-import { GoodJobText, ShareButtonsFlex, ShareQuizItText } from './styles';
+import { FacebookShareButtonStyle, GoodJobText, ShareButtonsFlex, ShareQuizItText } from './styles';
 
 export const EndScene = () => {
   const { setScene, quizData, playQuizState, setPlayQuizState } = useAppContext();
   const [currentUrl, setCurrentUrl] = useState('');
 
   const { goodJob, btns, share } = endStrings;
-
-  const title = 'QuizIt Repository';
-
   const resetPlayQuizState = () => {
     const newState = {
       ...initialPlayQuizState,
@@ -61,34 +58,18 @@ export const EndScene = () => {
       <VStack w="100%">
         <Text sx={ShareQuizItText}>{share}</Text>
         <HStack sx={ShareButtonsFlex}>
-          <Tooltip hasArrow offset={[0, 10]} label="Share QuizIt on Facebook">
-            <FacebookShareButton
-              // remember to change to currentURL when we have a domain
-              //  url={currentUrl}
-              url="https://github.com/ParhamInBinary/QuizIt"
-              style={{ backgroundColor: '#ffffff', borderRadius: '999px', display: 'flex' }}
-            >
+          <Tooltip closeOnClick hasArrow offset={[0, 10]} label="Share QuizIt on Facebook">
+            <FacebookShareButton url={currentUrl} style={FacebookShareButtonStyle}>
               <Icon as={BsFacebook} boxSize="3rem" color="#0866FF" />
             </FacebookShareButton>
           </Tooltip>
-          <Tooltip hasArrow offset={[0, 10]} label="Share QuizIt on Reddit">
-            <RedditShareButton
-              // remember to change to currentURL when we have a domain
-              //  url={currentUrl}
-              url="https://github.com/ParhamInBinary/QuizIt"
-              title={title}
-              windowWidth={660}
-              windowHeight={460}
-            >
+          <Tooltip closeOnClick hasArrow offset={[0, 10]} label="Share QuizIt on Reddit">
+            <RedditShareButton url={currentUrl} windowWidth={660} windowHeight={460}>
               <RedditIcon size={48} round />
             </RedditShareButton>
           </Tooltip>
-          <Tooltip hasArrow offset={[0, 10]} label="Share QuizIt on Reddit">
-            <LinkedinShareButton
-              // remember to change to currentURL when we have a domain
-              //  url={currentUrl}
-              url="https://github.com/ParhamInBinary/QuizIt"
-            >
+          <Tooltip closeOnClick hasArrow offset={[0, 10]} label="Share QuizIt on Reddit">
+            <LinkedinShareButton url={currentUrl}>
               <LinkedinIcon size={48} round />
             </LinkedinShareButton>
           </Tooltip>

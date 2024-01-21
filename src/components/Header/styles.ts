@@ -13,3 +13,9 @@ export const HeaderContainerStyle = {
   left: '50%',
   transform: 'translateX(-50%)',
 };
+
+export const ModalGoHomeButtonStyle = {
+  color: 'white',
+  bg: 'red.600',
+  _hover: { bg: 'red.700' },
+};

@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useAppContext } from '../../context/AppContext';
 import { Scene } from '../../utils/types';
+import { ModalGoHomeButtonStyle } from './styles';
 
 export const HeaderLogoButton = () => {
   const { scene, setScene } = useAppContext();
@@ -27,7 +28,7 @@ export const HeaderLogoButton = () => {
 
         <Modal size="sm" isCentered isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent bg={colorMode === 'dark' ? 'blue.700' : 'gray.500'}>
+          <ModalContent width={{ base: '340px', sm: '100%' }} bg={colorMode === 'dark' ? 'blue.700' : 'gray.500'}>
             <ModalBody paddingY="20px" display="flex" flexDirection="column" alignItems="center">
               <VStack>
                 <Heading color="white" fontSize="xl">
@@ -43,11 +44,7 @@ export const HeaderLogoButton = () => {
                   Close
                 </Button>
                 <Button
-                  color="white"
-                  bg="red.600"
-                  _hover={{
-                    bg: 'red.700',
-                  }}
+                  sx={ModalGoHomeButtonStyle}
                   onClick={() => {
                     onClose();
                     setScene(Scene.HOME);

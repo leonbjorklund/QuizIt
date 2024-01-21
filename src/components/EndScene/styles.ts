@@ -26,3 +26,21 @@ export const ShareButtonsFlex = {
   justifyContent: 'center',
   gap: '2rem',
 };
+
+// FacebookButton
+
+export const FacebookShareButtonStyle = {
+  backgroundColor: '#ffffff',
+  borderRadius: '999px',
+  display: 'flex',
+};
+
+// CopySiteButton
+
+export const CopyIconButtonStyle = {
+  bg: 'blue.900',
+  padding: '.8rem',
+  h: 'auto',
+  w: 'auto',
+  _hover: { bg: 'blue.700' },
+};

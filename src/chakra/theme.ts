@@ -1,6 +1,5 @@
 import { defineStyleConfig, extendTheme, type ThemeConfig } from '@chakra-ui/react';
-
-import { radioTheme } from './Radio';
+import { radioTheme } from '../components/PlayScene/Radio';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -36,12 +35,12 @@ const SceneContainer = defineStyleConfig({
     },
     playSceneTrueFalse: {},
     optionsScene: {
-      gap: '20px',
+      gap: { base: '14px', sm: '16px', md: '18px', lg: '20px' },
       maxWidth: { sm: '460px', md: '600px', lg: '100%' },
     },
     funFact: {
       position: 'absolute',
-      bottom: 120,
+      bottom: 100,
       textAlign: 'center',
       px: '1rem',
     },
@@ -64,7 +63,8 @@ const SceneCard = defineStyleConfig({
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
       borderRadius: '5px',
       padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
-      gap: { base: '24px', sm: '28px', md: '32px', lg: '32px' },
+      paddingTop: '15px!important',
+      gap: { base: '20px', sm: '20px' },
       _light: {
         bg: 'gray.400',
       },
@@ -117,6 +117,7 @@ const components = {
       },
       optionTitle: {
         color: '#FFF',
+        fontWeight: '500',
         fontSize: {
           base: '18px',
           sm: '20px',
@@ -150,12 +151,11 @@ const components = {
           md: 'xl',
           lg: '2xl',
         },
-        opacity: '.4',
-        fontWeight: '500',
+        opacity: '.5',
         textAlign: 'center',
       },
       funFactTitle: {
-        fontWeight: '800',
+        fontWeight: '600',
         fontSize: {
           base: 'md',
           sm: 'lg',
@@ -164,8 +164,8 @@ const components = {
         },
       },
       funFact: {
+        minHeight: '72px',
         fontWeight: '500',
-        opacity: '.8',
         fontSize: {
           base: 'md',
           sm: 'lg',
@@ -179,32 +179,34 @@ const components = {
     baseStyle: {
       textAlign: 'center',
       fontFamily: 'Poppins, sans-serif',
-      fontWeight: '500',
+      fontWeight: 'medium',
     },
   },
   Input: {
     baseStyle: {
       field: {
-        py: '1.5rem',
-        pr: '5rem',
-        fontSize: { base: '14px', sm: '14px', md: '16px', lg: '16px' },
+        transition: 'none',
+        py: { base: '20px', sm: '20px', md: '22px', lg: '24px' },
+        fontSize: { base: '13px', sm: '14px', md: '16px', lg: '17px' },
+        boxShadow: 'md',
         _dark: {
-          border: 'none',
-          boxShadow: 'sm',
           bg: '#2D3748',
+          outline: 'none',
+          borderColor: 'transparent',
           _placeholder: {
-            color: '#FFFFFF99',
+            color: '#FFFFFF96',
+          },
+          _focus: {
+            borderColor: '#63b3ed',
+            boxShadow: 'inherit',
           },
         },
         _light: {
           bg: 'gray.200',
-          _placeholder: {
-            color: '#4A556899',
+          _focus: {
+            boxShadow: 'inherit',
           },
         },
-      },
-      element: {
-        h: 'auto',
       },
     },
   },
@@ -244,8 +246,9 @@ const components = {
       borderRadius: '5px',
       border: 'none',
       height: 'auto',
+      w: 'auto',
       boxShadow: 'sm',
-      padding: { base: '10px 24px', sm: '10px 26px', md: '10px 28px', lg: '12px 30px' },
+      padding: { base: '18px 24px', sm: '18px 26px', md: '20px 28px', lg: '22px 30px' },
     },
     variants: {
       HeaderLogo: {
@@ -258,9 +261,8 @@ const components = {
       proceed: {
         color: '#000',
         bg: colors.proceedButton,
-        height: 'auto',
         fontSize: {
-          base: '14px',
+          base: '15px',
           sm: '16px',
           md: '18px',
           lg: '18px',

@@ -7,6 +7,11 @@ export const TopTextStackStyle = {
   },
 };
 
+export const QuestionStackStyle = {
+  justifyContent: 'center',
+  minHeight: { base: '48px', sm: '54px', md: '58px' },
+};
+
 export const QuestionTextStyle = {
   color: 'white',
   fontSize: { base: '18px', sm: '20px', md: '22px', lg: '24px' },
@@ -14,12 +19,11 @@ export const QuestionTextStyle = {
 
 export const AnswerFlexStyle = {
   gap: { base: '18px', lg: '20px' },
-
   justifyContent: 'center',
 };
 
 export const BottomButtomStackStyle = {
-  mt: '1.5rem',
+  marginTop: { base: '1rem', sm: '1.25rem', md: '1.5rem' },
   justifyContent: 'center',
   position: 'relative',
   w: '100%',
@@ -36,7 +40,7 @@ export const PreviousQuestionButtonStyle = {
   bg: 'none',
 };
 
-export const quizRadioContainerStyle = {
+export const QuizRadioContainerStyle = {
   w: '100%',
   maxWidth: { base: '360px', sm: '380px', md: '260px', lg: '360px' },
   borderRadius: '5px',

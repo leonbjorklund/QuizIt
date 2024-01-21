@@ -11,8 +11,8 @@ import { LoadingContainerStyle } from './styles';
 
 export const LoadingScene = () => {
   const { setScene, quizData, quizInput } = useAppContext();
-  console.log('quizInput', quizInput);
   const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
+  console.log('quizInput', quizInput);
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
   const [isOops, setIsOops] = useState(false);

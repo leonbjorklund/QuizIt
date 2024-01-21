@@ -15,6 +15,12 @@ import * as Yup from 'yup';
 import { homeStrings } from '../../../assets';
 import { useAppContext } from '../../../context/AppContext';
 import { QuizInputType, Scene } from '../../../utils/types';
+import {
+  FormErrorMessageStyle,
+  InputRightElementStyle,
+  QuizTopicFormControlStyle,
+  SubmitQuizTopicButtonStyle,
+} from '../styles';
 
 export const QuizInputForm = () => {
   const { setQuizInput, setScene } = useAppContext();
@@ -50,29 +56,24 @@ export const QuizInputForm = () => {
 
   return (
     <form
+      style={{ width: '100%', maxWidth: '600px' }}
       name="quizInput"
       autoComplete="off"
       onSubmit={formik.handleSubmit}
-      style={{ width: '100%', maxWidth: '600px' }}
     >
-      <FormControl
-        display="flex"
-        alignItems="center"
-        flexDirection="column"
-        isInvalid={formik.errors.quizInput && formik.touched.quizInput}
-      >
+      <FormControl sx={QuizTopicFormControlStyle} isInvalid={formik.errors.quizInput && formik.touched.quizInput}>
         <InputGroup>
           <Input
-            ref={inputRef}
+            paddingRight={formik.values.quizInput ? '2.5rem' : '1rem'}
             name="quizInput"
-            pr={formik.values.quizInput ? '3rem' : '1rem'}
+            ref={inputRef}
+            placeholder={textPlaceholder}
+            value={formik.values.quizInput}
             onChange={formik.handleChange}
             onFocus={handleInputFocus}
             onBlur={(e) => (e.target.placeholder = textPlaceholder)}
-            value={formik.values.quizInput}
-            placeholder={textPlaceholder}
           />
-          <InputRightElement p="4px" h="100%" w="auto">
+          <InputRightElement sx={InputRightElementStyle}>
             {formik.values.quizInput && (
               <IconButton
                 aria-label="clear-input"
@@ -87,10 +88,8 @@ export const QuizInputForm = () => {
             )}
           </InputRightElement>
         </InputGroup>
-        <FormErrorMessage textAlign="center" fontSize={{ base: '14px', sm: '14px', md: '16px', lg: '16px' }}>
-          {formik.errors.quizInput}
-        </FormErrorMessage>
-        <Button type="submit" variant="proceed" mt="1rem">
+        <FormErrorMessage sx={FormErrorMessageStyle}>{formik.errors.quizInput}</FormErrorMessage>
+        <Button type="submit" variant="proceed" sx={SubmitQuizTopicButtonStyle}>
           {continueBtn}
         </Button>
       </FormControl>

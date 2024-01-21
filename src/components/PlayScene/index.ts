@@ -1,3 +1,3 @@
 export * from './PlayScene';
-export * from './radioContainerColor';
+export * from './Radio/getRadioBackgroundColor';
 export * from './styles';

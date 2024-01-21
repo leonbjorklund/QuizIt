@@ -17,7 +17,7 @@ export const OptionsScene = () => {
   return (
     <>
       <SceneContainer variant="optionsScene">
-        <Heading sx={HeadingStyle}>Customize your quiz</Heading>
+        <Heading sx={HeadingStyle}>Customize your Quiz</Heading>
         <SceneCard variant="optionsCard">
           {OptionsData.options.map((option: OptionType, index: number) => (
             <Option key={index} title={option.title} alternatives={option.alternatives} />
