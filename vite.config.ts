@@ -5,12 +5,12 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   server: {
-    proxy: {
-      '/sendToGPT': {
-        target: 'http://localhost:3001/sendToGPT',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/sendToGPT/, ''),
-      },
-    },
+    // proxy: {
+    //   '/sendToGPT': {
+    //     target: 'http://localhost:3001/sendToGPT',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/sendToGPT/, ''),
+    //   },
+    // },
   },
 });
