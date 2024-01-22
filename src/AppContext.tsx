@@ -1,10 +1,10 @@
 import React, { PropsWithChildren, createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import {
-  PlayQuizState,
-  QuizData,
+  PlayQuizStateType,
+  QuizDataType,
   QuizInputType,
-  Scene,
+  SceneEnum,
   generatePrompt,
   initialPlayQuizState,
   updatePlayQuizState,
@@ -12,16 +12,16 @@ import {
 } from './utils';
 
 interface AppContextType {
-  scene: Scene;
-  setScene: (scene: Scene) => void;
+  scene: SceneEnum;
+  setScene: (scene: SceneEnum) => void;
   quizInput: QuizInputType;
   setQuizInput: React.Dispatch<React.SetStateAction<QuizInputType>>;
   fetchQuizData: (prompt: string) => void;
-  quizData: QuizData | null;
-  setQuizData: React.Dispatch<React.SetStateAction<QuizData | null>>;
+  quizData: QuizDataType | null;
+  setQuizData: React.Dispatch<React.SetStateAction<QuizDataType | null>>;
   handleGenerateQuiz: () => void;
-  playQuizState: PlayQuizState;
-  setPlayQuizState: React.Dispatch<React.SetStateAction<PlayQuizState>>;
+  playQuizState: PlayQuizStateType;
+  setPlayQuizState: React.Dispatch<React.SetStateAction<PlayQuizStateType>>;
   isOops: boolean;
   setIsOops: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -30,11 +30,11 @@ export const AppContext = createContext({} as AppContextType);
 export const useAppContext = () => useContext(AppContext);
 
 export function AppProvider({ children }: PropsWithChildren) {
-  const [scene, setScene] = useSessionStorage<Scene>('scene', Scene.HOME);
+  const [scene, setScene] = useSessionStorage<SceneEnum>('scene', SceneEnum.HOME);
   const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { topic: '' });
-  const [quizData, setQuizData] = useSessionStorage<QuizData | null>('quizData', null);
-  const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizState>('playQuizState', initialPlayQuizState);
-  const [isOops, setIsOops] = useState(false);
+  const [quizData, setQuizData] = useSessionStorage<QuizDataType | null>('quizData', null);
+  const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizStateType>('playQuizState', initialPlayQuizState);
+  const [isOops, setIsOops] = useSessionStorage<boolean>('isOops', false);
 
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const abortController = useRef(new AbortController());
@@ -46,34 +46,40 @@ export function AppProvider({ children }: PropsWithChildren) {
   }, [quizData, playQuizState.index, setPlayQuizState]);
 
   useEffect(() => {
-    if (scene === Scene.LOADING && isFirstLoad) {
-      setScene(Scene.HOME);
+    if (scene === SceneEnum.LOADING && isFirstLoad) {
+      setIsOops(false);
+      setScene(SceneEnum.HOME);
     }
     setIsFirstLoad(false);
 
-    if (scene === Scene.HOME) {
+    if (scene === SceneEnum.HOME) {
       abortController.current.abort();
-      setIsOops(false);
       setPlayQuizState(initialPlayQuizState);
       setQuizData(null);
       setQuizInput({ topic: '' });
+      setIsOops(false);
     }
   }, [scene, isFirstLoad]);
 
   const handleGenerateQuiz = async () => {
     try {
-      setScene(Scene.LOADING);
+      setScene(SceneEnum.LOADING);
       const prompt = generatePrompt(quizInput);
       const quizData = await fetchQuizData(prompt);
       setQuizData(quizData);
     } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted');
+        return;
+      }
       setIsOops(true);
       console.error('Failed to generate quiz:', error.message);
     }
   };
 
-  const fetchQuizData = async (prompt: string): Promise<QuizData> => {
+  const fetchQuizData = async (prompt: string): Promise<QuizDataType> => {
     abortController.current = new AbortController();
+    // const response = await fetch('api/sendToGPT', {
     const response = await fetch('/sendToGPT', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

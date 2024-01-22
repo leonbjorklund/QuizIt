@@ -9,38 +9,35 @@ import { OptionStackStyle } from './styles';
 export const Option = ({ title, alternatives }: OptionType) => {
   const { setQuizInput } = useAppContext();
 
+  const inputMap = {
+    'Type of Quiz': 'type',
+    'Amount of Questions': 'questionAmount',
+    Difficulty: 'difficulty',
+  };
+
   const handleRequestCustom = (title: string, alt: string) => {
-    setQuizInput((prevQuizInput) => {
-      const updatedQuizInput = { ...prevQuizInput };
-      switch (title) {
-        case 'Type of Quiz':
-          updatedQuizInput.type = alt;
-          break;
-        case 'Amount of Questions':
-          updatedQuizInput.questionAmount = alt;
-          break;
-        case 'Difficulty':
-          updatedQuizInput.difficulty = alt;
-          break;
-        default:
-      }
-      return updatedQuizInput;
-    });
+    const inputProperty = inputMap[title];
+    if (inputProperty) {
+      setQuizInput((prevQuizInput) => ({
+        ...prevQuizInput,
+        [inputProperty]: alt,
+      }));
+    }
   };
 
   useEffect(() => {
     if (alternatives.length > 0) {
       handleRequestCustom(title, alternatives[0]);
     }
-  }, []);
+  }, [title, alternatives]);
 
   return (
     <SceneCard variant="option">
       <Text variant="optionTitle">{title}</Text>
       <RadioGroup defaultValue={alternatives[0]} w="100%">
         <Stack sx={OptionStackStyle}>
-          {alternatives.map((alt: string, index: number) => (
-            <Radio key={index} value={alt} variant="optionAlt" onChange={() => handleRequestCustom(title, alt)}>
+          {alternatives.map((alt) => (
+            <Radio key={alt} value={alt} variant="optionAlt" onChange={() => handleRequestCustom(title, alt)}>
               {alt}
             </Radio>
           ))}

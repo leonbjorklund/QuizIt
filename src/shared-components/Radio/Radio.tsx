@@ -25,17 +25,17 @@ export const Radio: React.FC<RadioProps> = ({
   const bgColor = useMemo(() => {
     if (!isPlayQuizScene) return undefined;
     return getRadioBackgroundColor({ isChecked, showAnswer, isCorrectOption, isUserPreviousChoice }, colorMode);
-  }, [isPlayQuizScene, isChecked, showAnswer, isCorrectOption, isUserPreviousChoice, colorMode]);
+  }, [isChecked, showAnswer, isCorrectOption, isUserPreviousChoice, colorMode]);
+
+  const radioStyle = {
+    ...QuizRadioContainerStyle,
+    bgColor,
+    display: bgColor ? 'block' : 'none',
+    _hover: showAnswer ? {} : { opacity: '0.9' },
+  };
 
   return (
-    <Box
-      bgColor={bgColor}
-      display={isPlayQuizScene ? 'block' : 'none'}
-      sx={{
-        ...QuizRadioContainerStyle,
-        ...(showAnswer ? {} : { _hover: { opacity: '0.9' } }),
-      }}
-    >
+    <Box sx={radioStyle}>
       <ChakraRadio {...props} />
     </Box>
   );

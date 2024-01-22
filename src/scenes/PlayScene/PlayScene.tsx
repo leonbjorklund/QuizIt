@@ -4,7 +4,7 @@ import { Button, Flex, HStack, Heading, Icon, IconButton, RadioGroup, Stack, Tex
 import { useAppContext } from '../../AppContext';
 import { playStrings } from '../../assets';
 import { Radio, SceneCard, SceneContainer } from '../../shared-components';
-import { HeadingStyle, Scene, useQuiz } from '../../utils';
+import { HeadingStyle, SceneEnum, useQuiz } from '../../utils';
 import {
   AnswerFlexStyle,
   BottomButtomStackStyle,
@@ -16,16 +16,20 @@ import {
 
 const { btns } = playStrings;
 
+const REVEAL = btns.reveal;
+const NEXT = btns.next;
+const RESULT = btns.result;
+
 export const PlayScene = () => {
   const { setScene, quizData, playQuizState, setPlayQuizState, quizInput } = useAppContext();
   const { index, currentQuestion, value, showAnswer, userAnswers } = playQuizState;
 
+  const PREVIOUS = 'PREV';
   const isTrueFalse = quizInput.type === 'True/False';
-
   const { navigateQuestion, checkAnswer, renderIcon } = useQuiz();
 
-  const handleOptionChange = (e) => {
-    setPlayQuizState((prev) => ({ ...prev, value: e }));
+  const handleOptionChange = (nextValue: string) => {
+    setPlayQuizState((prev) => ({ ...prev, value: nextValue }));
   };
 
   return (
@@ -45,10 +49,10 @@ export const PlayScene = () => {
         </Stack>
         <RadioGroup isDisabled={showAnswer} w="100%" value={value} onChange={handleOptionChange}>
           <Flex sx={AnswerFlexStyle} flexWrap={isTrueFalse ? 'nowrap' : 'wrap'}>
-            {currentQuestion.options?.map((option, i) => (
+            {currentQuestion.options?.map((option) => (
               <Radio
                 variant="playQuiz"
-                key={i}
+                key={option}
                 isPlayQuizScene
                 value={option}
                 showAnswer={showAnswer}
@@ -69,16 +73,16 @@ export const PlayScene = () => {
             sx={PreviousQuestionButtonStyle}
             icon={<ChevronLeftIcon boxSize="2rem" />}
             aria-label="previous-question"
-            onClick={() => navigateQuestion('PREV')}
+            onClick={() => navigateQuestion(PREVIOUS)}
           />
         )}
         {index === quizData.quiz.questions.length - 1 && showAnswer ? (
-          <Button variant="proceed" onClick={() => setScene(Scene.END)}>
-            {btns.result}
+          <Button variant="proceed" onClick={() => setScene(SceneEnum.END)}>
+            {RESULT}
           </Button>
         ) : (
           <Button variant="proceed" onClick={checkAnswer} isDisabled={!value && !showAnswer}>
-            {showAnswer ? btns.next : btns.reveal}
+            {showAnswer ? NEXT : REVEAL}
           </Button>
         )}
       </HStack>

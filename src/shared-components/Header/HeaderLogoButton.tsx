@@ -10,59 +10,64 @@ import {
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/react';
+
 import { useAppContext } from '../../AppContext';
-import { Scene } from '../../utils';
-import { ModalGoHomeButtonStyle } from './styles';
+import { SceneEnum } from '../../utils';
+import { ModalBodyStyle, ModalGoHomeButtonStyle, ModalHeaderStyle } from './styles';
+
+const ConfirmationModal = ({ isOpen, onClose, setScene }) => {
+  const { colorMode } = useColorMode();
+
+  const modalContentBg = colorMode === 'dark' ? 'blue.700' : 'gray.500';
+
+  return (
+    <Modal size="sm" isCentered isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent width={{ base: '340px', sm: '100%' }} bg={modalContentBg}>
+        <ModalBody sx={ModalBodyStyle}>
+          <VStack>
+            <Heading sx={ModalHeaderStyle}>
+              Sure you want to go Home? <br /> You&apos;ll lose your current Quiz!
+            </Heading>
+          </VStack>
+          <HStack mt="1rem" gap="1rem">
+            <Button color="white" variant="return" onClick={onClose}>
+              Close
+            </Button>
+            <Button
+              sx={ModalGoHomeButtonStyle}
+              onClick={() => {
+                onClose();
+                setScene(SceneEnum.HOME);
+              }}
+            >
+              Go Home
+            </Button>
+          </HStack>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export const HeaderLogoButton = () => {
   const { scene, setScene } = useAppContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode } = useColorMode();
 
-  if (scene === Scene.PLAY) {
-    return (
-      <>
-        <Button onClick={onOpen} variant="HeaderLogo" p="0!important">
-          QuizIt
-        </Button>
+  const handleClick = () => {
+    if (scene === SceneEnum.PLAY) {
+      onOpen();
+    } else {
+      setScene(SceneEnum.HOME);
+    }
+  };
 
-        <Modal size="sm" isCentered isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent width={{ base: '340px', sm: '100%' }} bg={colorMode === 'dark' ? 'blue.700' : 'gray.500'}>
-            <ModalBody paddingY="20px" display="flex" flexDirection="column" alignItems="center">
-              <VStack>
-                <Heading color="white" fontSize="xl">
-                  Sure you want to go Home?
-                </Heading>
-                <Heading color="white" fontSize="xl">
-                  {' '}
-                  You&apos;ll lose your current Quiz!
-                </Heading>
-              </VStack>
-              <HStack mt="1rem" gap="1rem">
-                <Button color="white" variant="return" onClick={onClose}>
-                  Close
-                </Button>
-                <Button
-                  sx={ModalGoHomeButtonStyle}
-                  onClick={() => {
-                    onClose();
-                    setScene(Scene.HOME);
-                  }}
-                >
-                  Go Home
-                </Button>
-              </HStack>
-            </ModalBody>
-          </ModalContent>
-        </Modal>
-      </>
-    );
-  } else {
-    return (
-      <Button variant="HeaderLogo" p="0!important" onClick={() => setScene(Scene.HOME)}>
+  return (
+    <>
+      <Button variant="HeaderLogo" p={0} onClick={handleClick}>
         QuizIt
       </Button>
-    );
-  }
+      {scene === SceneEnum.PLAY && <ConfirmationModal isOpen={isOpen} onClose={onClose} setScene={setScene} />}
+    </>
+  );
 };

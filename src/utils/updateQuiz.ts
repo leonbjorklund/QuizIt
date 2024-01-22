@@ -1,16 +1,6 @@
-import { QuizData } from './types';
+import { PlayQuizStateType, QuizDataType } from './types';
 
-export type PlayQuizState = {
-  index: number;
-  currentQuestion?: QuizData['quiz']['questions'][number];
-  value: string;
-  showAnswer: boolean;
-  userAnswers: { [key: number]: string };
-  answeredQuestions: number[];
-  score: number;
-};
-
-export const updatePlayQuizState = (quizData: QuizData, prevState: PlayQuizState) => {
+export const updatePlayQuizState = (quizData: QuizDataType, prevState: PlayQuizStateType) => {
   return {
     ...prevState, // Spread the previous state to include all properties
     currentQuestion: quizData?.quiz?.questions[prevState.index],
@@ -19,7 +9,7 @@ export const updatePlayQuizState = (quizData: QuizData, prevState: PlayQuizState
   };
 };
 
-export const initialPlayQuizState: PlayQuizState = {
+export const initialPlayQuizState: PlayQuizStateType = {
   index: 0,
   value: '',
   showAnswer: false,
