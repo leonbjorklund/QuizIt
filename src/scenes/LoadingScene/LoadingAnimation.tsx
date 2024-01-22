@@ -3,7 +3,7 @@ import { Flex, Text, useColorMode } from '@chakra-ui/react';
 import { loadingStrings } from '../../assets/strings';
 import { LoadingDotStyle } from './styles';
 
-export const Loading = () => {
+export const LoadingAnimation = () => {
   const { colorMode } = useColorMode();
   const dotColorMode1 = colorMode === 'dark' ? '#FAF089' : '#000';
   const dotColorMode2 = colorMode === 'dark' ? '#147849' : '#000';

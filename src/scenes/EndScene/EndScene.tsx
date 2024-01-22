@@ -1,12 +1,12 @@
 import { Button, Flex, HStack, Heading, Icon, Text, Tooltip, VStack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { BsFacebook } from 'react-icons/bs';
 import { FacebookShareButton, LinkedinIcon, LinkedinShareButton, RedditIcon, RedditShareButton } from 'react-share';
 
-import { useEffect, useState } from 'react';
 import { useAppContext } from '../../AppContext';
 import { endStrings } from '../../assets';
 import { SceneContainer } from '../../shared-components';
-import { ButtonFlexStyle, Scene, initialPlayQuizState } from '../../utils';
+import { ButtonFlexStyle, SceneEnum, initialPlayQuizState } from '../../utils';
 import { CopySiteButton } from './CopySiteButton';
 import { FacebookShareButtonStyle, GoodJobText, ShareButtonsFlex, ShareQuizItText } from './styles';
 
@@ -39,7 +39,7 @@ export const EndScene = () => {
         <Button
           variant="return"
           onClick={() => {
-            setScene(Scene.HOME);
+            setScene(SceneEnum.HOME);
           }}
         >
           {btns.new}
@@ -48,7 +48,7 @@ export const EndScene = () => {
           variant="proceed"
           onClick={() => {
             resetPlayQuizState();
-            setScene(Scene.PLAY);
+            setScene(SceneEnum.PLAY);
           }}
         >
           {btns.again}

@@ -14,7 +14,7 @@ import * as Yup from 'yup';
 
 import { useAppContext } from '../../AppContext';
 import { homeStrings } from '../../assets';
-import { QuizInputType, Scene } from '../../utils/types';
+import { QuizInputType, SceneEnum } from '../../utils/types';
 import {
   FormErrorMessageStyle,
   InputRightElementStyle,
@@ -24,16 +24,16 @@ import {
 
 const { textPlaceholder, continueBtn } = homeStrings;
 
+const validationSchema = Yup.object({
+  quizInput: Yup.string()
+    .required('Input is required')
+    .min(2, 'Input must be at least 2 characters long')
+    .max(100, 'Input must be at most 100 characters long'),
+});
+
 export const QuizInputForm = () => {
   const { setQuizInput, setScene } = useAppContext();
   const inputRef = useRef(null);
-
-  const validationSchema = Yup.object({
-    quizInput: Yup.string()
-      .required('Input is required')
-      .min(2, 'Input must be at least 2 characters long')
-      .max(100, 'Input must be at most 100 characters long'),
-  });
 
   const formik = useFormik({
     initialValues: {
@@ -45,7 +45,7 @@ export const QuizInputForm = () => {
         topic: values.quizInput,
       };
       setQuizInput(quizInputData);
-      setScene(Scene.OPTIONS);
+      setScene(SceneEnum.OPTIONS);
       actions.resetForm();
     },
   });

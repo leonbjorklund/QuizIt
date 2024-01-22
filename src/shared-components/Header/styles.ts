@@ -16,6 +16,19 @@ export const HeaderContainerStyle = {
 
 export const ModalGoHomeButtonStyle = {
   color: 'white',
-  bg: 'red.600',
-  _hover: { bg: 'red.700' },
+  bg: 'gray.700',
+  _hover: { bg: 'gray.600' },
+};
+
+export const ModalBodyStyle = {
+  paddingY: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+
+export const ModalHeaderStyle = {
+  lineHeight: '1.8',
+  color: 'white',
+  fontSize: 'xl',
 };

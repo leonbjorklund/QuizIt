@@ -4,7 +4,7 @@ import {
   PlayQuizStateType,
   QuizDataType,
   QuizInputType,
-  Scene,
+  SceneEnum,
   generatePrompt,
   initialPlayQuizState,
   updatePlayQuizState,
@@ -12,8 +12,8 @@ import {
 } from './utils';
 
 interface AppContextType {
-  scene: Scene;
-  setScene: (scene: Scene) => void;
+  scene: SceneEnum;
+  setScene: (scene: SceneEnum) => void;
   quizInput: QuizInputType;
   setQuizInput: React.Dispatch<React.SetStateAction<QuizInputType>>;
   fetchQuizData: (prompt: string) => void;
@@ -30,7 +30,7 @@ export const AppContext = createContext({} as AppContextType);
 export const useAppContext = () => useContext(AppContext);
 
 export function AppProvider({ children }: PropsWithChildren) {
-  const [scene, setScene] = useSessionStorage<Scene>('scene', Scene.HOME);
+  const [scene, setScene] = useSessionStorage<SceneEnum>('scene', SceneEnum.HOME);
   const [quizInput, setQuizInput] = useSessionStorage<QuizInputType>('quizInput', { topic: '' });
   const [quizData, setQuizData] = useSessionStorage<QuizDataType | null>('quizData', null);
   const [playQuizState, setPlayQuizState] = useSessionStorage<PlayQuizStateType>('playQuizState', initialPlayQuizState);
@@ -46,13 +46,13 @@ export function AppProvider({ children }: PropsWithChildren) {
   }, [quizData, playQuizState.index, setPlayQuizState]);
 
   useEffect(() => {
-    if (scene === Scene.LOADING && isFirstLoad) {
+    if (scene === SceneEnum.LOADING && isFirstLoad) {
       setIsOops(false);
-      setScene(Scene.HOME);
+      setScene(SceneEnum.HOME);
     }
     setIsFirstLoad(false);
 
-    if (scene === Scene.HOME) {
+    if (scene === SceneEnum.HOME) {
       abortController.current.abort();
       setPlayQuizState(initialPlayQuizState);
       setQuizData(null);
@@ -63,7 +63,7 @@ export function AppProvider({ children }: PropsWithChildren) {
 
   const handleGenerateQuiz = async () => {
     try {
-      setScene(Scene.LOADING);
+      setScene(SceneEnum.LOADING);
       const prompt = generatePrompt(quizInput);
       const quizData = await fetchQuizData(prompt);
       setQuizData(quizData);

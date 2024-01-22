@@ -3,22 +3,22 @@ import { Flex } from '@chakra-ui/react';
 import { useAppContext } from './AppContext';
 import { EndScene, HomeScene, LoadingScene, OptionsScene, PlayScene } from './scenes';
 import { Header, SceneContainer } from './shared-components';
-import { MainWrapperStyle, PageWrapperStyle, Scene } from './utils';
+import { MainWrapperStyle, PageWrapperStyle, SceneEnum } from './utils';
 
 export default function App() {
   const { scene } = useAppContext();
 
-  const renderScene = (clickedScene: Scene) => {
+  const renderScene = (clickedScene: SceneEnum) => {
     switch (clickedScene) {
-      case Scene.HOME:
+      case SceneEnum.HOME:
         return <HomeScene />;
-      case Scene.OPTIONS:
+      case SceneEnum.OPTIONS:
         return <OptionsScene />;
-      case Scene.LOADING:
+      case SceneEnum.LOADING:
         return <LoadingScene />;
-      case Scene.PLAY:
+      case SceneEnum.PLAY:
         return <PlayScene />;
-      case Scene.END:
+      case SceneEnum.END:
         return <EndScene />;
     }
   };

@@ -1,13 +1,13 @@
 import { radioAnatomy } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
 
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(radioAnatomy.keys);
+
 export const QuizRadioContainerStyle = {
   w: '100%',
   maxWidth: { base: '360px', sm: '380px', md: '260px', lg: '360px' },
   borderRadius: '5px',
 };
-
-const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(radioAnatomy.keys);
 
 const baseStyle = definePartsStyle({
   container: {
@@ -84,7 +84,6 @@ const variants = {
       width: '100%',
       justifyContent: 'center',
     },
-    control: {},
     label: {
       fontSize: {
         base: '16px',
