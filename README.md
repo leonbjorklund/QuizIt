@@ -1,13 +1,5 @@
 Today:
 
-Deploy to netlify
-
-error handling & oops:
-
-- try again oops-page
-- abort-request
-- oops state
-
 Styling & refactoring:
 
 - consistent styling

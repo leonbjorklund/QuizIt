@@ -11,7 +11,8 @@ import { LoadingContainerStyle } from './styles';
 const { loadSubtitle, funFactTitle, oopsTitle, oopsSubtitle, homeBtn, tryAgainBtn } = loadingStrings;
 
 export const LoadingScene = () => {
-  const { setScene, quizData, quizInput, isOops, setIsOops } = useAppContext();
+  const { setScene, quizData, quizInput, isOops, setIsOops, handleGenerateQuiz } = useAppContext();
+  console.log('isOops', isOops);
   console.log('quizInput', quizInput);
 
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
@@ -50,7 +51,10 @@ export const LoadingScene = () => {
             </Button>
             <Button
               variant="proceed"
-              onClick={() => setIsOops(false) /*this is just to avoid lint issue until the logic is set*/}
+              onClick={() => {
+                setIsOops(false);
+                handleGenerateQuiz();
+              }}
             >
               {tryAgainBtn}
             </Button>

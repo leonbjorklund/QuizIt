@@ -1,11 +1,21 @@
-export interface QuizData {
+export interface QuizDataType {
   quiz: {
     title: string;
-    questions: Question[];
+    questions: QuestionType[];
   };
 }
 
-interface Question {
+export type PlayQuizStateType = {
+  index: number;
+  currentQuestion?: QuizDataType['quiz']['questions'][number];
+  value: string;
+  showAnswer: boolean;
+  userAnswers: { [key: number]: string };
+  answeredQuestions: number[];
+  score: number;
+};
+
+interface QuestionType {
   question: string;
   options: string[];
   answer: string;

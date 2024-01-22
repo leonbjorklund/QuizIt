@@ -15,7 +15,7 @@ import { Scene } from '../../utils';
 import { ModalGoHomeButtonStyle } from './styles';
 
 export const HeaderLogoButton = () => {
-  const { scene, setScene } = useAppContext();
+  const { scene, setScene, setIsOops } = useAppContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
 
@@ -60,7 +60,13 @@ export const HeaderLogoButton = () => {
     );
   } else {
     return (
-      <Button variant="HeaderLogo" p="0!important" onClick={() => setScene(Scene.HOME)}>
+      <Button
+        variant="HeaderLogo"
+        p="0!important"
+        onClick={() => {
+          setScene(Scene.HOME);
+        }}
+      >
         QuizIt
       </Button>
     );

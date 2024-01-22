@@ -29,13 +29,15 @@ const SceneContainer = defineStyleConfig({
     maxWidth: '800px',
   },
   variants: {
-    playScene: {
-      borderRadius: '5px',
-      maxWidth: { sm: '460px', md: '600px', lg: '100%' },
+    homeScene: {
+      maxWidth: { base: '520px', md: '100%' },
     },
-    playSceneTrueFalse: {},
     optionsScene: {
       gap: { base: '14px', sm: '16px', md: '18px', lg: '20px' },
+      maxWidth: { sm: '460px', md: '600px', lg: '100%' },
+    },
+    playScene: {
+      borderRadius: '5px',
       maxWidth: { sm: '460px', md: '600px', lg: '100%' },
     },
     funFact: {
@@ -62,7 +64,7 @@ const SceneCard = defineStyleConfig({
       bg: colors.secondary,
       maxWidth: { sm: '500px', md: '600px', lg: '100%' },
       borderRadius: '5px',
-      padding: { base: '16px', sm: '20px 10px', md: '20px', lg: '30px' },
+      padding: { base: '16px', sm: '20px', md: '20px', lg: '30px' },
       paddingTop: '15px!important',
       gap: { base: '20px', sm: '20px' },
       _light: {
