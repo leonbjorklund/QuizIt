@@ -25,6 +25,5 @@ dist-ssr
 *.sw?
 .prettierrc
 .eslintrc
-filenest.txt
 # Local Netlify folder
 .netlify
