@@ -35,6 +35,7 @@ export async function queryGPT(query) {
       ],
       model: 'gpt-3.5-turbo-1106',
       response_format: { type: 'json_object' },
+      top_p: 0.1,
     });
 
     const validationResult = validateJSON(completion.choices[0].message.content);
