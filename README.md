@@ -1,4 +1,6 @@
-Monday:
+Today:
+
+Deploy to netlify
 
 error handling & oops:
 

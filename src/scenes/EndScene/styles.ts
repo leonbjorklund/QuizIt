@@ -24,7 +24,7 @@ export const ShareQuizItText = {
 export const ShareButtonsFlex = {
   w: '100%',
   justifyContent: 'center',
-  gap: '2rem',
+  gap: { base: '1.5rem', sm: '2rem' },
 };
 
 // FacebookButton

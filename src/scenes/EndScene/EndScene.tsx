@@ -67,7 +67,7 @@ export const EndScene = () => {
               <RedditIcon size={48} round />
             </RedditShareButton>
           </Tooltip>
-          <Tooltip closeOnClick hasArrow offset={[0, 10]} label="Share QuizIt on Reddit">
+          <Tooltip closeOnClick hasArrow offset={[0, 10]} label="Share QuizIt on LinkedIn">
             <LinkedinShareButton url={currentUrl}>
               <LinkedinIcon size={48} round />
             </LinkedinShareButton>
