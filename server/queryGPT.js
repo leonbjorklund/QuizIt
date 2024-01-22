@@ -11,8 +11,14 @@ JSON-structure
 "
 This would create a true/false quiz about anatomy with 5 hard questions in the users specified JSON-structure.
 2. Create questions that match the selected topic and difficulty level. For 'hard' questions, incorporate esoteric and detailed knowledge about the topic.
-3. Ensure the questions correspond to the difficulty, and make sure questions are diverse and cover different aspects of the topic. Randomize the position of the correct answer among the options for each question to ensure a fair distribution and prevent predictability.
-4. Output the completed quiz in the specified JSON format.`;
+3. Very important, ensure and verify the following:
+Questions correspond to the difficulty.
+The amount of questions is correct.
+The correct option is always among the options.
+Options are unique, no repeating answers.
+Vary the position of the correct answer among the options for each question.
+4. Output the quiz in the specified JSON-structure.
+`;
 
 const apiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({ apiKey });
