@@ -66,7 +66,7 @@ const variants = {
         base: '16px',
         sm: '18px',
         md: '20px',
-        lg: '22px',
+        lg: '20px',
       },
       display: 'flex',
       alignItems: 'center',
@@ -87,9 +87,9 @@ const variants = {
     label: {
       fontSize: {
         base: '16px',
-        sm: '18px',
-        md: '20px',
-        lg: '22px',
+        sm: '16px',
+        md: '18px',
+        lg: '20px',
       },
     },
   }),
