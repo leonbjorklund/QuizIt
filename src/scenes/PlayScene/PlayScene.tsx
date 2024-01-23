@@ -34,7 +34,7 @@ export const PlayScene = () => {
 
   return (
     <SceneContainer variant="playScene">
-      <Heading sx={HeadingStyle} marginTop={{ base: '1rem', sm: '1.25rem', md: '1.5rem' }}>
+      <Heading sx={HeadingStyle} marginY={{ base: '1rem', sm: '1.25rem', md: '1.5rem' }}>
         {quizData.quiz.title}
       </Heading>
       <HStack sx={TopTextStackStyle}>
