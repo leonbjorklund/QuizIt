@@ -2,8 +2,9 @@ export const TopTextStackStyle = {
   w: '100%',
   justifyContent: 'space-between',
   px: '5px',
+  pb: '5px',
   '>p': {
-    fontSize: { base: '18px', sm: '18px', md: '20px', lg: '22px' },
+    fontSize: { base: '16px', sm: '16px', md: '18px', lg: '20px' },
   },
 };
 
@@ -14,11 +15,11 @@ export const QuestionStackStyle = {
 
 export const QuestionTextStyle = {
   color: 'white',
-  fontSize: { base: '18px', sm: '20px', md: '22px', lg: '24px' },
+  fontSize: { base: '16px', sm: '18px', md: '20px', lg: '22px' },
 };
 
 export const AnswerFlexStyle = {
-  gap: { base: '18px', lg: '20px' },
+  gap: '18px',
   justifyContent: 'center',
 };
 

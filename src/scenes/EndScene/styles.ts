@@ -3,10 +3,10 @@ export const GoodJobText = {
   textAlign: 'center',
   fontWeight: 'bold',
   fontSize: {
-    base: '46px',
-    sm: '58px',
-    md: '68px',
-    lg: '78px',
+    base: '42px',
+    sm: '48px',
+    md: '58px',
+    lg: '68px',
   },
 };
 

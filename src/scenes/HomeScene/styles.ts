@@ -1,12 +1,12 @@
 // HomeScene
 
 export const HomeSceneLogoStyle = {
-  fontSize: { base: '42px', sm: '48px', md: '52px', lg: '56px' },
+  fontSize: { base: '42px', sm: '44px', md: '48px', lg: '52px' },
   fontWeight: '700',
 };
 
 export const HomeSceneIntroTextStyle = {
-  fontSize: { base: '16px', sm: '18px', md: '20px', lg: '22px' },
+  fontSize: { base: '16px', sm: '18px', md: '18px', lg: '20px' },
   textAlign: 'center',
   marginBottom: '.5rem',
   fontWeight: '500',

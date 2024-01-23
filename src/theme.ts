@@ -38,37 +38,28 @@ const components = {
         color: '#FFF',
         fontWeight: '500',
         fontSize: {
-          base: '18px',
-          sm: '20px',
-          md: '22px',
-          lg: '24px',
-        },
-      },
-      optionText: {
-        color: '#FFF',
-        fontSize: {
-          base: '18px',
-          sm: '20px',
-          md: '22px',
-          lg: '24px',
+          base: '16px',
+          sm: '18px',
+          md: '20px',
+          lg: '22px',
         },
       },
       loading: {
         fontFamily: 'Poppins, sans-serif',
         fontWeight: '800',
         fontSize: {
-          base: '4xl',
-          sm: '5xl',
-          md: '6xl',
-          lg: '7xl',
+          base: '3xl',
+          sm: '4xl',
+          md: '5xl',
+          lg: '6xl',
         },
       },
       loadSubtitle: {
         fontSize: {
           base: 'md',
-          sm: 'lg',
-          md: 'xl',
-          lg: '2xl',
+          sm: 'md',
+          md: 'lg',
+          lg: 'xl',
         },
         opacity: '.5',
         textAlign: 'center',
@@ -77,9 +68,9 @@ const components = {
         fontWeight: '600',
         fontSize: {
           base: 'md',
-          sm: 'lg',
-          md: 'xl',
-          lg: '2xl',
+          sm: 'md',
+          md: 'lg',
+          lg: 'xl',
         },
       },
       funFact: {
@@ -87,9 +78,9 @@ const components = {
         fontWeight: '500',
         fontSize: {
           base: 'md',
-          sm: 'lg',
-          md: 'xl',
-          lg: '2xl',
+          sm: 'md',
+          md: 'lg',
+          lg: 'xl',
         },
       },
     },
@@ -105,8 +96,8 @@ const components = {
     baseStyle: {
       field: {
         transition: 'none',
-        py: { base: '20px', sm: '20px', md: '22px', lg: '24px' },
-        fontSize: { base: '13px', sm: '14px', md: '16px', lg: '17px' },
+        py: { base: '18px', sm: '18px', md: '20px', lg: '22px' },
+        fontSize: { base: '13px', sm: '14px', md: '15px', lg: '16px' },
         boxShadow: 'md',
         _dark: {
           bg: '#2D3748',
@@ -167,11 +158,11 @@ const components = {
       height: 'auto',
       w: 'auto',
       boxShadow: 'sm',
-      padding: { base: '18px 24px', sm: '18px 26px', md: '20px 28px', lg: '22px 30px' },
+      padding: { base: '16px 20px', sm: '18px 26px', md: '20px 28px', lg: '20px 30px' },
     },
     variants: {
       HeaderLogo: {
-        fontSize: { base: '38px', sm: '44px', md: '52px' },
+        fontSize: { base: '38px', sm: '44px', md: '48px' },
         fontWeight: 'bold',
         cursor: 'pointer',
         bg: 'transparent',
@@ -182,10 +173,10 @@ const components = {
         color: '#000',
         bg: colors.proceedButton,
         fontSize: {
-          base: '15px',
+          base: '14px',
           sm: '16px',
-          md: '18px',
-          lg: '18px',
+          md: '17px',
+          lg: '17px',
         },
         _hover: {
           bg: 'yellow.200',
@@ -200,8 +191,8 @@ const components = {
         fontSize: {
           base: '14px',
           sm: '16px',
-          md: '18px',
-          lg: '18px',
+          md: '17px',
+          lg: '17px',
         },
         border: '.5px solid',
         bg: 'transparent',

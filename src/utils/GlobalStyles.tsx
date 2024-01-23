@@ -18,7 +18,7 @@ export const MainWrapperStyle = {
 
 export const HeadingStyle = {
   fontWeight: '600',
-  fontSize: { base: '26px', sm: '28px', md: '32px', lg: '36px' },
+  fontSize: { base: '26px', sm: '28px', md: '30px', lg: '32px' },
 };
 
 export const ButtonFlexStyle = {

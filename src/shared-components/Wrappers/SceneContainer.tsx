@@ -35,7 +35,7 @@ export const SceneContainerStyle = defineStyleConfig({
       px: '2rem',
     },
     endScene: {
-      gap: '2rem',
+      gap: '1.5rem',
     },
   },
 });
