@@ -1,14 +1,14 @@
-## QuizIt
+# QuizIt
 
 **https://playquizit.netlify.app/**
 
-![QuizItPic](https://i.imgur.com/JJgJftu.png)
+<img src="https://i.imgur.com/JJgJftu.png" alt="QuizItPic" width="80%" height="auto">
 
-### Description
+## Description
 
 QuizIt is a web application where users input a topic to generate customized quizzes. Users can set the number of questions, difficulty level, and choose between multiple-choice or true/false. The quizzes are dynamically generated using OpenAI's GPT-3.5 model.
 
-### Technologies Used
+## Technologies Used
 
 - Vite
 - TypeScript
@@ -16,7 +16,7 @@ QuizIt is a web application where users input a topic to generate customized qui
 - Chakra UI for styling
 - OpenAI API using GPT-3.5 model
 
-### Created By
+## Created By
 
 Parham Berenjian, [GitHub Profile](https://github.com/ParhamInBinary) \
 Leon Björklund, [GitHub Profile](https://github.com/leonbjorklund)
