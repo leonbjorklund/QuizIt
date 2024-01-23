@@ -13,7 +13,7 @@ QuizIt is a web application where users input a topic to generate customized qui
 - Vite
 - TypeScript
 - React
-- Chakra UI for styling
+- Chakra UI
 - OpenAI API using GPT-3.5 model
 
 ## Created By
