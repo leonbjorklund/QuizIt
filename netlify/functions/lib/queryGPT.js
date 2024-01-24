@@ -2,11 +2,11 @@ import OpenAI from 'openai';
 import process from 'process';
 
 const instruction = `Generate a quiz in JSON format with the specified parameters without any introductory text.
-1. Parse the user's input to identify the quiz topic, number of questions, difficulty level, and JSON-structure. If the input for example is:
+1. Parse the user's input to identify the quiz topic, amount of questions, difficulty, and JSON-structure. If the input for example is:
 "Topic: anatomy,
-AmountOfQuestions: 5,
-Difficulty: hard,
-Type: True/False,
+Amount of Questions: 5,
+Difficulty: Hard,
+Type of Quiz: True/False,
 JSON-structure
 "
 This would create a true/false quiz about anatomy with 5 hard questions in the users specified JSON-structure.

@@ -17,7 +17,7 @@ const trueFalseJSON = `
 `;
 
 export const generatePrompt = (quizInput: QuizInputType): string => {
-  const { topic, questionAmount = 'default amount', difficulty = 'default difficulty', type } = quizInput;
+  const { topic, questionAmount, difficulty, type } = quizInput;
 
   const questionsJSON = type === 'Multichoice' ? multiChoiceJSON : trueFalseJSON;
 
