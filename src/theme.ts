@@ -56,10 +56,10 @@ const components = {
       },
       loadSubtitle: {
         fontSize: {
-          base: 'md',
-          sm: 'md',
-          md: 'lg',
-          lg: 'xl',
+          base: '18px',
+          sm: '20px',
+          md: '22px',
+          lg: '24px',
         },
         opacity: '.5',
         textAlign: 'center',
@@ -67,20 +67,20 @@ const components = {
       funFactTitle: {
         fontWeight: '600',
         fontSize: {
-          base: 'md',
-          sm: 'md',
-          md: 'lg',
-          lg: 'xl',
+          base: '18px',
+          sm: '20px',
+          md: '22px',
+          lg: '24px',
         },
       },
       funFact: {
         minHeight: '72px',
         fontWeight: '500',
         fontSize: {
-          base: 'md',
-          sm: 'md',
-          md: 'lg',
-          lg: 'xl',
+          base: '18px',
+          sm: '20px',
+          md: '22px',
+          lg: '24px',
         },
       },
     },
