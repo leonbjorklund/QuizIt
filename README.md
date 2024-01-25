@@ -4,17 +4,39 @@
 
 <img src="https://i.imgur.com/JJgJftu.png" alt="QuizItPic" width="80%" height="auto">
 
-## Description
+## About
 
 QuizIt is a web application where users input a topic to generate customized quizzes. Users can set the number of questions, difficulty level, and choose between multiple-choice or true/false. The quizzes are dynamically generated using OpenAI's GPT-3.5 model.
 
-## Technologies Used
+## Tech
 
 - Vite
 - TypeScript
 - React
 - Chakra UI
-- OpenAI API using GPT-3.5 model
+- OpenAI API
+
+## How to Run
+
+```bash
+# Clone repository
+git clone https://github.com/leonbjorklund/QuizIt.git
+
+# Go to root
+cd quizit
+
+# install dependencies
+npm install
+
+# Making API calls to OpenAI
+Add .env to server/ with variable: OPENAI_API_KEY="your-API-key"
+
+# Run server
+npm run server
+
+# Run dev server
+npm run dev
+```
 
 ## Created By
 
