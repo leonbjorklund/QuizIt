@@ -31,6 +31,9 @@ npm install
 # Making API calls to OpenAI
 Add .env to server/ with variable: OPENAI_API_KEY="your-API-key"
 
+# change API endpoint in src/AppContext.tsx
+Change the fetch endpoint in line 82 from 'api/sendToGPT' to '/sendToGPT'
+
 # Run server
 npm run server
 
